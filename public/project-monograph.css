@@ -44,6 +44,7 @@ a {
 .mono-nav > a {
   font-size: 16px;
   font-weight: 600;
+  line-height: 1.15;
 }
 
 .mono-nav nav {
@@ -53,7 +54,17 @@ a {
 
 .mono-nav nav a {
   font-size: 13px;
+  line-height: 1.25;
   color: rgba(23,23,23,0.66);
+}
+
+.mono-nav .cn {
+  display: block;
+  margin-top: 3px;
+  font-size: 10px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: #8a8a84;
 }
 
 .mono-hero {
@@ -114,6 +125,18 @@ a {
   text-transform: uppercase;
 }
 
+.mono-hero-copy p .cn,
+.mono-label .cn {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: rgba(255,255,255,0.58);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .mono-hero-copy h1 {
   margin: 0;
   font-size: clamp(48px, 6.4vw, 78px);
@@ -146,7 +169,7 @@ a {
   align-content: start;
 }
 
-.mono-meta-item span {
+.mono-meta-item > span {
   display: block;
   margin-bottom: 8px;
   font-size: 12px;
@@ -158,9 +181,25 @@ a {
 
 .mono-meta-item strong {
   display: block;
+  font-weight: 400;
+}
+
+.mono-meta-item strong .en {
+  display: block;
   font-size: 15px;
   line-height: 1.5;
-  font-weight: 400;
+  color: #20201e;
+}
+
+.mono-meta-item strong .cn,
+.mono-meta-item > span .cn {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #8a8a84;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .mono-lead {
@@ -212,9 +251,21 @@ a {
 
 .mono-text-break p {
   margin: 0;
+}
+
+.mono-text-break .en {
+  display: block;
   font-size: 18px;
   line-height: 1.74;
   color: #242420;
+}
+
+.mono-text-break .cn {
+  display: block;
+  margin-top: 18px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #777771;
 }
 
 .mono-spread {
@@ -249,12 +300,29 @@ a {
 .mono-notes h2 {
   margin: 0;
   max-width: 300px;
+}
+
+.mono-notes h2 .en {
+  display: block;
   font-size: clamp(30px, 4vw, 48px);
   line-height: 1.1;
   font-weight: 500;
 }
 
+.mono-notes h2 .cn {
+  display: block;
+  margin-top: 12px;
+  font-size: clamp(18px, 2.5vw, 28px);
+  line-height: 1.5;
+  font-weight: 400;
+  color: #8a8a84;
+}
+
 .mono-notes .mono-label {
+  color: #8a8a84;
+}
+
+.mono-notes .mono-label .cn {
   color: #8a8a84;
 }
 
@@ -269,7 +337,7 @@ a {
   padding-top: 24px;
 }
 
-.mono-note span {
+.mono-note > span {
   display: block;
   margin-bottom: 10px;
   font-size: 12px;
@@ -281,9 +349,24 @@ a {
 .mono-note p {
   margin: 0;
   max-width: 620px;
+}
+
+.mono-note p .en {
+  display: block;
   font-size: 16px;
   line-height: 1.72;
   color: #242420;
+}
+
+.mono-note p .cn,
+.mono-note > span .cn {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #888882;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .mono-image-closing {
@@ -301,9 +384,17 @@ a {
 
 .mono-footer a {
   font-size: 14px;
+  line-height: 1.4;
   color: #242420;
   border-bottom: 1px solid rgba(36,36,32,0.28);
   padding-bottom: 4px;
+}
+
+.mono-footer a .cn {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  color: #8a8a84;
 }
 
 .reveal {

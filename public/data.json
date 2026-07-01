@@ -1,7 +1,7 @@
 {
   "studioName": {
     "en": "John Studio",
-    "cn": "John Studio"
+    "cn": "约翰工作室"
   },
   "tagline": {
     "en": "Spatial Narrative.",
@@ -122,7 +122,9 @@
       },
       "year": "2025",
       "location": "Guangzhou, China",
+      "locationCn": "中国 · 广州",
       "scale": "420 sq m",
+      "scaleCn": "420 平方米",
       "category": {
         "en": "Industrial Design",
         "cn": "工业设计"
@@ -149,16 +151,34 @@
       ],
       "technicalNotes": [
         {
-          "label": "Material",
-          "value": "Brushed aluminum, honed stone, translucent acrylic, and warm white indirect light."
+          "label": {
+            "en": "Material",
+            "cn": "材料"
+          },
+          "value": {
+            "en": "Brushed aluminum, honed stone, translucent acrylic, and warm white indirect light.",
+            "cn": "拉丝铝、亚光石材、半透亚克力与暖白间接光共同构成克制的材料层次。"
+          }
         },
         {
-          "label": "Concept",
-          "value": "A modular spatial order where product, display, and circulation share the same proportional grid."
+          "label": {
+            "en": "Concept",
+            "cn": "概念"
+          },
+          "value": {
+            "en": "A modular spatial order where product, display, and circulation share the same proportional grid.",
+            "cn": "产品、展示与动线共享同一比例网格，形成模块化的空间秩序。"
+          }
         },
         {
-          "label": "Detail",
-          "value": "All visible joints are reduced to thin shadow gaps so the system reads as a continuous architectural plane."
+          "label": {
+            "en": "Detail",
+            "cn": "细部"
+          },
+          "value": {
+            "en": "All visible joints are reduced to thin shadow gaps so the system reads as a continuous architectural plane.",
+            "cn": "所有可见接缝被压缩为细窄阴影缝，使系统呈现为连续的建筑平面。"
+          }
         }
       ],
       "closingImage": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1920&q=80",
@@ -187,7 +207,9 @@
       },
       "year": "2024",
       "location": "Shenzhen, China",
+      "locationCn": "中国 · 深圳",
       "scale": "Identity system / 36 applications",
+      "scaleCn": "识别系统 / 36 项应用",
       "category": {
         "en": "Brand Design",
         "cn": "品牌设计"
@@ -214,16 +236,34 @@
       ],
       "technicalNotes": [
         {
-          "label": "Typography",
-          "value": "A restrained grotesk type system is paired with generous margins and strict baseline intervals."
+          "label": {
+            "en": "Typography",
+            "cn": "字体"
+          },
+          "value": {
+            "en": "A restrained grotesk type system is paired with generous margins and strict baseline intervals.",
+            "cn": "克制的无衬线字体系统与宽阔边距、严格基线间距共同建立秩序。"
+          }
         },
         {
-          "label": "Material",
-          "value": "Uncoated paper, matte vinyl, brushed steel signage, and low-contrast neutral backgrounds."
+          "label": {
+            "en": "Material",
+            "cn": "材料"
+          },
+          "value": {
+            "en": "Uncoated paper, matte vinyl, brushed steel signage, and low-contrast neutral backgrounds.",
+            "cn": "未涂布纸、哑光乙烯基、拉丝钢标识与低对比中性背景构成应用系统。"
+          }
         },
         {
-          "label": "Concept",
-          "value": "The identity behaves like an architectural grid, giving every format a calm and repeatable order."
+          "label": {
+            "en": "Concept",
+            "cn": "概念"
+          },
+          "value": {
+            "en": "The identity behaves like an architectural grid, giving every format a calm and repeatable order.",
+            "cn": "识别系统像建筑网格一样运行，为每一种媒介提供安静且可复用的秩序。"
+          }
         }
       ],
       "closingImage": "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1920&q=80",

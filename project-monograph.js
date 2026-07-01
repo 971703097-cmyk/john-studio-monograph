@@ -10,6 +10,16 @@
     return `${value.en ? `<span class="en">${value.en}</span>` : ""}${value.cn ? `<span class="cn">${value.cn}</span>` : ""}`;
   }
 
+  function pairValue(en, cn) {
+    return pairText({ en, cn });
+  }
+
+  function fieldValue(value, fallbackCn) {
+    if (!value) return "";
+    if (typeof value === "object") return pairText(value);
+    return pairValue(value, fallbackCn);
+  }
+
   function imageItem(item) {
     if (!item) return { src: "", alt: "" };
     if (typeof item === "string") return { src: item, alt: "" };
@@ -49,37 +59,46 @@
       const imageTwo = imageItem(gallery[1] || project.imageFull);
       const imageThree = imageItem(gallery[2] || project.closingImage || project.imageFull);
 
-      document.getElementById("studioName").textContent = data.studioName.en;
+      document.getElementById("studioName").innerHTML = pairText(data.studioName);
       document.getElementById("heroImage").src = project.imageFull;
       document.getElementById("heroImage").alt = project.title.en;
-      document.getElementById("heroMeta").textContent = `${project.year} / ${project.location || project.category.en}`;
+      document.getElementById("heroMeta").innerHTML = pairValue(
+        `${project.year} / ${project.location || project.category.en}`,
+        `${project.year} / ${project.locationCn || project.category.cn || ""}`
+      );
       document.getElementById("projectTitle").innerHTML = pairText(project.title);
       document.getElementById("projectLead").innerHTML = pairText(project.concept || project.detail || project.desc);
       document.getElementById("projectMeta").innerHTML = [
-        ["Location", project.location || data.contact.location.en],
-        ["Year", project.year],
-        ["Scale", project.scale || "Spatial system"],
-        ["Type", project.category.en]
-      ].map(([label, value]) => `<div class="mono-meta-item"><span>${label}</span><strong>${value}</strong></div>`).join("");
+        [{ en: "Location", cn: "地点" }, project.location || data.contact.location.en, project.locationCn || data.contact.location.cn],
+        [{ en: "Year", cn: "年份" }, project.year, project.year],
+        [{ en: "Scale", cn: "规模" }, project.scale || "Spatial system", project.scaleCn || "空间系统"],
+        [{ en: "Type", cn: "类型" }, project.category.en, project.category.cn]
+      ].map(([label, value, valueCn]) =>
+        `<div class="mono-meta-item"><span>${pairText(label)}</span><strong>${fieldValue(value, valueCn)}</strong></div>`
+      ).join("");
 
       document.getElementById("imageOne").src = imageOne.src;
       document.getElementById("imageOne").alt = imageOne.alt || project.title.en;
-      document.getElementById("chapterText").textContent = project.detail.en;
+      document.getElementById("chapterText").innerHTML = pairText(project.detail);
       document.getElementById("imageSpread").innerHTML = `
         <figure><img src="${imageTwo.src}" alt="${imageTwo.alt || project.title.en}" loading="lazy"></figure>
         <figure><img src="${imageThree.src}" alt="${imageThree.alt || project.title.en}" loading="lazy"></figure>
       `;
       document.getElementById("projectNotes").innerHTML = (project.technicalNotes || []).map((note) =>
-        `<article class="mono-note"><span>${note.label}</span><p>${note.value}</p></article>`
+        `<article class="mono-note"><span>${pairText(note.label)}</span><p>${pairText(note.value)}</p></article>`
       ).join("");
       document.getElementById("closingImage").src = project.closingImage || project.imageFull;
       document.getElementById("closingImage").alt = `${project.title.en} closing view`;
 
-      const nextText = `Next Project: ${next.title.en}`;
-      document.getElementById("nextProject").textContent = "Next";
+      const nextText = {
+        en: `Next Project: ${next.title.en}`,
+        cn: `下一个项目：${next.title.cn || ""}`
+      };
+      document.getElementById("nextProject").innerHTML = pairValue("Next", "下一个");
       document.getElementById("nextProject").href = `index.html?id=${nextId}`;
-      document.getElementById("nextProjectFooter").textContent = nextText;
+      document.getElementById("nextProjectFooter").innerHTML = pairText(nextText);
       document.getElementById("nextProjectFooter").href = `index.html?id=${nextId}`;
+      document.querySelector(".mono-footer a:first-child").innerHTML = pairValue("First Project", "第一个项目");
       document.title = `${project.title.en} - Monograph`;
 
       initReveal();

@@ -5,8 +5,10 @@ import hashlib
 import hmac
 import mimetypes
 import os
+import time
 from pathlib import Path
 from urllib.parse import quote
+from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
@@ -29,7 +31,12 @@ def request_oss(method, bucket, endpoint, object_key="", body=b"", content_type=
     headers = dict(headers or {})
     date = gmt_now()
     content_md5 = ""
-    canonicalized_headers = ""
+    oss_headers = []
+    for key, value in headers.items():
+        lower_key = key.lower()
+        if lower_key.startswith("x-oss-"):
+            oss_headers.append((lower_key, " ".join(str(value).split())))
+    canonicalized_headers = "".join(f"{key}:{value}\n" for key, value in sorted(oss_headers))
     canonicalized_resource = f"/{bucket}/{object_key}"
     if subresource:
         canonicalized_resource += f"?{subresource}"
@@ -78,13 +85,28 @@ def cache_control_for(path):
 
 def upload_public(bucket, endpoint):
     files = [path for path in PUBLIC_DIR.rglob("*") if path.is_file()]
+    failures = []
     for path in files:
         key = path.relative_to(PUBLIC_DIR).as_posix()
         body = path.read_bytes()
         content_type = content_type_for(path)
         headers = {"Cache-Control": cache_control_for(path)}
-        request_oss("PUT", bucket, endpoint, key, body, content_type, headers)
-        print(f"uploaded {key}")
+        for attempt in range(1, 5):
+            try:
+                request_oss("PUT", bucket, endpoint, key, body, content_type, headers)
+                print(f"uploaded {key}")
+                break
+            except (HTTPError, URLError, TimeoutError, OSError) as exc:
+                if attempt == 4:
+                    failures.append((key, str(exc)))
+                    print(f"failed {key}: {exc}")
+                else:
+                    time.sleep(attempt * 2)
+    if failures:
+        print(f"uploaded with {len(failures)} failures")
+        for key, error in failures:
+            print(f"- {key}: {error}")
+        raise SystemExit(1)
     print(f"uploaded {len(files)} files")
 
 

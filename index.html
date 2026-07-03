@@ -186,6 +186,7 @@ h1{
   inset:0;
   background-size:cover;
   background-position:center;
+  background-repeat:no-repeat;
   opacity:0;
   transform:scale(1.05);
   transition:opacity 1.2s ease, transform 5s ease;
@@ -195,6 +196,18 @@ h1{
 .slide.active{
   opacity:1;
   transform:scale(1.12);
+}
+
+.slide.portrait{
+  background-size:contain, cover;
+  background-position:center, center;
+  background-repeat:no-repeat, no-repeat;
+}
+
+.slide.landscape{
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 
 /* OVERLAY */
@@ -220,7 +233,12 @@ h1{
   transform:translateX(-50%);
   display:flex;
   gap:40px;
-  z-index:10;
+  z-index:20;
+}
+
+.navGroup{
+  position:relative;
+  padding:0 0 18px;
 }
 
 .tab{
@@ -231,13 +249,63 @@ h1{
   transition:0.25s;
 }
 
-.tab:hover{
+.navGroup:hover .tab{
   opacity:0.8;
   transform:scale(1.1);
 }
 
-.tab.active{
+.navGroup.active .tab{
   opacity:1;
+}
+
+.projectMenu{
+  position:absolute;
+  top:28px;
+  left:50%;
+  transform:translateX(-50%) translateY(8px);
+  min-width:220px;
+  padding:10px 0;
+  background:transparent;
+  border:none;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+  text-align:center;
+}
+
+.navGroup:hover .projectMenu{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+
+.projectOption{
+  display:block;
+  font-size:11px;
+  letter-spacing:1.2px;
+  line-height:1.45;
+  padding:8px 4px;
+  opacity:0.48;
+  cursor:pointer;
+  transition:opacity .22s ease, transform .22s ease;
+  white-space:nowrap;
+}
+
+.projectOption:hover{
+  opacity:1;
+  transform:scale(1.04);
+}
+
+.projectOption.current{
+  opacity:1;
+}
+
+.projectOption span{
+  display:block;
+  font-size:10px;
+  letter-spacing:0;
+  opacity:.38;
+  margin-top:2px;
 }
 
 /* META */
@@ -257,6 +325,13 @@ h1{
   font-size:12px;
   opacity:0.45;
   margin-top:6px;
+}
+
+.project-index{
+  font-size:11px;
+  opacity:0.35;
+  margin-top:12px;
+  letter-spacing:2px;
 }
 
 /* VIEW LINK */
@@ -349,6 +424,7 @@ h1{
     <div class="meta">
       <div class="space-title" id="spaceTitle"></div>
       <div class="desc" id="spaceDesc"></div>
+      <div class="project-index" id="projectIndex"></div>
       <a class="view-link" id="viewProjectLink" href="#">VIEW PROJECT / 查看项目</a>
     </div>
 
@@ -562,13 +638,51 @@ buildSpaces();
 const topnavContainer = document.getElementById("topnavContainer");
 const typeLabels = { arch: "ARCH", interior: "INT" };
 
-Object.keys(spaces).forEach(type => {
-  const tab = document.createElement("div");
-  tab.className = "tab";
-  tab.dataset.type = type;
-  tab.textContent = typeLabels[type] || type.toUpperCase();
-  topnavContainer.appendChild(tab);
-});
+function renderProjectSwitcher() {
+  topnavContainer.innerHTML = Object.keys(spaces).map(type => {
+    const active = type === currentSpace ? " active" : "";
+    const options = spaces[type].projects.map((p, index) => {
+      const current = type === currentSpace && index === spaces[type].currentIndex ? " current" : "";
+      return '<div class="projectOption' + current + '" data-type="' + type + '" data-index="' + index + '">' +
+        p.title +
+        '<span>' + p.titleCn + '</span>' +
+      '</div>';
+    }).join("");
+
+    return '<div class="navGroup' + active + '" data-type="' + type + '">' +
+      '<div class="tab">' + (typeLabels[type] || type.toUpperCase()) + '</div>' +
+      '<div class="projectMenu">' + options + '</div>' +
+    '</div>';
+  }).join("");
+
+  topnavContainer.querySelectorAll(".projectOption").forEach(option => {
+    option.addEventListener("click", (e) => {
+      e.stopPropagation();
+      currentSpace = option.dataset.type;
+      spaces[currentSpace].currentIndex = parseInt(option.dataset.index);
+      slideIndex = 0;
+      lastCard = document.querySelector('.card[data-index="' + spaces[currentSpace].projects[spaces[currentSpace].currentIndex].id + '"]') || lastCard;
+      renderProjectSwitcher();
+      loadSpace();
+      setSlide(0);
+      startSpace();
+    });
+  });
+
+  topnavContainer.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const group = tab.closest(".navGroup");
+      currentSpace = group.dataset.type;
+      spaces[currentSpace].currentIndex = 0;
+      slideIndex = 0;
+      renderProjectSwitcher();
+      loadSpace();
+      setSlide(0);
+      startSpace();
+    });
+  });
+}
 
 /* =========================
    SPACE ENGINE
@@ -602,11 +716,26 @@ function loadSpace() {
   createSlides(imgs.length);
 
   currentSlides.forEach((sl, idx) => {
-    sl.style.backgroundImage = "url(" + imgs[idx] + ")";
+    const src = imgs[idx];
+    sl.classList.remove("portrait", "landscape");
+
+    const probe = new Image();
+    probe.onload = function() {
+      const isPortrait = probe.naturalHeight > probe.naturalWidth;
+      if (isPortrait) {
+        sl.classList.add("portrait");
+        sl.style.backgroundImage = "url(" + src + "), url(" + src + ")";
+      } else {
+        sl.classList.add("landscape");
+        sl.style.backgroundImage = "url(" + src + ")";
+      }
+    };
+    probe.src = src;
   });
 
   document.getElementById("spaceTitle").innerText = p.title;
   document.getElementById("spaceDesc").innerText = p.descCn;
+  document.getElementById("projectIndex").innerText = (typeLabels[p.type] || p.type.toUpperCase()) + " / " + p.titleCn;
   document.getElementById("viewProjectLink").href = "project-monograph.html?id=" + p.id;
 }
 
@@ -651,32 +780,11 @@ function openSpace() {
   document.getElementById("spacePage").style.display = "block";
   document.body.style.overflow = "hidden";
 
-  document.querySelectorAll(".tab").forEach(t => {
-    t.classList.toggle("active", t.dataset.type === currentSpace);
-  });
-
+  renderProjectSwitcher();
   loadSpace();
   setSlide(0);
   startSpace();
 }
-
-/* SPACE TOP NAV SWITCH */
-document.querySelectorAll(".tab").forEach(tab => {
-  tab.addEventListener("click", (e) => {
-    e.stopPropagation();
-
-    currentSpace = tab.dataset.type;
-    spaces[currentSpace].currentIndex = 0;
-    slideIndex = 0;
-
-    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
-
-    loadSpace();
-    setSlide(0);
-    startSpace();
-  });
-});
 
 /* SPACE WHEEL CONTROL */
 document.getElementById("spaceStage").addEventListener("wheel", (e) => {
@@ -693,6 +801,7 @@ document.getElementById("spaceStage").addEventListener("wheel", (e) => {
       /* move to next project in this space */
       s.currentIndex = (s.currentIndex + 1) % s.projects.length;
       slideIndex = 0;
+      renderProjectSwitcher();
       loadSpace();
       setSlide(0);
     }
@@ -705,6 +814,7 @@ document.getElementById("spaceStage").addEventListener("wheel", (e) => {
       const s = spaces[currentSpace];
       s.currentIndex = (s.currentIndex - 1 + s.projects.length) % s.projects.length;
       slideIndex = 0;
+      renderProjectSwitcher();
       loadSpace();
       setSlide(0);
       slideIndex = slideCount - 1;

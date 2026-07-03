@@ -95,9 +95,9 @@
         cn: `下一个项目：${next.title.cn || ""}`
       };
       document.getElementById("nextProject").innerHTML = pairValue("Next", "下一个");
-      document.getElementById("nextProject").href = `index.html?id=${nextId}`;
+      document.getElementById("nextProject").href = `project-monograph.html?id=${nextId}`;
       document.getElementById("nextProjectFooter").innerHTML = pairText(nextText);
-      document.getElementById("nextProjectFooter").href = `index.html?id=${nextId}`;
+      document.getElementById("nextProjectFooter").href = `project-monograph.html?id=${nextId}`;
       document.querySelector(".mono-footer a:first-child").innerHTML = pairValue("First Project", "第一个项目");
       document.title = `${project.title.en} - Monograph`;
 

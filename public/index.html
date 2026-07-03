@@ -2,64 +2,742 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Monograph - John Studio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="project-monograph.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JOHN STUDIO</title>
+
+<style>
+/* =========================
+   BASE
+========================= */
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#0b0b0d;
+  color:#fff;
+}
+
+/* =========================
+   HOME / 主页面
+========================= */
+#homePage{
+  display:block;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.bg{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.1);
+  transition:opacity 1.2s ease, transform 4s ease;
+  filter:brightness(0.55);
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.75),
+    rgba(11,11,13,1)
+  );
+}
+
+.content{
+  position:relative;
+  z-index:2;
+}
+
+h1{
+  font-size:72px;
+  margin:0;
+  font-weight:300;
+  letter-spacing:-1px;
+}
+
+/* NAV */
+.nav{
+  margin-top:60px;
+  display:flex;
+  justify-content:center;
+  gap:60px;
+}
+
+.item{
+  cursor:pointer;
+  opacity:0.45;
+  transition:transform 0.25s ease, opacity 0.25s ease;
+  text-align:center;
+}
+
+.item:hover{
+  opacity:1;
+  transform:scale(1.12);
+}
+
+.item.active{
+  opacity:1;
+}
+
+.item span{
+  display:block;
+  font-size:12px;
+  opacity:0.4;
+}
+
+/* SECTION */
+.section{
+  padding:120px 40px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.title{
+  font-size:12px;
+  letter-spacing:3px;
+  opacity:0.4;
+  margin-bottom:40px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
+}
+
+.card{
+  cursor:pointer;
+}
+
+.card img{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+  border-radius:22px;
+  transition:0.4s ease;
+}
+
+.card:hover img{
+  transform:scale(1.02);
+}
+
+.card .text{
+  padding:12px 6px;
+}
+
+.card .text span{
+  display:block;
+  font-size:12px;
+  opacity:0.4;
+  margin-top:6px;
+}
+
+/* CONTACT */
+.contact{
+  padding:120px 40px;
+  max-width:1000px;
+  margin:auto;
+  opacity:0.75;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+  font-size:13px;
+}
+
+/* =========================
+   SPACE / 空间页面
+========================= */
+#spacePage{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:#000;
+  overflow:hidden;
+  color:#fff;
+}
+
+/* STAGE */
+.stage{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* SLIDES */
+.slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transform:scale(1.05);
+  transition:opacity 1.2s ease, transform 5s ease;
+  filter:brightness(0.55);
+}
+
+.slide.active{
+  opacity:1;
+  transform:scale(1.12);
+}
+
+/* OVERLAY */
+.stage::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.10),
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.70),
+    rgba(0,0,0,1)
+  );
+  pointer-events:none;
+}
+
+/* TOP NAV */
+.topnav{
+  position:absolute;
+  top:28px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:40px;
+  z-index:10;
+}
+
+.tab{
+  font-size:12px;
+  letter-spacing:2px;
+  opacity:0.4;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.tab:hover{
+  opacity:0.8;
+  transform:scale(1.1);
+}
+
+.tab.active{
+  opacity:1;
+}
+
+/* META */
+.meta{
+  position:absolute;
+  bottom:34px;
+  left:34px;
+  z-index:10;
+}
+
+.space-title{
+  font-size:14px;
+  opacity:0.9;
+}
+
+.desc{
+  font-size:12px;
+  opacity:0.45;
+  margin-top:6px;
+}
+
+/* VIEW LINK */
+.view-link{
+  display:inline-block;
+  margin-top:14px;
+  font-size:11px;
+  letter-spacing:2px;
+  opacity:0.6;
+  color:#fff;
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,0.3);
+  padding-bottom:2px;
+  transition:0.25s;
+}
+.view-link:hover{
+  opacity:1;
+  border-bottom-color:rgba(255,255,255,0.8);
+}
+
+/* hint */
+.hint{
+  position:absolute;
+  right:28px;
+  bottom:28px;
+  font-size:11px;
+  opacity:0.25;
+  z-index:10;
+}
+</style>
 </head>
+
 <body>
-<header class="mono-nav" id="monoNav">
-  <a href="index.html" id="studioName">John Studio</a>
-  <nav>
-    <a href="#" id="nextProject">Next</a>
-  </nav>
-</header>
 
-<main class="mono-page" id="monoPage">
-  <section class="mono-hero">
-    <img id="heroImage" src="" alt="">
-    <div class="mono-hero-scrim"></div>
-    <div class="mono-hero-copy reveal-now">
-      <p id="heroMeta"></p>
-      <h1 id="projectTitle"></h1>
+<!-- =========================
+     HOME / 主页面
+========================= -->
+<div id="homePage">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="bg" id="bg"></div>
+
+    <div class="content">
+      <h1>JOHN STUDIO</h1>
+
+      <div class="nav">
+        <div class="item active" data-type="all">ALL<span>全部</span></div>
+        <div class="item" data-type="arch">ARCH<span>建筑</span></div>
+        <div class="item" data-type="interior">INT<span>室内</span></div>
+      </div>
+
     </div>
-  </section>
+  </div>
 
-  <section class="mono-intro reveal">
-    <div class="mono-intro-meta" id="projectMeta"></div>
-    <div class="mono-lead" id="projectLead"></div>
-  </section>
+  <!-- SECTION -->
+  <div class="section" id="projects">
+    <div class="title">PROJECTS / 项目</div>
 
-  <section class="mono-image mono-image-large reveal">
-    <img id="imageOne" src="" alt="">
-  </section>
-
-  <section class="mono-text-break reveal">
-    <p id="chapterText"></p>
-  </section>
-
-  <section class="mono-spread reveal" id="imageSpread"></section>
-
-  <section class="mono-notes reveal">
-    <div>
-      <span class="mono-label"><span class="en">Notes</span><span class="cn">说明</span></span>
-      <h2><span class="en">Material, order, rhythm.</span><span class="cn">材料、秩序与节奏。</span></h2>
+    <div class="cards" id="cardsContainer">
+      <!-- Cards generated by JS -->
     </div>
-    <div class="mono-note-list" id="projectNotes"></div>
-  </section>
+  </div>
 
-  <section class="mono-image mono-image-closing reveal">
-    <img id="closingImage" src="" alt="">
-  </section>
+  <!-- CONTACT -->
+  <div class="contact">
+    <div>JOHN STUDIO<br>Studio</div>
+    <div>971703097@qq.com<br>Instagram</div>
+    <div>Guangzhou, China<br>中国 · 广州</div>
+  </div>
 
-  <footer class="mono-footer reveal">
-    <a href="index.html?id=0">First Project</a>
-    <a href="#" id="nextProjectFooter">Next Project</a>
-  </footer>
-</main>
+</div>
 
-<script src="project-monograph.js"></script>
+<!-- =========================
+     SPACE / 空间页面
+========================= -->
+<div id="spacePage">
+
+  <div class="stage" id="spaceStage">
+
+    <!-- TOP NAV -->
+    <div class="topnav" id="topnavContainer">
+      <!-- Tabs generated by JS -->
+    </div>
+
+    <!-- SLIDES (generated dynamically) -->
+    <div id="slidesContainer"></div>
+
+    <!-- META -->
+    <div class="meta">
+      <div class="space-title" id="spaceTitle"></div>
+      <div class="desc" id="spaceDesc"></div>
+      <a class="view-link" id="viewProjectLink" href="#">VIEW PROJECT / 查看项目</a>
+    </div>
+
+    <div class="hint">Scroll to control · Left click blank area to return</div>
+
+  </div>
+
+</div>
+
+<script>
+/* =========================
+   PROJECT DATA
+========================= */
+const projects = [
+  {
+    id: 0, slug: "dongguan-new-world-interior", type: "interior",
+    title: "Dongguan New World Residence", titleCn: "东莞新世界",
+    desc: "A calm interior sequence shaped by material restraint, light, and spatial rhythm.",
+    descCn: "一个由材料克制、光线与空间节奏共同塑造的安静室内序列。",
+    card: "assets/projects/dongguan-new-world-interior/card.webp",
+    hero: "assets/projects/dongguan-new-world-interior/hero.webp",
+    gallery: [
+      "assets/projects/dongguan-new-world-interior/01.webp",
+      "assets/projects/dongguan-new-world-interior/02.webp",
+      "assets/projects/dongguan-new-world-interior/03.webp",
+      "assets/projects/dongguan-new-world-interior/04.webp",
+      "assets/projects/dongguan-new-world-interior/05.webp",
+      "assets/projects/dongguan-new-world-interior/06.webp",
+      "assets/projects/dongguan-new-world-interior/07.webp",
+      "assets/projects/dongguan-new-world-interior/08.webp",
+      "assets/projects/dongguan-new-world-interior/09.webp",
+      "assets/projects/dongguan-new-world-interior/10.webp",
+      "assets/projects/dongguan-new-world-interior/11.webp"
+    ]
+  },
+  {
+    id: 1, slug: "nanjing-huaihe-wharf", type: "arch",
+    title: "Huaihe Wharf, Nanjing", titleCn: "南京秦双线淮河码头",
+    desc: "A restrained architectural project shaped by site, movement, and public spatial sequence.",
+    descCn: "一个由场地、动线与公共空间序列共同塑造的克制建筑项目。",
+    card: "assets/projects/nanjing-huaihe-wharf/card.webp",
+    hero: "assets/projects/nanjing-huaihe-wharf/hero.webp",
+    gallery: [
+      "assets/projects/nanjing-huaihe-wharf/01.webp",
+      "assets/projects/nanjing-huaihe-wharf/02.webp",
+      "assets/projects/nanjing-huaihe-wharf/03.webp",
+      "assets/projects/nanjing-huaihe-wharf/04.webp"
+    ]
+  },
+  {
+    id: 2, slug: "bar-interior", type: "interior",
+    title: "Bar Interior", titleCn: "酒吧室内",
+    desc: "A calm interior sequence shaped by material restraint, light, and spatial rhythm.",
+    descCn: "一个由材料克制、光线与空间节奏共同塑造的安静室内序列。",
+    card: "assets/projects/bar-interior/card.webp",
+    hero: "assets/projects/bar-interior/hero.webp",
+    gallery: [
+      "assets/projects/bar-interior/01.webp",
+      "assets/projects/bar-interior/02.webp",
+      "assets/projects/bar-interior/03.webp",
+      "assets/projects/bar-interior/04.webp",
+      "assets/projects/bar-interior/05.webp"
+    ]
+  },
+  {
+    id: 3, slug: "fujian-lishui-hot-spring-visitor-center", type: "arch",
+    title: "Lishui Hot Spring Visitor Center", titleCn: "福建利水温泉游客中心",
+    desc: "A restrained architectural project shaped by site, movement, and public spatial sequence.",
+    descCn: "一个由场地、动线与公共空间序列共同塑造的克制建筑项目。",
+    card: "assets/projects/fujian-lishui-hot-spring-visitor-center/card.webp",
+    hero: "assets/projects/fujian-lishui-hot-spring-visitor-center/hero.webp",
+    gallery: [
+      "assets/projects/fujian-lishui-hot-spring-visitor-center/01.webp",
+      "assets/projects/fujian-lishui-hot-spring-visitor-center/02.webp"
+    ]
+  },
+  {
+    id: 4, slug: "helong-hope-primary-school-extension", type: "arch",
+    title: "He Long Hope Primary School Extension", titleCn: "贺龙希望小学扩建",
+    desc: "A restrained architectural project shaped by site, movement, and public spatial sequence.",
+    descCn: "一个由场地、动线与公共空间序列共同塑造的克制建筑项目。",
+    card: "assets/projects/helong-hope-primary-school-extension/card.webp",
+    hero: "assets/projects/helong-hope-primary-school-extension/hero.webp",
+    gallery: [
+      "assets/projects/helong-hope-primary-school-extension/01.webp",
+      "assets/projects/helong-hope-primary-school-extension/02.webp",
+      "assets/projects/helong-hope-primary-school-extension/03.webp"
+    ]
+  },
+  {
+    id: 5, slug: "dongguan-vanke-mountain-realm", type: "interior",
+    title: "Dongguan Vanke Mountain Realm", titleCn: "东莞 · 万科山境",
+    desc: "A calm interior sequence shaped by material restraint, light, and spatial rhythm.",
+    descCn: "一个由材料克制、光线与空间节奏共同塑造的安静室内序列。",
+    card: "assets/projects/dongguan-vanke-mountain-realm/card.webp",
+    hero: "assets/projects/dongguan-vanke-mountain-realm/hero.webp",
+    gallery: [
+      "assets/projects/dongguan-vanke-mountain-realm/01.webp",
+      "assets/projects/dongguan-vanke-mountain-realm/02.webp",
+      "assets/projects/dongguan-vanke-mountain-realm/03.webp",
+      "assets/projects/dongguan-vanke-mountain-realm/04.webp",
+      "assets/projects/dongguan-vanke-mountain-realm/05.webp"
+    ]
+  },
+  {
+    id: 6, slug: "guangzhou-nansha-yitao-peninsula", type: "interior",
+    title: "Guangzhou Nansha Yitao Peninsula", titleCn: "广州 · 南沙逸涛半岛",
+    desc: "A calm interior sequence shaped by material restraint, light, and spatial rhythm.",
+    descCn: "一个由材料克制、光线与空间节奏共同塑造的安静室内序列。",
+    card: "assets/projects/guangzhou-nansha-yitao-peninsula/card.webp",
+    hero: "assets/projects/guangzhou-nansha-yitao-peninsula/hero.webp",
+    gallery: [
+      "assets/projects/guangzhou-nansha-yitao-peninsula/01.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/02.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/03.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/04.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/05.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/06.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/07.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/08.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/09.webp"
+    ]
+  }
+];
+
+/* =========================
+   GENERATE HOME CARDS
+========================= */
+const cardsContainer = document.getElementById("cardsContainer");
+
+projects.forEach((p, i) => {
+  const card = document.createElement("div");
+  card.className = "card " + p.type;
+  card.dataset.type = p.type;
+  card.dataset.index = i;
+  card.innerHTML =
+    '<img src="' + p.card + '" alt="' + p.title + '">' +
+    '<div class="text">' + p.title + '<span>' + p.titleCn + '</span></div>';
+  cardsContainer.appendChild(card);
+});
+
+/* =========================
+   HOME HERO BACKGROUND
+========================= */
+const heroImages = projects.map(p => p.hero);
+
+let heroIndex = 0;
+const bg = document.getElementById("bg");
+
+bg.style.backgroundImage = "url(" + heroImages[0] + ")";
+
+setInterval(() => {
+  heroIndex = (heroIndex + 1) % heroImages.length;
+  bg.style.opacity = 0;
+  setTimeout(() => {
+    bg.style.backgroundImage = "url(" + heroImages[heroIndex] + ")";
+    bg.style.opacity = 1;
+  }, 600);
+}, 4000);
+
+/* =========================
+   HOME FILTER
+========================= */
+const items = document.querySelectorAll(".item");
+
+items.forEach(item => {
+  item.addEventListener("click", () => {
+
+    const type = item.dataset.type;
+
+    items.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(c => {
+      if (type === "all") {
+        c.style.display = "block";
+      } else {
+        c.style.display = c.dataset.type === type ? "block" : "none";
+      }
+    });
+
+    document.getElementById("projects")
+      .scrollIntoView({ behavior: "smooth" });
+
+  });
+});
+
+/* =========================
+   SPACE DATA (from projects)
+========================= */
+const spaces = {};
+
+function buildSpaces() {
+  projects.forEach(p => {
+    if (!spaces[p.type]) {
+      spaces[p.type] = {
+        projects: [],
+        currentIndex: 0
+      };
+    }
+    spaces[p.type].projects.push(p);
+  });
+}
+buildSpaces();
+
+/* =========================
+   GENERATE TOPNAV TABS
+========================= */
+const topnavContainer = document.getElementById("topnavContainer");
+const typeLabels = { arch: "ARCH", interior: "INT" };
+
+Object.keys(spaces).forEach(type => {
+  const tab = document.createElement("div");
+  tab.className = "tab";
+  tab.dataset.type = type;
+  tab.textContent = typeLabels[type] || type.toUpperCase();
+  topnavContainer.appendChild(tab);
+});
+
+/* =========================
+   SPACE ENGINE
+========================= */
+let currentSpace = "arch";
+let slideIndex = 0;
+let spaceTimer = null;
+let lastCard = null;
+let currentSlides = [];
+let slideCount = 0;
+
+const slidesContainer = document.getElementById("slidesContainer");
+
+function createSlides(count) {
+  slidesContainer.innerHTML = "";
+  currentSlides = [];
+  slideCount = count;
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement("div");
+    s.className = "slide" + (i === 0 ? " active" : "");
+    slidesContainer.appendChild(s);
+    currentSlides.push(s);
+  }
+}
+
+function loadSpace() {
+  const s = spaces[currentSpace];
+  const p = s.projects[s.currentIndex];
+  const imgs = p.gallery;
+
+  createSlides(imgs.length);
+
+  currentSlides.forEach((sl, idx) => {
+    sl.style.backgroundImage = "url(" + imgs[idx] + ")";
+  });
+
+  document.getElementById("spaceTitle").innerText = p.title;
+  document.getElementById("spaceDesc").innerText = p.descCn;
+  document.getElementById("viewProjectLink").href = "project-monograph.html?id=" + p.id;
+}
+
+function setSlide(n) {
+  currentSlides.forEach(s => s.classList.remove("active"));
+  currentSlides[n].classList.add("active");
+}
+
+function nextSlide() {
+  slideIndex = (slideIndex + 1) % slideCount;
+  setSlide(slideIndex);
+}
+
+function startSpace() {
+  clearInterval(spaceTimer);
+  spaceTimer = setInterval(nextSlide, 3500);
+}
+
+function stopSpace() {
+  clearInterval(spaceTimer);
+}
+
+/* HOME CARD -> SPACE */
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    lastCard = card;
+    const idx = parseInt(card.dataset.index);
+    const p = projects[idx];
+    currentSpace = p.type;
+
+    const s = spaces[currentSpace];
+    s.currentIndex = s.projects.indexOf(p);
+    slideIndex = 0;
+
+    openSpace();
+  });
+});
+
+function openSpace() {
+  document.getElementById("spacePage").style.display = "block";
+  document.body.style.overflow = "hidden";
+
+  document.querySelectorAll(".tab").forEach(t => {
+    t.classList.toggle("active", t.dataset.type === currentSpace);
+  });
+
+  loadSpace();
+  setSlide(0);
+  startSpace();
+}
+
+/* SPACE TOP NAV SWITCH */
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    currentSpace = tab.dataset.type;
+    spaces[currentSpace].currentIndex = 0;
+    slideIndex = 0;
+
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    loadSpace();
+    setSlide(0);
+    startSpace();
+  });
+});
+
+/* SPACE WHEEL CONTROL */
+document.getElementById("spaceStage").addEventListener("wheel", (e) => {
+  e.preventDefault();
+
+  stopSpace();
+
+  if (e.deltaY > 0) {
+    const s = spaces[currentSpace];
+    if (slideIndex < slideCount - 1) {
+      slideIndex++;
+      setSlide(slideIndex);
+    } else {
+      /* move to next project in this space */
+      s.currentIndex = (s.currentIndex + 1) % s.projects.length;
+      slideIndex = 0;
+      loadSpace();
+      setSlide(0);
+    }
+  } else {
+    if (slideIndex > 0) {
+      slideIndex--;
+      setSlide(slideIndex);
+    } else {
+      /* move to previous project in this space */
+      const s = spaces[currentSpace];
+      s.currentIndex = (s.currentIndex - 1 + s.projects.length) % s.projects.length;
+      slideIndex = 0;
+      loadSpace();
+      setSlide(0);
+      slideIndex = slideCount - 1;
+      setSlide(slideIndex);
+    }
+  }
+
+  setTimeout(startSpace, 120);
+}, { passive: false });
+
+/* SPACE LEFT CLICK -> HOME, RETURN TO CARD */
+document.getElementById("spacePage").addEventListener("click", (e) => {
+  if (e.target.closest(".topnav")) return;
+  if (e.target.closest(".view-link")) return;
+
+  closeSpace();
+});
+
+function closeSpace() {
+  stopSpace();
+
+  document.getElementById("spacePage").style.display = "none";
+  document.body.style.overflow = "auto";
+
+  if (lastCard) {
+    setTimeout(() => {
+      lastCard.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }, 80);
+  }
+}
+</script>
+
 </body>
 </html>

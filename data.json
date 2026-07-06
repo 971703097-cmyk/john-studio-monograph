@@ -855,6 +855,108 @@
           "value": "Guangzhou, China"
         }
       ]
+    },
+    {
+      "title": {
+        "en": "Dongshankou South Plaza",
+        "cn": "广州东山口南广场"
+      },
+      "desc": {
+        "en": "An urban public space intervention shaped by site memory, community rhythm, and architectural dialogue.",
+        "cn": "一个由场地记忆、社区节奏与建筑对话共同塑造的城市公共空间介入。"
+      },
+      "detail": {
+        "en": "The project reimagines a historic urban plaza through contemporary architectural language, preserving the layered memory of the site while creating new spatial experiences for the community.",
+        "cn": "项目以当代建筑语言重新想象历史广场，在保留场地层叠记忆的同时为社区创造新的空间体验。"
+      },
+      "concept": {
+        "en": "The design weaves together heritage context, public accessibility, and urban vitality to create a meaningful gathering space.",
+        "cn": "设计将遗产语境、公共开放性与城市活力编织在一起，创造有意义的聚集场所。"
+      },
+      "year": "2020",
+      "location": "Guangzhou, China",
+      "locationCn": "中国 · 广州",
+      "scale": "Urban public space",
+      "scaleCn": "城市公共空间",
+      "category": {
+        "en": "Architecture",
+        "cn": "建筑设计"
+      },
+      "image": "assets/projects/guangzhou-dongshankou-south-plaza/card.webp",
+      "imageFull": "assets/projects/guangzhou-dongshankou-south-plaza/hero.webp",
+      "gallery": [
+        {
+          "src": "assets/projects/guangzhou-dongshankou-south-plaza/01.webp",
+          "alt": "Dongshankou South Plaza view 1"
+        },
+        {
+          "src": "assets/projects/guangzhou-dongshankou-south-plaza/02.webp",
+          "alt": "Dongshankou South Plaza view 2"
+        },
+        {
+          "src": "assets/projects/guangzhou-dongshankou-south-plaza/03.webp",
+          "alt": "Dongshankou South Plaza view 3"
+        },
+        {
+          "src": "assets/projects/guangzhou-dongshankou-south-plaza/04.webp",
+          "alt": "Dongshankou South Plaza view 4"
+        },
+        {
+          "src": "assets/projects/guangzhou-dongshankou-south-plaza/05.webp",
+          "alt": "Dongshankou South Plaza view 5"
+        },
+        {
+          "src": "assets/projects/guangzhou-dongshankou-south-plaza/06.webp",
+          "alt": "Dongshankou South Plaza view 6"
+        }
+      ],
+      "closingImage": "assets/projects/guangzhou-dongshankou-south-plaza/closing.webp",
+      "technicalNotes": [
+        {
+          "label": {
+            "en": "Context",
+            "cn": "语境"
+          },
+          "value": {
+            "en": "Historic urban fabric meets contemporary public space design.",
+            "cn": "历史城市肌理与当代公共空间设计相遇。"
+          }
+        },
+        {
+          "label": {
+            "en": "Approach",
+            "cn": "方法"
+          },
+          "value": {
+            "en": "Sensitive intervention preserving site memory while introducing new community functions.",
+            "cn": "在保留场地记忆的同时引入新社区功能的敏感介入。"
+          }
+        },
+        {
+          "label": {
+            "en": "Photographer",
+            "cn": "摄影师"
+          },
+          "value": {
+            "en": "Wu Siming",
+            "cn": "吴嗣铭"
+          }
+        }
+      ],
+      "specs": [
+        {
+          "label": "Scope",
+          "value": "Urban public space"
+        },
+        {
+          "label": "Type",
+          "value": "Architecture"
+        },
+        {
+          "label": "Location",
+          "value": "Guangzhou, China"
+        }
+      ]
     }
   ]
 }

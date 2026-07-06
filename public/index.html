@@ -48,13 +48,42 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.15),
-    rgba(0,0,0,0.45),
-    rgba(0,0,0,0.75),
-    rgba(11,11,13,1)
-  );
+  pointer-events:none;
+  /* 让 Hero 底图在底部慢慢融入浅色页面，而不是硬切断 */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.18) 0%,
+      rgba(0,0,0,0.12) 22%,
+      rgba(0,0,0,0.06) 42%,
+      rgba(245,245,247,0.00) 56%,
+      rgba(245,245,247,0.24) 70%,
+      rgba(245,245,247,0.58) 82%,
+      rgba(245,245,247,0.88) 92%,
+      rgba(245,245,247,1.00) 100%
+    );
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  left:-2%;
+  right:-2%;
+  bottom:-6%;
+  height:34%;
+  pointer-events:none;
+  z-index:1;
+  /* 再加一层柔和雾化过渡，让白底更自然地接住底图 */
+  background:
+    radial-gradient(
+      ellipse at center bottom,
+      rgba(245,245,247,0.72) 0%,
+      rgba(245,245,247,0.42) 40%,
+      rgba(245,245,247,0.16) 68%,
+      rgba(245,245,247,0.00) 100%
+    );
+  filter:blur(18px);
+  transform:translateY(6%);
 }
 
 .content{
@@ -415,6 +444,5284 @@ h1{
   .topnav{gap:26px;}
   .projectMenu{min-width:160px;}
 }
+
+/* =========================
+   LIGHT VERSION OVERRIDES
+========================= */
+body{
+  background:#f5f1e9;
+  color:#181716;
+}
+
+#homePage{
+  background:#f5f1e9;
+  color:#181716;
+}
+
+.hero::after{
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.04) 0%,
+    rgba(255,255,255,0.08) 28%,
+    rgba(245,241,233,0.40) 64%,
+    rgba(245,241,233,0.92) 88%,
+    rgba(245,241,233,1) 100%
+  );
+}
+
+.bg{
+  filter:brightness(0.88);
+}
+
+.content{
+  color:#fff;
+  text-shadow:0 10px 30px rgba(0,0,0,0.18);
+}
+
+.item,
+.item span{
+  color:inherit;
+}
+
+.section{
+  color:#181716;
+}
+
+.title{
+  opacity:0.5;
+}
+
+.card img{
+  box-shadow:0 22px 60px rgba(0,0,0,0.08);
+}
+
+.contact{
+  color:#181716;
+  opacity:0.78;
+}
+
+#spacePage{
+  background:#f5f1e9;
+  color:#181716;
+}
+
+.slide{
+  filter:brightness(0.98);
+}
+
+.stage::after{
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.00) 0%,
+    rgba(255,255,255,0.03) 48%,
+    rgba(245,241,233,0.36) 76%,
+    rgba(245,241,233,0.84) 100%
+  );
+}
+
+/* Top nav stays light for readability over imagery */
+.topnav,
+.tab,
+.projectOption,
+.projectOption span,
+.hint{
+  color:#fff;
+  text-shadow:0 1px 12px rgba(0,0,0,0.25);
+}
+
+.tab{
+  opacity:0.58;
+}
+
+.navGroup:hover .tab{
+  opacity:0.92;
+}
+
+.navGroup.active .tab,
+.projectOption.current{
+  opacity:1;
+}
+
+.projectOption{
+  opacity:0.62;
+}
+
+.projectOption span{
+  opacity:0.55;
+}
+
+.meta{
+  color:#181716;
+  text-shadow:0 2px 10px rgba(255,255,255,0.35);
+}
+
+.space-title{
+  color:#181716;
+}
+
+.desc,
+.project-index{
+  color:rgba(24,23,22,0.74);
+  opacity:1;
+}
+
+.hint{
+  opacity:0.48;
+}
+
+/* Portrait side blur becomes light glass instead of dark haze */
+.sideBlur{
+  backdrop-filter:blur(11px) saturate(0.98) brightness(1.05);
+  -webkit-backdrop-filter:blur(11px) saturate(0.98) brightness(1.05);
+}
+
+.sideBlur.left{
+  background:
+    linear-gradient(to right,
+      rgba(255,255,255,0.15) 0%,
+      rgba(255,255,255,0.09) 24%,
+      rgba(255,255,255,0.04) 50%,
+      rgba(255,255,255,0.015) 78%,
+      rgba(255,255,255,0.00) 100%);
+  box-shadow:
+    inset -12px 0 24px rgba(255,255,255,0.10),
+    inset -1px 0 0 rgba(255,255,255,0.08);
+}
+
+.sideBlur.right{
+  background:
+    linear-gradient(to left,
+      rgba(255,255,255,0.15) 0%,
+      rgba(255,255,255,0.09) 24%,
+      rgba(255,255,255,0.04) 50%,
+      rgba(255,255,255,0.015) 78%,
+      rgba(255,255,255,0.00) 100%);
+  box-shadow:
+    inset 12px 0 24px rgba(255,255,255,0.10),
+    inset 1px 0 0 rgba(255,255,255,0.08);
+}
+
+
+/* =========================
+   LIGHT APPLE VERSION OVERRIDES
+========================= */
+body,
+#homePage,
+#spacePage{
+  background:#f5f6f8;
+  color:#111214;
+}
+
+/* Cooler, cleaner Apple-like light surface */
+.hero::after{
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02) 0%,
+    rgba(255,255,255,0.05) 24%,
+    rgba(245,246,248,0.28) 56%,
+    rgba(245,246,248,0.86) 84%,
+    rgba(245,246,248,1) 100%
+  );
+}
+
+.bg{
+  filter:brightness(0.90) saturate(0.98);
+}
+
+.content{
+  text-shadow:0 10px 28px rgba(0,0,0,0.14);
+}
+
+h1{
+  letter-spacing:-0.04em;
+}
+
+.item{
+  opacity:0.52;
+}
+
+.item.active{
+  opacity:1;
+}
+
+.item span{
+  opacity:0.52;
+}
+
+.section{
+  padding:132px 44px;
+}
+
+.title{
+  opacity:0.46;
+  letter-spacing:0.22em;
+}
+
+.cards{
+  gap:34px;
+}
+
+.card img{
+  border-radius:28px;
+  box-shadow:
+    0 18px 48px rgba(15,23,42,0.08),
+    0 2px 10px rgba(15,23,42,0.04);
+}
+
+.card:hover img{
+  transform:scale(1.018);
+}
+
+.card .text{
+  padding:14px 6px 2px;
+}
+
+.card .text span{
+  opacity:0.52;
+}
+
+.contact{
+  opacity:0.82;
+  color:#202124;
+}
+
+/* Space page: cleaner and more "Apple" */
+.slide{
+  filter:brightness(1.00) saturate(0.98);
+}
+
+.stage::after{
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.00) 0%,
+    rgba(255,255,255,0.025) 50%,
+    rgba(245,246,248,0.24) 76%,
+    rgba(245,246,248,0.72) 100%
+  );
+}
+
+.topnav{
+  gap:44px;
+}
+
+.tab{
+  opacity:0.64;
+  text-shadow:0 1px 12px rgba(0,0,0,0.18);
+}
+
+.navGroup:hover .tab{
+  opacity:0.95;
+}
+
+.projectOption{
+  opacity:0.68;
+  text-shadow:0 1px 12px rgba(0,0,0,0.18);
+}
+
+.projectOption span{
+  opacity:0.56;
+}
+
+.meta{
+  text-shadow:0 2px 10px rgba(255,255,255,0.46);
+}
+
+.space-title{
+  color:#121316;
+}
+
+.desc,
+.project-index{
+  color:rgba(18,19,22,0.72);
+}
+
+.hint{
+  opacity:0.40;
+  text-shadow:0 1px 12px rgba(0,0,0,0.16);
+}
+
+/* Portrait side blur: more transparent frosted glass, cooler Apple tone */
+.sideBlur{
+  backdrop-filter:blur(13px) saturate(1.02) brightness(1.02);
+  -webkit-backdrop-filter:blur(13px) saturate(1.02) brightness(1.02);
+}
+
+.sideBlur.left{
+  background:
+    linear-gradient(to right,
+      rgba(255,255,255,0.18) 0%,
+      rgba(255,255,255,0.10) 24%,
+      rgba(255,255,255,0.045) 52%,
+      rgba(255,255,255,0.015) 80%,
+      rgba(255,255,255,0.00) 100%);
+  box-shadow:
+    inset -10px 0 24px rgba(255,255,255,0.08),
+    inset -1px 0 0 rgba(255,255,255,0.10);
+}
+
+.sideBlur.right{
+  background:
+    linear-gradient(to left,
+      rgba(255,255,255,0.18) 0%,
+      rgba(255,255,255,0.10) 24%,
+      rgba(255,255,255,0.045) 52%,
+      rgba(255,255,255,0.015) 80%,
+      rgba(255,255,255,0.00) 100%);
+  box-shadow:
+    inset 10px 0 24px rgba(255,255,255,0.08),
+    inset 1px 0 0 rgba(255,255,255,0.10);
+}
+
+
+/* =========================
+   APPLE PRODUCT PAGE REFINEMENT
+========================= */
+body,
+#homePage,
+#spacePage{
+  background:#f5f5f7;
+  color:#1d1d1f;
+}
+
+/* Apple product page usually has cleaner whitespace + cooler surface */
+.hero::after{
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.00) 0%,
+    rgba(255,255,255,0.025) 22%,
+    rgba(245,245,247,0.18) 52%,
+    rgba(245,245,247,0.72) 82%,
+    rgba(245,245,247,1) 100%
+  );
+}
+
+.bg{
+  filter:brightness(0.93) saturate(0.96);
+}
+
+.content{
+  text-shadow:0 8px 24px rgba(0,0,0,0.10);
+}
+
+h1{
+  font-size:78px;
+  font-weight:300;
+  letter-spacing:-0.055em;
+}
+
+.nav{
+  gap:56px;
+}
+
+.item{
+  opacity:0.54;
+}
+
+.item:hover{
+  transform:scale(1.08);
+}
+
+.item span{
+  font-size:11px;
+  opacity:0.5;
+}
+
+.section{
+  max-width:1180px;
+  padding:144px 48px;
+}
+
+.title{
+  font-size:11px;
+  letter-spacing:0.24em;
+  opacity:0.42;
+  margin-bottom:44px;
+}
+
+.cards{
+  gap:36px;
+}
+
+.card img{
+  border-radius:30px;
+  box-shadow:
+    0 12px 34px rgba(0,0,0,0.05),
+    0 2px 10px rgba(0,0,0,0.03);
+}
+
+.card:hover img{
+  transform:scale(1.015);
+}
+
+.card .text{
+  padding:14px 4px 4px;
+  font-size:15px;
+  color:#1d1d1f;
+}
+
+.card .text span{
+  font-size:12px;
+  opacity:0.54;
+}
+
+.contact{
+  max-width:1100px;
+  padding:132px 48px;
+  color:#1d1d1f;
+  opacity:0.82;
+}
+
+/* Space page tuned to Apple product page feeling */
+.slide{
+  filter:brightness(1.02) saturate(0.97);
+}
+
+.stage::after{
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.00) 0%,
+    rgba(255,255,255,0.012) 48%,
+    rgba(245,245,247,0.14) 76%,
+    rgba(245,245,247,0.48) 100%
+  );
+}
+
+/* Top switcher lighter and more restrained */
+.topnav{
+  gap:46px;
+}
+
+.tab{
+  font-size:11px;
+  letter-spacing:0.22em;
+  opacity:0.62;
+  text-shadow:0 1px 10px rgba(0,0,0,0.12);
+}
+
+.navGroup:hover .tab{
+  opacity:0.92;
+  transform:scale(1.05);
+}
+
+.projectOption{
+  font-size:11px;
+  letter-spacing:0.08em;
+  opacity:0.70;
+  text-shadow:0 1px 10px rgba(0,0,0,0.12);
+}
+
+.projectOption span{
+  font-size:10px;
+  opacity:0.52;
+}
+
+.meta{
+  bottom:36px;
+  left:36px;
+  text-shadow:0 2px 8px rgba(255,255,255,0.28);
+}
+
+.space-title{
+  font-size:14px;
+  color:#1d1d1f;
+}
+
+.desc{
+  color:rgba(29,29,31,0.72);
+}
+
+.project-index{
+  color:rgba(29,29,31,0.60);
+  letter-spacing:0.18em;
+}
+
+.hint{
+  opacity:0.32;
+  text-shadow:0 1px 10px rgba(0,0,0,0.10);
+}
+
+/* Portrait side glass closer to Apple frosted UI */
+.sideBlur{
+  backdrop-filter:blur(14px) saturate(1.04) brightness(1.02);
+  -webkit-backdrop-filter:blur(14px) saturate(1.04) brightness(1.02);
+}
+
+.sideBlur.left{
+  background:
+    linear-gradient(to right,
+      rgba(255,255,255,0.20) 0%,
+      rgba(255,255,255,0.11) 24%,
+      rgba(255,255,255,0.05) 52%,
+      rgba(255,255,255,0.018) 82%,
+      rgba(255,255,255,0.00) 100%);
+  box-shadow:
+    inset -8px 0 20px rgba(255,255,255,0.08),
+    inset -1px 0 0 rgba(255,255,255,0.10);
+}
+
+.sideBlur.right{
+  background:
+    linear-gradient(to left,
+      rgba(255,255,255,0.20) 0%,
+      rgba(255,255,255,0.11) 24%,
+      rgba(255,255,255,0.05) 52%,
+      rgba(255,255,255,0.018) 82%,
+      rgba(255,255,255,0.00) 100%);
+  box-shadow:
+    inset 8px 0 20px rgba(255,255,255,0.08),
+    inset 1px 0 0 rgba(255,255,255,0.10);
+}
+
+@media(max-width:760px){
+  h1{font-size:52px;}
+  .section{padding:108px 22px;}
+  .contact{padding:108px 22px;}
+}
+
+
+/* =========================
+   AUTO CONTRAST TEXT SYSTEM
+   图片亮度自动切换文字深浅；同时保留轻微光晕，避免文字消失
+========================= */
+.stage.textOnDark .topnav,
+.stage.textOnDark .tab,
+.stage.textOnDark .projectOption,
+.stage.textOnDark .projectOption span,
+.stage.textOnDark .meta,
+.stage.textOnDark .space-title,
+.stage.textOnDark .desc,
+.stage.textOnDark .project-index,
+.stage.textOnDark .hint{
+  color:#f5f5f7 !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.36),
+    0 8px 22px rgba(0,0,0,0.36) !important;
+}
+
+.stage.textOnDark .desc,
+.stage.textOnDark .project-index,
+.stage.textOnDark .projectOption span{
+  color:rgba(245,245,247,0.82) !important;
+}
+
+.stage.textOnLight .topnav,
+.stage.textOnLight .tab,
+.stage.textOnLight .projectOption,
+.stage.textOnLight .projectOption span,
+.stage.textOnLight .meta,
+.stage.textOnLight .space-title,
+.stage.textOnLight .desc,
+.stage.textOnLight .project-index,
+.stage.textOnLight .hint{
+  color:#1d1d1f !important;
+  text-shadow:
+    0 1px 2px rgba(255,255,255,0.72),
+    0 8px 22px rgba(255,255,255,0.54) !important;
+}
+
+.stage.textOnLight .desc,
+.stage.textOnLight .project-index,
+.stage.textOnLight .projectOption span{
+  color:rgba(29,29,31,0.84) !important;
+}
+
+.stage.textOnLight .tab,
+.stage.textOnDark .tab{
+  opacity:0.68;
+}
+
+.stage.textOnLight .navGroup.active .tab,
+.stage.textOnDark .navGroup.active .tab,
+.stage.textOnLight .projectOption.current,
+.stage.textOnDark .projectOption.current{
+  opacity:1;
+}
+
+.stage.textOnLight .projectOption,
+.stage.textOnDark .projectOption{
+  opacity:0.82;
+}
+
+.stage.textOnLight .projectOption:hover,
+.stage.textOnDark .projectOption:hover{
+  opacity:1;
+}
+
+/* A barely visible local halo behind bottom text, not a box */
+.meta::before{
+  content:"";
+  position:absolute;
+  inset:-18px -24px -18px -20px;
+  z-index:-1;
+  border-radius:28px;
+  opacity:0;
+  transition:opacity .45s ease, background .45s ease;
+  pointer-events:none;
+  filter:blur(10px);
+}
+
+.stage.textOnDark .meta::before{
+  opacity:0.20;
+  background:rgba(0,0,0,0.38);
+}
+
+.stage.textOnLight .meta::before{
+  opacity:0.22;
+  background:rgba(255,255,255,0.62);
+}
+
+/* Hero title keeps readable over both light/dark hero images */
+.hero .content{
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.30),
+    0 12px 30px rgba(0,0,0,0.22) !important;
+}
+
+
+/* Secondary Chinese text readability refinement */
+.projectOption span,
+.desc,
+.project-index{
+  font-weight:500;
+  letter-spacing:0.02em;
+}
+
+.stage.textOnLight .projectOption span,
+.stage.textOnLight .desc,
+.stage.textOnLight .project-index{
+  text-shadow:
+    0 1px 1px rgba(255,255,255,0.78),
+    0 4px 10px rgba(255,255,255,0.34) !important;
+}
+
+.stage.textOnDark .projectOption span,
+.stage.textOnDark .desc,
+.stage.textOnDark .project-index{
+  text-shadow:
+    0 1px 1px rgba(0,0,0,0.40),
+    0 4px 10px rgba(0,0,0,0.28) !important;
+}
+
+
+/* =========================
+   REFINED LIGHT TYPOGRAPHY SYSTEM
+   重新设计浅色版字体层级：更高级、更克制、更清楚
+========================= */
+
+/* Global light-page typography */
+body{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
+}
+
+/* HOME: keep Apple product-page calmness */
+h1{
+  font-weight:320 !important;
+  letter-spacing:-0.065em !important;
+  color:#f8f8f8;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.18),
+    0 14px 34px rgba(0,0,0,0.18) !important;
+}
+
+.nav .item{
+  font-size:13px;
+  font-weight:520;
+  letter-spacing:0.18em;
+  color:rgba(255,255,255,0.72);
+  opacity:1 !important;
+  text-shadow:0 1px 12px rgba(0,0,0,0.16);
+}
+
+.nav .item.active{
+  color:#fff;
+}
+
+.nav .item span{
+  margin-top:7px;
+  font-size:11px;
+  font-weight:450;
+  letter-spacing:0.04em;
+  color:rgba(255,255,255,0.56);
+  opacity:1 !important;
+}
+
+/* HOME project labels */
+.card .text{
+  font-size:15px !important;
+  font-weight:520;
+  letter-spacing:-0.01em;
+  color:#1d1d1f !important;
+}
+
+.card .text span{
+  font-size:12px !important;
+  font-weight:460;
+  color:rgba(29,29,31,0.58);
+  opacity:1 !important;
+}
+
+.title{
+  color:rgba(29,29,31,0.48);
+  opacity:1 !important;
+  font-weight:540;
+}
+
+/* SPACE: use CSS variables driven by automatic image contrast */
+#spaceStage{
+  --space-fg:#f5f5f7;
+  --space-sub:rgba(245,245,247,0.72);
+  --space-soft:rgba(245,245,247,0.54);
+  --space-shadow:rgba(0,0,0,0.30);
+  --space-glow:rgba(0,0,0,0.18);
+}
+
+#spaceStage.textOnLight{
+  --space-fg:#1d1d1f;
+  --space-sub:rgba(29,29,31,0.74);
+  --space-soft:rgba(29,29,31,0.56);
+  --space-shadow:rgba(255,255,255,0.68);
+  --space-glow:rgba(255,255,255,0.34);
+}
+
+#spaceStage.textOnDark{
+  --space-fg:#f5f5f7;
+  --space-sub:rgba(245,245,247,0.76);
+  --space-soft:rgba(245,245,247,0.58);
+  --space-shadow:rgba(0,0,0,0.34);
+  --space-glow:rgba(0,0,0,0.20);
+}
+
+/* remove heavy old shadows and rebuild refined contrast */
+#spaceStage .topnav,
+#spaceStage .tab,
+#spaceStage .projectOption,
+#spaceStage .projectOption span,
+#spaceStage .meta,
+#spaceStage .space-title,
+#spaceStage .desc,
+#spaceStage .project-index,
+#spaceStage .hint{
+  color:var(--space-fg) !important;
+  text-shadow:
+    0 1px 1px var(--space-shadow),
+    0 10px 26px var(--space-glow) !important;
+}
+
+/* Top category: more Apple-like, less decorative */
+.topnav{
+  top:32px !important;
+  gap:48px !important;
+}
+
+.tab{
+  font-size:12px !important;
+  font-weight:560 !important;
+  letter-spacing:0.20em !important;
+  opacity:0.52 !important;
+  line-height:1;
+}
+
+.navGroup:hover .tab{
+  opacity:0.78 !important;
+  transform:scale(1.04) !important;
+}
+
+.navGroup.active .tab{
+  opacity:1 !important;
+}
+
+/* Hover project text menu: text-only but with stronger hierarchy */
+.projectMenu{
+  top:32px !important;
+  min-width:230px !important;
+  padding:16px 0 8px !important;
+}
+
+.projectOption{
+  padding:10px 4px 9px !important;
+  font-size:15px !important;
+  font-weight:520 !important;
+  letter-spacing:0.045em !important;
+  line-height:1.25 !important;
+  opacity:0.58 !important;
+  color:var(--space-fg) !important;
+}
+
+.projectOption:hover{
+  opacity:1 !important;
+  transform:translateY(-1px) scale(1.015) !important;
+}
+
+.projectOption.current{
+  opacity:0.92 !important;
+}
+
+.projectOption span{
+  margin-top:7px !important;
+  font-size:12px !important;
+  font-weight:460 !important;
+  letter-spacing:0.015em !important;
+  color:var(--space-sub) !important;
+  opacity:1 !important;
+}
+
+/* Bottom meta: elegant Apple-like hierarchy */
+.meta{
+  left:40px !important;
+  bottom:38px !important;
+  max-width:min(560px, 42vw);
+}
+
+.meta::before{
+  display:none !important;
+}
+
+.space-title{
+  font-size:17px !important;
+  font-weight:600 !important;
+  letter-spacing:-0.018em !important;
+  line-height:1.18 !important;
+  color:var(--space-fg) !important;
+  opacity:1 !important;
+}
+
+.desc{
+  margin-top:10px !important;
+  font-size:13px !important;
+  font-weight:430 !important;
+  line-height:1.58 !important;
+  letter-spacing:0 !important;
+  color:var(--space-sub) !important;
+  opacity:1 !important;
+}
+
+.project-index{
+  margin-top:18px !important;
+  font-size:11px !important;
+  font-weight:560 !important;
+  letter-spacing:0.18em !important;
+  color:var(--space-soft) !important;
+  opacity:1 !important;
+}
+
+.hint{
+  right:32px !important;
+  bottom:32px !important;
+  font-size:11px !important;
+  font-weight:430 !important;
+  letter-spacing:0.01em !important;
+  color:var(--space-soft) !important;
+  opacity:0.72 !important;
+}
+
+/* Make Chinese secondary readable but not loud */
+.stage.textOnLight .projectOption span,
+.stage.textOnLight .desc,
+.stage.textOnLight .project-index{
+  color:rgba(29,29,31,0.72) !important;
+}
+
+.stage.textOnDark .projectOption span,
+.stage.textOnDark .desc,
+.stage.textOnDark .project-index{
+  color:rgba(245,245,247,0.76) !important;
+}
+
+/* On very light images, a subtle top/bottom local readability veil, almost invisible */
+#spaceStage.textOnLight .topnav::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-12px;
+  transform:translateX(-50%);
+  width:360px;
+  height:54px;
+  border-radius:999px;
+  background:radial-gradient(ellipse at center, rgba(255,255,255,0.36), rgba(255,255,255,0.00) 70%);
+  z-index:-1;
+  pointer-events:none;
+}
+
+@media(max-width:760px){
+  .topnav{
+    gap:28px !important;
+  }
+  .tab{
+    font-size:11px !important;
+  }
+  .projectOption{
+    font-size:14px !important;
+  }
+  .meta{
+    left:24px !important;
+    bottom:30px !important;
+    max-width:72vw;
+  }
+  .space-title{
+    font-size:16px !important;
+  }
+  .hint{
+    display:none;
+  }
+}
+
+
+/* =========================
+   APPLE OFFICIAL PRODUCT PAGE REFINEMENT
+   Based on user's approved light version
+========================= */
+
+:root{
+  --apple-bg:#f5f5f7;
+  --apple-text:#1d1d1f;
+  --apple-sub:#6e6e73;
+  --apple-line:rgba(0,0,0,.08);
+  --apple-card:#fbfbfd;
+}
+
+body, #homePage, #spacePage{
+  background:var(--apple-bg) !important;
+  color:var(--apple-text) !important;
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif !important;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* HOME */
+.hero{
+  background:#000;
+}
+
+.hero::after{
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.00) 0%,
+    rgba(255,255,255,0.015) 20%,
+    rgba(245,245,247,0.10) 55%,
+    rgba(245,245,247,0.62) 82%,
+    rgba(245,245,247,1) 100%
+  ) !important;
+}
+
+.bg{
+  filter:brightness(.95) saturate(.95) !important;
+}
+
+h1{
+  font-size:88px !important;
+  line-height:.96 !important;
+  font-weight:300 !important;
+  letter-spacing:-.06em !important;
+  color:#fff !important;
+  text-shadow:0 2px 10px rgba(0,0,0,.12), 0 18px 42px rgba(0,0,0,.16) !important;
+}
+
+.nav{
+  margin-top:56px !important;
+  gap:54px !important;
+}
+
+.nav .item{
+  font-size:12px !important;
+  font-weight:600 !important;
+  letter-spacing:.18em !important;
+  color:rgba(255,255,255,.82) !important;
+  opacity:1 !important;
+  text-shadow:0 1px 8px rgba(0,0,0,.12) !important;
+  transform:none !important;
+}
+
+.nav .item:hover{
+  transform:scale(1.05) !important;
+}
+
+.nav .item.active{
+  color:#fff !important;
+}
+
+.nav .item span{
+  margin-top:7px !important;
+  font-size:11px !important;
+  font-weight:450 !important;
+  letter-spacing:.02em !important;
+  color:rgba(255,255,255,.64) !important;
+  opacity:1 !important;
+}
+
+/* Section rhythm more Apple-like */
+.section{
+  max-width:1180px !important;
+  padding:152px 48px !important;
+}
+
+.title{
+  font-size:11px !important;
+  font-weight:600 !important;
+  letter-spacing:.22em !important;
+  color:rgba(29,29,31,.46) !important;
+  opacity:1 !important;
+  margin-bottom:48px !important;
+}
+
+.cards{
+  gap:38px !important;
+}
+
+.card img{
+  border-radius:32px !important;
+  box-shadow:0 10px 30px rgba(0,0,0,.05), 0 1px 3px rgba(0,0,0,.03) !important;
+}
+
+.card .text{
+  padding:16px 2px 4px !important;
+  font-size:17px !important;
+  font-weight:600 !important;
+  letter-spacing:-.014em !important;
+  color:var(--apple-text) !important;
+}
+
+.card .text span{
+  margin-top:7px !important;
+  font-size:12px !important;
+  font-weight:450 !important;
+  color:var(--apple-sub) !important;
+  opacity:1 !important;
+}
+
+.contact{
+  max-width:1180px !important;
+  padding:128px 48px 140px !important;
+  color:var(--apple-text) !important;
+  opacity:1 !important;
+  border-top:1px solid var(--apple-line);
+  font-size:12px !important;
+  line-height:1.8 !important;
+}
+
+/* SPACE */
+#spaceStage{
+  --space-fg:#f5f5f7;
+  --space-sub:rgba(245,245,247,.78);
+  --space-soft:rgba(245,245,247,.60);
+  --space-shadow:rgba(0,0,0,.24);
+  --space-glow:rgba(0,0,0,.14);
+}
+
+#spaceStage.textOnLight{
+  --space-fg:#1d1d1f;
+  --space-sub:rgba(29,29,31,.74);
+  --space-soft:rgba(29,29,31,.54);
+  --space-shadow:rgba(255,255,255,.40);
+  --space-glow:rgba(255,255,255,.18);
+}
+
+#spaceStage.textOnDark{
+  --space-fg:#f5f5f7;
+  --space-sub:rgba(245,245,247,.78);
+  --space-soft:rgba(245,245,247,.60);
+  --space-shadow:rgba(0,0,0,.26);
+  --space-glow:rgba(0,0,0,.16);
+}
+
+.slide{
+  filter:brightness(1.02) saturate(.98) !important;
+}
+
+.stage::after{
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.008) 50%,
+    rgba(245,245,247,.10) 76%,
+    rgba(245,245,247,.34) 100%
+  ) !important;
+}
+
+.topnav{
+  top:28px !important;
+  gap:44px !important;
+}
+
+.tab{
+  font-size:11px !important;
+  font-weight:600 !important;
+  letter-spacing:.20em !important;
+  color:var(--space-fg) !important;
+  opacity:.55 !important;
+  text-shadow:0 1px 2px var(--space-shadow), 0 8px 18px var(--space-glow) !important;
+}
+
+.navGroup.active .tab{
+  opacity:1 !important;
+}
+
+.navGroup:hover .tab{
+  opacity:.84 !important;
+  transform:scale(1.03) !important;
+}
+
+.projectMenu{
+  top:30px !important;
+  min-width:240px !important;
+  padding-top:14px !important;
+}
+
+.projectOption{
+  padding:10px 0 8px !important;
+  font-size:17px !important;
+  font-weight:590 !important;
+  letter-spacing:-.014em !important;
+  color:var(--space-fg) !important;
+  opacity:.64 !important;
+  text-shadow:0 1px 2px var(--space-shadow), 0 8px 18px var(--space-glow) !important;
+}
+
+.projectOption:hover{
+  opacity:1 !important;
+  transform:translateY(-1px) !important;
+}
+
+.projectOption.current{
+  opacity:.92 !important;
+}
+
+.projectOption span{
+  margin-top:6px !important;
+  font-size:12px !important;
+  font-weight:450 !important;
+  letter-spacing:.01em !important;
+  color:var(--space-sub) !important;
+  opacity:1 !important;
+}
+
+.meta{
+  left:38px !important;
+  bottom:34px !important;
+  max-width:min(560px, 42vw) !important;
+  text-shadow:none !important;
+}
+
+.meta::before{
+  display:none !important;
+}
+
+.space-title{
+  font-size:19px !important;
+  line-height:1.12 !important;
+  font-weight:600 !important;
+  letter-spacing:-.018em !important;
+  color:var(--space-fg) !important;
+  text-shadow:0 1px 2px var(--space-shadow), 0 10px 22px var(--space-glow) !important;
+}
+
+.desc{
+  margin-top:10px !important;
+  font-size:13px !important;
+  line-height:1.55 !important;
+  font-weight:450 !important;
+  color:var(--space-sub) !important;
+  text-shadow:0 1px 2px var(--space-shadow), 0 8px 18px var(--space-glow) !important;
+}
+
+.project-index{
+  margin-top:18px !important;
+  font-size:11px !important;
+  font-weight:600 !important;
+  letter-spacing:.16em !important;
+  color:var(--space-soft) !important;
+  text-shadow:0 1px 2px var(--space-shadow), 0 8px 18px var(--space-glow) !important;
+}
+
+.hint{
+  right:28px !important;
+  bottom:28px !important;
+  font-size:11px !important;
+  line-height:1.3 !important;
+  font-weight:450 !important;
+  color:var(--space-soft) !important;
+  opacity:.9 !important;
+  text-shadow:0 1px 2px var(--space-shadow), 0 8px 18px var(--space-glow) !important;
+}
+
+/* keep Chinese readable but elegant */
+.projectOption span,
+.desc,
+.project-index{
+  -webkit-font-smoothing:antialiased;
+}
+
+.stage.textOnLight .projectOption span,
+.stage.textOnLight .desc,
+.stage.textOnLight .project-index{
+  color:rgba(29,29,31,.76) !important;
+}
+
+.stage.textOnDark .projectOption span,
+.stage.textOnDark .desc,
+.stage.textOnDark .project-index{
+  color:rgba(245,245,247,.80) !important;
+}
+
+/* portrait-side glass closer to Apple product page */
+.sideBlur{
+  backdrop-filter:blur(12px) saturate(1.02) brightness(1.01) !important;
+  -webkit-backdrop-filter:blur(12px) saturate(1.02) brightness(1.01) !important;
+}
+
+.sideBlur.left{
+  background:linear-gradient(
+    to right,
+    rgba(255,255,255,.16) 0%,
+    rgba(255,255,255,.09) 22%,
+    rgba(255,255,255,.04) 52%,
+    rgba(255,255,255,.012) 82%,
+    rgba(255,255,255,0) 100%
+  ) !important;
+  box-shadow:inset -8px 0 18px rgba(255,255,255,.06), inset -1px 0 0 rgba(255,255,255,.08) !important;
+}
+
+.sideBlur.right{
+  background:linear-gradient(
+    to left,
+    rgba(255,255,255,.16) 0%,
+    rgba(255,255,255,.09) 22%,
+    rgba(255,255,255,.04) 52%,
+    rgba(255,255,255,.012) 82%,
+    rgba(255,255,255,0) 100%
+  ) !important;
+  box-shadow:inset 8px 0 18px rgba(255,255,255,.06), inset 1px 0 0 rgba(255,255,255,.08) !important;
+}
+
+@media (max-width:760px){
+  h1{
+    font-size:56px !important;
+  }
+  .nav{
+    gap:28px !important;
+  }
+  .section{
+    padding:112px 22px !important;
+  }
+  .contact{
+    padding:96px 22px 110px !important;
+  }
+  .topnav{
+    gap:28px !important;
+  }
+  .projectMenu{
+    min-width:190px !important;
+  }
+  .projectOption{
+    font-size:15px !important;
+  }
+  .meta{
+    left:24px !important;
+    bottom:26px !important;
+    max-width:70vw !important;
+  }
+  .space-title{
+    font-size:17px !important;
+  }
+  .hint{
+    display:none !important;
+  }
+}
+
+
+/* =========================
+   SIMPLIFIED INFO CLEANUP
+   Remove non-essential bottom texts
+========================= */
+.project-index,
+.hint{
+  display:none !important;
+}
+
+
+/* =========================
+   HOME HERO RE-DESIGN
+   top studio + type navigation / side manifesto typography
+========================= */
+.hero{
+  align-items:stretch !important;
+  justify-content:flex-start !important;
+  text-align:left !important;
+}
+
+.hero::after{
+  background:
+    linear-gradient(180deg,
+      rgba(10,12,16,0.18) 0%,
+      rgba(10,12,16,0.08) 22%,
+      rgba(10,12,16,0.10) 52%,
+      rgba(245,245,247,0.12) 76%,
+      rgba(245,245,247,0.88) 100%) !important;
+}
+
+.bg{
+  filter:brightness(.88) saturate(.96) !important;
+}
+
+.content{
+  display:none !important;
+}
+
+.home-frost-header{
+  display:none !important;
+}
+
+.home-hero-shell{
+  position:relative;
+  z-index:4;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+
+.home-topbar{
+  position:fixed;
+  top:16px;
+  left:22px;
+  right:22px;
+  z-index:160;
+  min-height:68px;
+  padding:0 22px 0 24px;
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  background:rgba(255,255,255,.26);
+  border:1px solid rgba(255,255,255,.34);
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.08),
+    inset 0 1px 0 rgba(255,255,255,.24);
+  backdrop-filter:blur(18px) saturate(1.14);
+  -webkit-backdrop-filter:blur(18px) saturate(1.14);
+  pointer-events:auto;
+}
+
+.home-topbar-brand{
+  border:0;
+  background:none;
+  margin:0;
+  padding:0;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  text-align:left;
+  color:#f5f5f7;
+  text-shadow:0 1px 2px rgba(0,0,0,.18), 0 8px 18px rgba(0,0,0,.14);
+}
+
+.home-topbar-brand .brand-en{
+  font-size:14px;
+  line-height:1;
+  font-weight:600;
+  letter-spacing:.16em;
+}
+
+.home-topbar-brand .brand-zh{
+  font-size:10px;
+  line-height:1;
+  font-weight:450;
+  letter-spacing:.04em;
+  color:rgba(245,245,247,.72);
+}
+
+.home-topbar-nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:18px;
+  pointer-events:auto;
+}
+
+.home-topbar-nav .item{
+  min-width:92px;
+  padding:8px 8px 7px;
+  margin:0;
+  opacity:.68 !important;
+  text-align:center;
+  color:#f5f5f7 !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.18), 0 8px 18px rgba(0,0,0,.14) !important;
+  transition:transform .25s ease, opacity .25s ease, color .25s ease;
+}
+
+.home-topbar-nav .item:hover{
+  opacity:1 !important;
+  transform:translateY(-1px);
+}
+
+.home-topbar-nav .item.active{
+  opacity:1 !important;
+}
+
+.home-topbar-nav .item{
+  font-size:12px !important;
+  font-weight:600 !important;
+  letter-spacing:.18em !important;
+}
+
+.home-topbar-nav .item span{
+  margin-top:6px !important;
+  font-size:10px !important;
+  font-weight:450 !important;
+  letter-spacing:.03em !important;
+  color:rgba(245,245,247,.70) !important;
+  opacity:1 !important;
+}
+
+.hero-manifesto{
+  position:absolute;
+  left:68px;
+  bottom:120px;
+  max-width:min(520px, 46vw);
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:18px;
+  pointer-events:none;
+}
+
+.manifesto-kicker{
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.16em;
+  color:rgba(255,255,255,.84);
+  text-transform:none;
+  text-shadow:0 1px 2px rgba(0,0,0,.18), 0 8px 18px rgba(0,0,0,.12);
+  opacity:0;
+  animation:manifestoFade .9s ease .15s forwards;
+}
+
+.manifesto-stack{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:2px;
+}
+
+.manifesto-line{
+  display:block;
+  font-size:clamp(48px, 7vw, 92px);
+  line-height:.92;
+  font-weight:500;
+  letter-spacing:-.06em;
+  color:#ffffff;
+  text-shadow:0 2px 6px rgba(0,0,0,.18), 0 16px 38px rgba(0,0,0,.12);
+  opacity:0;
+  transform:translateY(22px);
+  animation:manifestoReveal .95s cubic-bezier(.2,.8,.2,1) forwards,
+            manifestoDrift 7s ease-in-out infinite;
+}
+
+.manifesto-line.line-1{ animation-delay:.12s, 1.3s; }
+.manifesto-line.line-2{ animation-delay:.24s, 1.45s; }
+.manifesto-line.line-3{ animation-delay:.36s, 1.6s; }
+.manifesto-line.line-4{ animation-delay:.48s, 1.75s; }
+
+.manifesto-sub{
+  font-size:14px;
+  line-height:1.7;
+  font-weight:430;
+  color:rgba(255,255,255,.82);
+  text-shadow:0 1px 2px rgba(0,0,0,.16), 0 10px 20px rgba(0,0,0,.12);
+  opacity:0;
+  animation:manifestoFade .9s ease .62s forwards;
+}
+
+@keyframes manifestoReveal{
+  from{
+    opacity:0;
+    transform:translateY(22px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes manifestoFade{
+  from{ opacity:0; transform:translateY(14px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+@keyframes manifestoDrift{
+  0%{ transform:translate3d(0,0,0); }
+  50%{ transform:translate3d(6px,0,0); }
+  100%{ transform:translate3d(0,0,0); }
+}
+
+@media(max-width:980px){
+  .home-topbar{
+    left:14px;
+    right:14px;
+    top:12px;
+    min-height:64px;
+    padding:12px 16px;
+    border-radius:20px;
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .home-topbar-nav{
+    width:100%;
+    justify-content:space-between;
+    gap:8px;
+  }
+
+  .home-topbar-nav .item{
+    min-width:auto;
+    flex:1;
+  }
+
+  .hero-manifesto{
+    left:28px;
+    right:28px;
+    bottom:90px;
+    max-width:72vw;
+  }
+}
+
+@media(max-width:760px){
+  .hero-manifesto{
+    left:24px;
+    right:24px;
+    bottom:76px;
+    max-width:82vw;
+    gap:14px;
+  }
+
+  .manifesto-line{
+    font-size:clamp(40px, 11vw, 62px);
+  }
+
+  .manifesto-sub{
+    font-size:13px;
+  }
+
+  .home-topbar-nav .item{
+    padding:6px 4px;
+  }
+}
+
+
+/* =========================
+   V2 HOME MANIFESTO REFINED
+========================= */
+.hero::after{
+  background:
+    linear-gradient(180deg,
+      rgba(10,12,16,0.24) 0%,
+      rgba(10,12,16,0.12) 22%,
+      rgba(10,12,16,0.08) 48%,
+      rgba(16,18,24,0.18) 74%,
+      rgba(245,245,247,0.90) 100%) !important;
+}
+
+.bg{
+  filter:brightness(.84) saturate(.96) !important;
+  transform:scale(1.08) !important;
+}
+
+.home-topbar{
+  top:18px !important;
+  left:20px !important;
+  right:20px !important;
+  min-height:62px !important;
+  padding:0 18px 0 20px !important;
+  border-radius:22px !important;
+  background:rgba(255,255,255,.18) !important;
+  border:1px solid rgba(255,255,255,.28) !important;
+  box-shadow:
+    0 14px 34px rgba(15,23,42,.10),
+    inset 0 1px 0 rgba(255,255,255,.20) !important;
+  backdrop-filter:blur(20px) saturate(1.15) !important;
+  -webkit-backdrop-filter:blur(20px) saturate(1.15) !important;
+}
+
+.home-topbar-brand{
+  gap:3px !important;
+}
+
+.home-topbar-brand .brand-en{
+  font-size:13px !important;
+  letter-spacing:.18em !important;
+  font-weight:600 !important;
+}
+
+.home-topbar-brand .brand-zh{
+  font-size:10px !important;
+  color:rgba(245,245,247,.68) !important;
+}
+
+.home-topbar-nav{
+  gap:16px !important;
+}
+
+.home-topbar-nav .item{
+  min-width:84px !important;
+  padding:8px 6px 9px !important;
+  position:relative;
+}
+
+.home-topbar-nav .item::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-3px;
+  width:8px;
+  height:8px;
+  margin-left:-4px;
+  border-radius:999px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 0 0 1px rgba(255,255,255,.08);
+  transform:scale(0);
+  transform-origin:center;
+  transition:transform .24s ease, opacity .24s ease;
+  opacity:0;
+}
+
+.home-topbar-nav .item.active::after{
+  transform:scale(1);
+  opacity:.92;
+}
+
+.home-topbar-nav .item:hover::after{
+  transform:scale(0);
+  opacity:0;
+}
+
+.home-topbar-nav .item.active:hover::after{
+  transform:scale(1);
+  opacity:.92;
+}
+
+.home-topbar-nav .item{
+  font-size:11px !important;
+  font-weight:600 !important;
+  letter-spacing:.20em !important;
+  opacity:.78 !important;
+}
+
+.home-topbar-nav .item.active{
+  opacity:1 !important;
+}
+
+.home-topbar-nav .item span{
+  margin-top:5px !important;
+  font-size:10px !important;
+  color:rgba(245,245,247,.66) !important;
+}
+
+.hero-manifesto-v2{
+  left:62px !important;
+  bottom:96px !important;
+  max-width:min(640px, 48vw) !important;
+  gap:20px !important;
+}
+
+.manifesto-kicker{
+  font-size:11px !important;
+  letter-spacing:.22em !important;
+  color:rgba(255,255,255,.88) !important;
+}
+
+.manifesto-stack-v2{
+  gap:0px !important;
+}
+
+.manifesto-stack-v2 .manifesto-line{
+  font-size:clamp(58px, 8vw, 114px) !important;
+  font-weight:540 !important;
+  letter-spacing:-.075em !important;
+  line-height:.88 !important;
+  color:#ffffff !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.18),
+    0 18px 42px rgba(0,0,0,.16) !important;
+}
+
+.manifesto-stack-v2 .line-2{
+  margin-left:42px;
+}
+.manifesto-stack-v2 .line-4{
+  margin-left:18px;
+}
+
+.manifesto-meta{
+  display:flex;
+  align-items:flex-start;
+  gap:18px;
+  margin-top:8px;
+  max-width:420px;
+  opacity:0;
+  animation:manifestoFade .9s ease .72s forwards;
+}
+
+.manifesto-rule{
+  width:62px;
+  height:1px;
+  margin-top:11px;
+  background:rgba(255,255,255,.58);
+  flex:0 0 auto;
+}
+
+.manifesto-sub{
+  font-size:14px !important;
+  line-height:1.72 !important;
+  font-weight:420 !important;
+  color:rgba(255,255,255,.82) !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.16),
+    0 10px 20px rgba(0,0,0,.10) !important;
+}
+
+.manifesto-sub strong{
+  display:inline-block;
+  margin-bottom:2px;
+  font-size:14px;
+  font-weight:560;
+  letter-spacing:.01em;
+  color:#ffffff;
+}
+
+@keyframes manifestoDrift{
+  0%{ transform:translate3d(0,0,0); }
+  50%{ transform:translate3d(8px,-1px,0); }
+  100%{ transform:translate3d(0,0,0); }
+}
+
+@media(max-width:980px){
+  .home-topbar{
+    top:12px !important;
+    left:14px !important;
+    right:14px !important;
+    min-height:64px !important;
+    padding:12px 15px !important;
+  }
+
+  .hero-manifesto-v2{
+    left:30px !important;
+    right:30px !important;
+    bottom:84px !important;
+    max-width:72vw !important;
+  }
+
+  .manifesto-stack-v2 .line-2{
+    margin-left:22px;
+  }
+  .manifesto-stack-v2 .line-4{
+    margin-left:10px;
+  }
+}
+
+@media(max-width:760px){
+  .home-topbar{
+    border-radius:18px !important;
+  }
+
+  .home-topbar-nav{
+    gap:6px !important;
+  }
+
+  .home-topbar-nav .item{
+    min-width:auto !important;
+    flex:1;
+  }
+
+  .hero-manifesto-v2{
+    left:22px !important;
+    right:22px !important;
+    bottom:74px !important;
+    max-width:82vw !important;
+    gap:16px !important;
+  }
+
+  .manifesto-stack-v2 .manifesto-line{
+    font-size:clamp(44px, 12vw, 72px) !important;
+    line-height:.92 !important;
+  }
+
+  .manifesto-stack-v2 .line-2,
+  .manifesto-stack-v2 .line-4{
+    margin-left:0;
+  }
+
+  .manifesto-meta{
+    gap:12px;
+    max-width:88%;
+  }
+
+  .manifesto-rule{
+    width:36px;
+  }
+
+  .manifesto-sub{
+    font-size:13px !important;
+    line-height:1.65 !important;
+  }
+}
+
+
+
+
+/* Hover feedback:
+   小点只代表当前分类；鼠标经过其它分类时，只通过字体变化表达可点击 */
+.home-topbar-nav .item:hover{
+  opacity:1 !important;
+  color:#fff !important;
+  transform:translateY(-1px) scale(1.045) !important;
+}
+
+.home-topbar-nav .item:hover span{
+  color:rgba(255,255,255,.82) !important;
+}
+
+.home-topbar-nav .item.active{
+  color:#fff !important;
+}
+
+.home-topbar-nav .item.active span{
+  color:rgba(255,255,255,.76) !important;
+}
+
+
+/* =========================
+   HOME TOPBAR TRUE AUTO CONTRAST
+   根据顶部栏所在背景自动切换深/浅字体
+========================= */
+.home-topbar{
+  transition:
+    background .32s ease,
+    border-color .32s ease,
+    box-shadow .32s ease,
+    color .32s ease,
+    backdrop-filter .32s ease,
+    -webkit-backdrop-filter .32s ease !important;
+}
+
+/* 深色底图：浅色字体 */
+.home-topbar.text-light{
+  background:rgba(255,255,255,.18) !important;
+  border:1px solid rgba(255,255,255,.28) !important;
+  box-shadow:
+    0 14px 34px rgba(15,23,42,.10),
+    inset 0 1px 0 rgba(255,255,255,.20) !important;
+}
+
+.home-topbar.text-light .home-topbar-brand,
+.home-topbar.text-light .home-topbar-nav .item{
+  color:#f5f5f7 !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.22),
+    0 8px 18px rgba(0,0,0,.16) !important;
+}
+
+.home-topbar.text-light .home-topbar-brand .brand-zh,
+.home-topbar.text-light .home-topbar-nav .item span{
+  color:rgba(245,245,247,.72) !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.18),
+    0 8px 18px rgba(0,0,0,.12) !important;
+}
+
+.home-topbar.text-light .home-topbar-nav .item.active,
+.home-topbar.text-light .home-topbar-nav .item:hover{
+  color:#fff !important;
+}
+
+.home-topbar.text-light .home-topbar-nav .item.active span,
+.home-topbar.text-light .home-topbar-nav .item:hover span{
+  color:rgba(255,255,255,.82) !important;
+}
+
+.home-topbar.text-light .home-topbar-nav .item::after{
+  background:rgba(255,255,255,.94) !important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08) !important;
+}
+
+/* 浅色底图：深色字体 */
+.home-topbar.text-dark{
+  background:rgba(255,255,255,.72) !important;
+  border:1px solid rgba(255,255,255,.90) !important;
+  box-shadow:
+    0 14px 34px rgba(15,23,42,.08),
+    inset 0 1px 0 rgba(255,255,255,.62) !important;
+  backdrop-filter:blur(18px) saturate(1.08) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(1.08) !important;
+}
+
+.home-topbar.text-dark .home-topbar-brand,
+.home-topbar.text-dark .home-topbar-nav .item{
+  color:rgba(29,29,31,.70) !important;
+  text-shadow:none !important;
+}
+
+.home-topbar.text-dark .home-topbar-brand .brand-zh,
+.home-topbar.text-dark .home-topbar-nav .item span{
+  color:rgba(29,29,31,.54) !important;
+  text-shadow:none !important;
+}
+
+.home-topbar.text-dark .home-topbar-nav .item.active,
+.home-topbar.text-dark .home-topbar-nav .item:hover{
+  color:#1d1d1f !important;
+}
+
+.home-topbar.text-dark .home-topbar-nav .item.active span,
+.home-topbar.text-dark .home-topbar-nav .item:hover span{
+  color:rgba(29,29,31,.72) !important;
+}
+
+.home-topbar.text-dark .home-topbar-nav .item::after{
+  background:rgba(29,29,31,.92) !important;
+  box-shadow:0 0 0 1px rgba(29,29,31,.06) !important;
+}
+
+
+/* =========================
+   V3 INTERACTION ONLY
+   不改页面框架，只给原有首页元素加入滚动触发
+========================= */
+
+/* 首页宣言：保留原位置，只在滚动时轻微响应 */
+.hero-manifesto-v2{
+  will-change:transform, opacity, filter;
+}
+
+/* 项目区标题：保持原结构，只做进入时的轻微显现 */
+.section .title{
+  opacity:0;
+  transform:translateY(26px);
+  filter:blur(6px);
+  transition:
+    opacity .78s ease,
+    transform .86s cubic-bezier(.2,.8,.2,1),
+    filter .86s cubic-bezier(.2,.8,.2,1);
+}
+
+.section .title.is-visible{
+  opacity:.42;
+  transform:translateY(0);
+  filter:blur(0);
+}
+
+/* 原有项目卡片：不改变网格，不新增模块，只让它们一张张出现 */
+.cards .card{
+  opacity:0;
+  transform:translateY(54px) scale(.985);
+  filter:blur(9px);
+  transition:
+    opacity .78s cubic-bezier(.2,.8,.2,1),
+    transform .9s cubic-bezier(.2,.8,.2,1),
+    filter .9s cubic-bezier(.2,.8,.2,1);
+  will-change:transform, opacity, filter;
+}
+
+.cards .card.is-visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+
+/* 让卡片根据顺序错开出现，形成“往下滑一张张跳出来”的节奏 */
+.cards .card:nth-child(1).is-visible{ transition-delay:.02s; }
+.cards .card:nth-child(2).is-visible{ transition-delay:.10s; }
+.cards .card:nth-child(3).is-visible{ transition-delay:.18s; }
+.cards .card:nth-child(4).is-visible{ transition-delay:.26s; }
+.cards .card:nth-child(5).is-visible{ transition-delay:.34s; }
+.cards .card:nth-child(6).is-visible{ transition-delay:.42s; }
+
+/* 鼠标靠近作品：图片像被轻轻唤醒，但不改变框架 */
+.cards .card img{
+  transition:
+    transform .82s cubic-bezier(.2,.8,.2,1),
+    filter .82s cubic-bezier(.2,.8,.2,1),
+    box-shadow .82s cubic-bezier(.2,.8,.2,1) !important;
+}
+
+.cards .card:hover img{
+  transform:scale(1.035) !important;
+  filter:brightness(1.035) saturate(1.02);
+}
+
+.cards .card .text{
+  transition:
+    opacity .36s ease,
+    transform .42s cubic-bezier(.2,.8,.2,1);
+}
+
+.cards .card:hover .text{
+  opacity:1;
+  transform:translateY(-2px);
+}
+
+/* 点击进入空间前的轻微过渡提示，不改变 SPACE 框架 */
+.cards .card.entering{
+  transform:translateY(0) scale(1.018) !important;
+  filter:blur(0) brightness(.98);
+  transition:
+    transform .34s cubic-bezier(.2,.8,.2,1),
+    filter .34s cubic-bezier(.2,.8,.2,1) !important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-manifesto-v2,
+  .section .title,
+  .cards .card,
+  .cards .card img,
+  .cards .card .text{
+    transition:none !important;
+    animation:none !important;
+    transform:none !important;
+    filter:none !important;
+  }
+
+  .section .title,
+  .cards .card{
+    opacity:1 !important;
+  }
+}
+
+
+/* =========================
+   V3.1 PROJECT TEXT REVEAL
+   项目标题文字也跟随滚动出现
+========================= */
+
+/* 先让项目文字在进入前隐藏 */
+.cards .card .text h3,
+.cards .card .text p{
+  opacity:0;
+  filter:blur(7px);
+  transform:translateY(22px);
+  will-change:opacity, transform, filter;
+}
+
+/* 图片先出现，标题后出现，中文副标题再慢半拍出现 */
+.cards .card.is-visible .text h3{
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0);
+  transition:
+    opacity .72s ease .22s,
+    transform .82s cubic-bezier(.2,.8,.2,1) .22s,
+    filter .82s cubic-bezier(.2,.8,.2,1) .22s,
+    letter-spacing .46s ease,
+    color .46s ease;
+}
+
+.cards .card.is-visible .text p{
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0);
+  transition:
+    opacity .72s ease .36s,
+    transform .82s cubic-bezier(.2,.8,.2,1) .36s,
+    filter .82s cubic-bezier(.2,.8,.2,1) .36s,
+    color .46s ease;
+}
+
+/* 每张卡片的文字再错开一点，让它像 Apple 那样一张张被滚动带出来 */
+.cards .card:nth-child(1).is-visible .text h3{ transition-delay:.20s, .20s, .20s, 0s, 0s; }
+.cards .card:nth-child(1).is-visible .text p{ transition-delay:.34s, .34s, .34s, 0s; }
+
+.cards .card:nth-child(2).is-visible .text h3{ transition-delay:.30s, .30s, .30s, 0s, 0s; }
+.cards .card:nth-child(2).is-visible .text p{ transition-delay:.44s, .44s, .44s, 0s; }
+
+.cards .card:nth-child(3).is-visible .text h3{ transition-delay:.40s, .40s, .40s, 0s, 0s; }
+.cards .card:nth-child(3).is-visible .text p{ transition-delay:.54s, .54s, .54s, 0s; }
+
+.cards .card:nth-child(4).is-visible .text h3{ transition-delay:.50s, .50s, .50s, 0s, 0s; }
+.cards .card:nth-child(4).is-visible .text p{ transition-delay:.64s, .64s, .64s, 0s; }
+
+.cards .card:nth-child(5).is-visible .text h3{ transition-delay:.60s, .60s, .60s, 0s, 0s; }
+.cards .card:nth-child(5).is-visible .text p{ transition-delay:.74s, .74s, .74s, 0s; }
+
+.cards .card:nth-child(6).is-visible .text h3{ transition-delay:.70s, .70s, .70s, 0s, 0s; }
+.cards .card:nth-child(6).is-visible .text p{ transition-delay:.84s, .84s, .84s, 0s; }
+
+/* hover 时文字也有轻微交互，不只图片动 */
+.cards .card.is-visible:hover .text h3{
+  letter-spacing:-.035em;
+  color:#000;
+  transform:translateY(-3px) scale(1.018);
+}
+
+.cards .card.is-visible:hover .text p{
+  color:rgba(29,29,31,.72);
+  transform:translateY(-2px);
+}
+
+/* 点击进入时，标题有一个很短的确认反馈 */
+.cards .card.entering .text h3{
+  transform:translateY(-4px) scale(1.025) !important;
+  color:#000 !important;
+}
+
+.cards .card.entering .text p{
+  transform:translateY(-2px) !important;
+  color:rgba(29,29,31,.76) !important;
+}
+
+
+/* =========================
+   V3.2 REPLAYABLE SCROLL MOTION
+   回滚 / 再下滑时，项目图片和文字可循环触发动效
+========================= */
+
+/* 防止快速滚动时出现太突兀的闪烁，让重置更柔和 */
+.cards .card:not(.is-visible){
+  transition-delay:0s !important;
+}
+
+.cards .card:not(.is-visible) .text h3,
+.cards .card:not(.is-visible) .text p{
+  transition-delay:0s !important;
+}
+
+/* 标题也跟随滚动重复出现，而不是只播放一次 */
+.section .title:not(.is-visible){
+  transition-delay:0s !important;
+}
+
+/* 回到首页时，宣言文字继续根据滚动位置恢复，不是一次性消失 */
+.hero-manifesto-v2{
+  transition:
+    opacity .18s linear,
+    filter .18s linear,
+    transform .18s linear;
+}
+
+
+/* =========================
+   V3.3 STRONGER PROJECT TEXT MOTION
+   项目文字动效加强：更明显，但不改变页面框架
+========================= */
+
+/* 给文字区一点“被打开”的空间感 */
+.cards .card .text{
+  overflow:hidden;
+  transform-origin:left center;
+}
+
+/* 初始状态更明确：往下、轻模糊、字距略开 */
+.cards .card .text h3{
+  opacity:0 !important;
+  transform:translate3d(0, 42px, 0) scale(.965) !important;
+  filter:blur(14px) !important;
+  letter-spacing:.015em !important;
+}
+
+.cards .card .text p{
+  opacity:0 !important;
+  transform:translate3d(0, 34px, 0) scale(.975) !important;
+  filter:blur(12px) !important;
+}
+
+/* 出现状态：标题更明显地浮上来，中文慢半拍 */
+.cards .card.is-visible .text h3{
+  opacity:1 !important;
+  transform:translate3d(0, 0, 0) scale(1) !important;
+  filter:blur(0) !important;
+  letter-spacing:-.045em !important;
+  transition:
+    opacity .95s cubic-bezier(.2,.8,.2,1) .30s,
+    transform 1.05s cubic-bezier(.2,.8,.2,1) .30s,
+    filter 1.05s cubic-bezier(.2,.8,.2,1) .30s,
+    letter-spacing 1.05s cubic-bezier(.2,.8,.2,1) .30s,
+    color .42s ease !important;
+}
+
+.cards .card.is-visible .text p{
+  opacity:1 !important;
+  transform:translate3d(0, 0, 0) scale(1) !important;
+  filter:blur(0) !important;
+  transition:
+    opacity .95s cubic-bezier(.2,.8,.2,1) .52s,
+    transform 1.05s cubic-bezier(.2,.8,.2,1) .52s,
+    filter 1.05s cubic-bezier(.2,.8,.2,1) .52s,
+    color .42s ease !important;
+}
+
+/* 每张卡片文字再错开，能明显感到一张张出现 */
+.cards .card:nth-child(1).is-visible .text h3{ transition-delay:.30s,.30s,.30s,.30s,0s !important; }
+.cards .card:nth-child(1).is-visible .text p{ transition-delay:.52s,.52s,.52s,0s !important; }
+
+.cards .card:nth-child(2).is-visible .text h3{ transition-delay:.42s,.42s,.42s,.42s,0s !important; }
+.cards .card:nth-child(2).is-visible .text p{ transition-delay:.64s,.64s,.64s,0s !important; }
+
+.cards .card:nth-child(3).is-visible .text h3{ transition-delay:.54s,.54s,.54s,.54s,0s !important; }
+.cards .card:nth-child(3).is-visible .text p{ transition-delay:.76s,.76s,.76s,0s !important; }
+
+.cards .card:nth-child(4).is-visible .text h3{ transition-delay:.66s,.66s,.66s,.66s,0s !important; }
+.cards .card:nth-child(4).is-visible .text p{ transition-delay:.88s,.88s,.88s,0s !important; }
+
+.cards .card:nth-child(5).is-visible .text h3{ transition-delay:.78s,.78s,.78s,.78s,0s !important; }
+.cards .card:nth-child(5).is-visible .text p{ transition-delay:1.00s,1.00s,1.00s,0s !important; }
+
+.cards .card:nth-child(6).is-visible .text h3{ transition-delay:.90s,.90s,.90s,.90s,0s !important; }
+.cards .card:nth-child(6).is-visible .text p{ transition-delay:1.12s,1.12s,1.12s,0s !important; }
+
+/* hover 文字反馈也稍微加强，但保持克制 */
+.cards .card.is-visible:hover .text h3{
+  transform:translate3d(0, -5px, 0) scale(1.026) !important;
+  letter-spacing:-.055em !important;
+}
+
+.cards .card.is-visible:hover .text p{
+  transform:translate3d(0, -3px, 0) !important;
+}
+
+/* 离开视口后重置，回滚再进入时可以清楚地重新播放 */
+.cards .card:not(.is-visible) .text h3,
+.cards .card:not(.is-visible) .text p{
+  transition:
+    opacity .28s ease,
+    transform .28s ease,
+    filter .28s ease,
+    letter-spacing .28s ease !important;
+}
+
+
+/* =========================
+   V3.4 SEPARATED IMAGE / TEXT MOTION
+   解决：文字和图片一起动，所以文字动效不明显
+   新逻辑：卡片框架不动；图片先出现；文字后出现
+========================= */
+
+/* 卡片本体不再整体淡入，否则文字会被图片动效吃掉 */
+.cards .card{
+  opacity:1 !important;
+  transform:none !important;
+  filter:none !important;
+  transition:none !important;
+}
+
+/* 图片单独作为第一层动效 */
+.cards .card img{
+  opacity:0 !important;
+  transform:translate3d(0, 64px, 0) scale(.965) !important;
+  filter:blur(14px) brightness(.98) saturate(.96) !important;
+  transition:
+    opacity .78s cubic-bezier(.2,.8,.2,1),
+    transform 1.02s cubic-bezier(.2,.8,.2,1),
+    filter 1.02s cubic-bezier(.2,.8,.2,1),
+    box-shadow .82s cubic-bezier(.2,.8,.2,1) !important;
+  will-change:opacity, transform, filter;
+}
+
+.cards .card.is-visible img{
+  opacity:1 !important;
+  transform:translate3d(0, 0, 0) scale(1) !important;
+  filter:blur(0) brightness(1) saturate(1) !important;
+}
+
+/* 文字单独作为第二层动效，明显慢于图片 */
+.cards .card .text h3{
+  opacity:0 !important;
+  transform:translate3d(0, 72px, 0) scale(.955) !important;
+  filter:blur(16px) !important;
+  letter-spacing:.025em !important;
+  transition:
+    opacity .82s cubic-bezier(.2,.8,.2,1),
+    transform 1.05s cubic-bezier(.2,.8,.2,1),
+    filter 1.05s cubic-bezier(.2,.8,.2,1),
+    letter-spacing 1.05s cubic-bezier(.2,.8,.2,1),
+    color .42s ease !important;
+  will-change:opacity, transform, filter;
+}
+
+.cards .card .text p{
+  opacity:0 !important;
+  transform:translate3d(0, 52px, 0) scale(.972) !important;
+  filter:blur(13px) !important;
+  transition:
+    opacity .82s cubic-bezier(.2,.8,.2,1),
+    transform 1.05s cubic-bezier(.2,.8,.2,1),
+    filter 1.05s cubic-bezier(.2,.8,.2,1),
+    color .42s ease !important;
+  will-change:opacity, transform, filter;
+}
+
+/* 关键：图片先出来，标题等图片稳定后才出来，中文再慢半拍 */
+.cards .card.is-visible .text h3{
+  opacity:1 !important;
+  transform:translate3d(0, 0, 0) scale(1) !important;
+  filter:blur(0) !important;
+  letter-spacing:-.045em !important;
+  transition-delay:.74s, .74s, .74s, .74s, 0s !important;
+}
+
+.cards .card.is-visible .text p{
+  opacity:1 !important;
+  transform:translate3d(0, 0, 0) scale(1) !important;
+  filter:blur(0) !important;
+  transition-delay:.94s, .94s, .94s, 0s !important;
+}
+
+/* 不同卡片之间仍然有轻微错位，但不让文字和图片同时出现 */
+.cards .card:nth-child(1).is-visible img{ transition-delay:.00s,.00s,.00s,0s !important; }
+.cards .card:nth-child(1).is-visible .text h3{ transition-delay:.72s,.72s,.72s,.72s,0s !important; }
+.cards .card:nth-child(1).is-visible .text p{ transition-delay:.92s,.92s,.92s,0s !important; }
+
+.cards .card:nth-child(2).is-visible img{ transition-delay:.10s,.10s,.10s,0s !important; }
+.cards .card:nth-child(2).is-visible .text h3{ transition-delay:.84s,.84s,.84s,.84s,0s !important; }
+.cards .card:nth-child(2).is-visible .text p{ transition-delay:1.04s,1.04s,1.04s,0s !important; }
+
+.cards .card:nth-child(3).is-visible img{ transition-delay:.20s,.20s,.20s,0s !important; }
+.cards .card:nth-child(3).is-visible .text h3{ transition-delay:.96s,.96s,.96s,.96s,0s !important; }
+.cards .card:nth-child(3).is-visible .text p{ transition-delay:1.16s,1.16s,1.16s,0s !important; }
+
+.cards .card:nth-child(4).is-visible img{ transition-delay:.30s,.30s,.30s,0s !important; }
+.cards .card:nth-child(4).is-visible .text h3{ transition-delay:1.08s,1.08s,1.08s,1.08s,0s !important; }
+.cards .card:nth-child(4).is-visible .text p{ transition-delay:1.28s,1.28s,1.28s,0s !important; }
+
+.cards .card:nth-child(5).is-visible img{ transition-delay:.40s,.40s,.40s,0s !important; }
+.cards .card:nth-child(5).is-visible .text h3{ transition-delay:1.20s,1.20s,1.20s,1.20s,0s !important; }
+.cards .card:nth-child(5).is-visible .text p{ transition-delay:1.40s,1.40s,1.40s,0s !important; }
+
+.cards .card:nth-child(6).is-visible img{ transition-delay:.50s,.50s,.50s,0s !important; }
+.cards .card:nth-child(6).is-visible .text h3{ transition-delay:1.32s,1.32s,1.32s,1.32s,0s !important; }
+.cards .card:nth-child(6).is-visible .text p{ transition-delay:1.52s,1.52s,1.52s,0s !important; }
+
+/* hover 只在已经出现后生效 */
+.cards .card.is-visible:hover img{
+  transform:translate3d(0, 0, 0) scale(1.035) !important;
+  filter:blur(0) brightness(1.035) saturate(1.02) !important;
+}
+
+.cards .card.is-visible:hover .text h3{
+  transform:translate3d(0, -5px, 0) scale(1.026) !important;
+  letter-spacing:-.055em !important;
+  color:#000 !important;
+}
+
+.cards .card.is-visible:hover .text p{
+  transform:translate3d(0, -3px, 0) !important;
+  color:rgba(29,29,31,.72) !important;
+}
+
+/* 离开视口重置时，不要拖延，保证回滚后再下滑可以重新播放 */
+.cards .card:not(.is-visible) img,
+.cards .card:not(.is-visible) .text h3,
+.cards .card:not(.is-visible) .text p{
+  transition-delay:0s !important;
+}
+
+/* 点击反馈保持轻微 */
+.cards .card.entering img{
+  transform:translate3d(0, 0, 0) scale(1.045) !important;
+  filter:blur(0) brightness(.98) saturate(1.02) !important;
+}
+
+.cards .card.entering .text h3{
+  transform:translate3d(0, -6px, 0) scale(1.03) !important;
+}
+
+
+/* =========================
+   V3.5 CONTACT TEXT MOTION
+   联系区文字也加入滚动触发动效，且可循环
+========================= */
+
+.contact-motion{
+  opacity:1 !important;
+  align-items:start;
+}
+
+.contact-motion .contact-col{
+  overflow:hidden;
+  min-height:58px;
+}
+
+.contact-motion .contact-line{
+  display:block;
+  opacity:0;
+  transform:translate3d(0, 34px, 0);
+  filter:blur(10px);
+  will-change:opacity, transform, filter, letter-spacing;
+}
+
+.contact-motion .contact-line.primary{
+  font-size:16px;
+  line-height:1.35;
+  font-weight:430;
+  letter-spacing:-.018em;
+  color:rgba(29,29,31,.92);
+}
+
+.contact-motion .contact-line.secondary{
+  margin-top:10px;
+  font-size:15px;
+  line-height:1.35;
+  font-weight:400;
+  letter-spacing:-.012em;
+  color:rgba(29,29,31,.70);
+}
+
+/* 进入视口：每一列错开，每一行再慢半拍 */
+.contact-motion.is-visible .contact-col:nth-child(1) .primary{
+  opacity:1;
+  transform:translate3d(0, 0, 0);
+  filter:blur(0);
+  transition:
+    opacity .86s cubic-bezier(.2,.8,.2,1) .10s,
+    transform 1.02s cubic-bezier(.2,.8,.2,1) .10s,
+    filter 1.02s cubic-bezier(.2,.8,.2,1) .10s,
+    letter-spacing .72s ease .10s;
+}
+
+.contact-motion.is-visible .contact-col:nth-child(1) .secondary{
+  opacity:1;
+  transform:translate3d(0, 0, 0);
+  filter:blur(0);
+  transition:
+    opacity .86s cubic-bezier(.2,.8,.2,1) .26s,
+    transform 1.02s cubic-bezier(.2,.8,.2,1) .26s,
+    filter 1.02s cubic-bezier(.2,.8,.2,1) .26s;
+}
+
+.contact-motion.is-visible .contact-col:nth-child(2) .primary{
+  opacity:1;
+  transform:translate3d(0, 0, 0);
+  filter:blur(0);
+  transition:
+    opacity .86s cubic-bezier(.2,.8,.2,1) .28s,
+    transform 1.02s cubic-bezier(.2,.8,.2,1) .28s,
+    filter 1.02s cubic-bezier(.2,.8,.2,1) .28s,
+    letter-spacing .72s ease .28s;
+}
+
+.contact-motion.is-visible .contact-col:nth-child(2) .secondary{
+  opacity:1;
+  transform:translate3d(0, 0, 0);
+  filter:blur(0);
+  transition:
+    opacity .86s cubic-bezier(.2,.8,.2,1) .44s,
+    transform 1.02s cubic-bezier(.2,.8,.2,1) .44s,
+    filter 1.02s cubic-bezier(.2,.8,.2,1) .44s;
+}
+
+.contact-motion.is-visible .contact-col:nth-child(3) .primary{
+  opacity:1;
+  transform:translate3d(0, 0, 0);
+  filter:blur(0);
+  transition:
+    opacity .86s cubic-bezier(.2,.8,.2,1) .46s,
+    transform 1.02s cubic-bezier(.2,.8,.2,1) .46s,
+    filter 1.02s cubic-bezier(.2,.8,.2,1) .46s,
+    letter-spacing .72s ease .46s;
+}
+
+/* 离开视口后重置，回滚再下滑会重新播放 */
+.contact-motion:not(.is-visible) .contact-line{
+  transition:
+    opacity .26s ease,
+    transform .26s ease,
+    filter .26s ease !important;
+}
+
+/* 鼠标经过联系信息：只做很轻的字体响应 */
+.contact-motion .contact-col:hover .primary{
+  letter-spacing:-.032em;
+  color:#000;
+  transition:letter-spacing .36s ease, color .36s ease;
+}
+
+.contact-motion .contact-col:hover .secondary{
+  color:rgba(29,29,31,.86);
+  transform:translate3d(0, -1px, 0);
+  transition:color .36s ease, transform .36s ease;
+}
+
+@media(max-width:760px){
+  .contact-motion .contact-line.primary{
+    font-size:15px;
+  }
+
+  .contact-motion .contact-line.secondary{
+    font-size:14px;
+  }
+}
+
+
+/* =========================
+   V3.7 SPACE SWITCHER · A IMAGE PREVIEW
+   以项目图片预览取代原来的文字列表；不改变首页当前版本
+========================= */
+
+#spacePage .topnav{
+  align-items:flex-start !important;
+  gap:42px !important;
+}
+
+#spacePage .navGroup{
+  position:relative !important;
+  padding:0 0 20px !important;
+}
+
+#spacePage .navGroup .tab{
+  font-size:12px !important;
+  letter-spacing:2.4px !important;
+  opacity:.58 !important;
+  transition:
+    opacity .24s ease,
+    transform .24s ease,
+    letter-spacing .24s ease !important;
+}
+
+#spacePage .navGroup:hover .tab{
+  opacity:1 !important;
+  transform:translateY(-1px) scale(1.055) !important;
+  letter-spacing:2.8px !important;
+}
+
+#spacePage .navGroup.active .tab{
+  opacity:1 !important;
+}
+
+#spacePage .projectMenu{
+  position:absolute !important;
+  top:30px !important;
+  left:50% !important;
+  transform:translateX(-50%) translateY(10px) !important;
+  width:228px !important;
+  min-width:0 !important;
+  padding:8px 0 0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:10px !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  border:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  box-shadow:none !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+  transition:
+    opacity .25s ease,
+    transform .28s cubic-bezier(.2,.8,.2,1) !important;
+  text-align:left !important;
+}
+
+#spacePage .navGroup:hover .projectMenu{
+  opacity:1 !important;
+  pointer-events:auto !important;
+  transform:translateX(-50%) translateY(0) !important;
+}
+
+#spacePage .projectOption.projectPreview{
+  appearance:none !important;
+  -webkit-appearance:none !important;
+  border:none !important;
+  outline:none !important;
+  background:transparent !important;
+  padding:0 !important;
+  margin:0 !important;
+  width:228px !important;
+  min-width:0 !important;
+  cursor:pointer !important;
+  display:block !important;
+  opacity:.88 !important;
+  text-align:left !important;
+  white-space:normal !important;
+  line-height:normal !important;
+  transition:
+    opacity .24s ease,
+    transform .26s cubic-bezier(.2,.8,.2,1) !important;
+}
+
+#spacePage .projectOption.projectPreview:hover{
+  opacity:1 !important;
+  transform:translateY(-2px) scale(1.012) !important;
+}
+
+#spacePage .projectPreviewCard{
+  position:relative !important;
+  height:126px !important;
+  width:100% !important;
+  border-radius:18px !important;
+  overflow:hidden !important;
+  background-size:cover !important;
+  background-position:center !important;
+  box-shadow:
+    0 16px 38px rgba(0,0,0,.18),
+    inset 0 0 0 1px rgba(255,255,255,.12) !important;
+}
+
+#spacePage .projectPreviewCard::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:1 !important;
+  background:
+    linear-gradient(to top,
+      rgba(0,0,0,.55) 0%,
+      rgba(0,0,0,.22) 38%,
+      rgba(0,0,0,.04) 72%,
+      rgba(0,0,0,0) 100%) !important;
+  pointer-events:none !important;
+}
+
+#spacePage .projectPreviewCard::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:3 !important;
+  border-radius:18px !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.15) !important;
+  pointer-events:none !important;
+}
+
+#spacePage .projectOption.projectPreview.current .projectPreviewCard{
+  box-shadow:
+    0 0 0 1.5px rgba(255,255,255,.74),
+    0 18px 42px rgba(0,0,0,.22),
+    inset 0 0 0 1px rgba(255,255,255,.18) !important;
+}
+
+#spacePage .projectPreviewMeta{
+  position:absolute !important;
+  left:14px !important;
+  right:14px !important;
+  bottom:13px !important;
+  z-index:2 !important;
+  pointer-events:none !important;
+}
+
+#spacePage .projectPreviewMeta strong{
+  display:block !important;
+  font-size:13px !important;
+  line-height:1.12 !important;
+  font-weight:600 !important;
+  letter-spacing:-.01em !important;
+  color:#fff !important;
+  text-shadow:0 2px 10px rgba(0,0,0,.30) !important;
+}
+
+#spacePage .projectPreviewMeta small{
+  display:block !important;
+  margin-top:4px !important;
+  font-size:11px !important;
+  line-height:1.12 !important;
+  font-weight:450 !important;
+  letter-spacing:0 !important;
+  color:rgba(255,255,255,.82) !important;
+  text-shadow:0 2px 10px rgba(0,0,0,.28) !important;
+}
+
+.stage.textOnLight .projectPreviewMeta strong,
+.stage.textOnDark .projectPreviewMeta strong{
+  color:#fff !important;
+}
+
+.stage.textOnLight .projectPreviewMeta small,
+.stage.textOnDark .projectPreviewMeta small{
+  color:rgba(255,255,255,.82) !important;
+}
+
+@media(max-width:760px){
+  #spacePage .topnav{
+    gap:26px !important;
+  }
+
+  #spacePage .projectMenu{
+    width:190px !important;
+  }
+
+  #spacePage .projectOption.projectPreview{
+    width:190px !important;
+  }
+
+  #spacePage .projectPreviewCard{
+    height:104px !important;
+    border-radius:16px !important;
+  }
+}
+
+
+
+/* =========================
+   HOME TOPBAR A / TEXT ONLY FLOATING VERSION
+   remove frosted capsule, keep pure floating typography
+========================= */
+.home-topbar{
+  top:28px !important;
+  left:40px !important;
+  right:40px !important;
+  min-height:auto !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:space-between !important;
+  gap:36px !important;
+}
+
+.home-topbar-brand{
+  gap:5px !important;
+}
+
+.home-topbar-brand .brand-en{
+  font-size:13px !important;
+  font-weight:600 !important;
+  letter-spacing:.22em !important;
+}
+
+.home-topbar-brand .brand-zh{
+  font-size:10px !important;
+  font-weight:470 !important;
+  letter-spacing:.05em !important;
+}
+
+.home-topbar-nav{
+  gap:26px !important;
+  justify-content:flex-end !important;
+}
+
+.home-topbar-nav .item{
+  min-width:76px !important;
+  padding:0 0 14px !important;
+  font-size:11px !important;
+  font-weight:600 !important;
+  letter-spacing:.22em !important;
+  opacity:.58 !important;
+  transform:none !important;
+}
+
+.home-topbar-nav .item span{
+  margin-top:6px !important;
+  font-size:10px !important;
+  font-weight:460 !important;
+  letter-spacing:.04em !important;
+}
+
+.home-topbar-nav .item::after{
+  bottom:0 !important;
+  width:7px !important;
+  height:7px !important;
+  margin-left:-3.5px !important;
+  box-shadow:none !important;
+}
+
+.home-topbar-nav .item:hover{
+  opacity:.92 !important;
+  transform:translateY(-1px) scale(1.035) !important;
+}
+
+.home-topbar-nav .item.active{
+  opacity:1 !important;
+}
+
+.home-topbar.text-light,
+.home-topbar.text-dark{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+.home-topbar.text-light .home-topbar-brand,
+.home-topbar.text-light .home-topbar-nav .item{
+  color:#f5f5f7 !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.24),
+    0 10px 24px rgba(0,0,0,.16) !important;
+}
+
+.home-topbar.text-light .home-topbar-brand .brand-zh,
+.home-topbar.text-light .home-topbar-nav .item span{
+  color:rgba(245,245,247,.78) !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.20),
+    0 10px 22px rgba(0,0,0,.14) !important;
+}
+
+.home-topbar.text-light .home-topbar-nav .item.active,
+.home-topbar.text-light .home-topbar-nav .item:hover{
+  color:#ffffff !important;
+}
+
+.home-topbar.text-light .home-topbar-nav .item.active span,
+.home-topbar.text-light .home-topbar-nav .item:hover span{
+  color:rgba(255,255,255,.88) !important;
+}
+
+.home-topbar.text-light .home-topbar-nav .item::after{
+  background:#ffffff !important;
+}
+
+.home-topbar.text-dark .home-topbar-brand,
+.home-topbar.text-dark .home-topbar-nav .item{
+  color:rgba(29,29,31,.72) !important;
+  text-shadow:none !important;
+}
+
+.home-topbar.text-dark .home-topbar-brand .brand-zh,
+.home-topbar.text-dark .home-topbar-nav .item span{
+  color:rgba(29,29,31,.56) !important;
+  text-shadow:none !important;
+}
+
+.home-topbar.text-dark .home-topbar-nav .item.active,
+.home-topbar.text-dark .home-topbar-nav .item:hover{
+  color:#1d1d1f !important;
+}
+
+.home-topbar.text-dark .home-topbar-nav .item.active span,
+.home-topbar.text-dark .home-topbar-nav .item:hover span{
+  color:rgba(29,29,31,.74) !important;
+}
+
+.home-topbar.text-dark .home-topbar-nav .item::after{
+  background:#1d1d1f !important;
+}
+
+@media(max-width:980px){
+  .home-topbar{
+    top:22px !important;
+    left:24px !important;
+    right:24px !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:18px !important;
+  }
+
+  .home-topbar-nav{
+    width:100% !important;
+    justify-content:space-between !important;
+    gap:10px !important;
+  }
+
+  .home-topbar-nav .item{
+    min-width:auto !important;
+    flex:1 !important;
+  }
+}
+
+@media(max-width:760px){
+  .home-topbar{
+    top:18px !important;
+    left:18px !important;
+    right:18px !important;
+  }
+
+  .home-topbar-brand .brand-en{
+    font-size:12px !important;
+    letter-spacing:.18em !important;
+  }
+
+  .home-topbar-brand .brand-zh{
+    font-size:9px !important;
+  }
+
+  .home-topbar-nav{
+    gap:8px !important;
+  }
+
+  .home-topbar-nav .item{
+    padding:0 0 12px !important;
+    font-size:10px !important;
+    letter-spacing:.16em !important;
+  }
+
+  .home-topbar-nav .item span{
+    margin-top:5px !important;
+    font-size:9px !important;
+  }
+}
+
+
+/* =========================
+   KKAA-LIKE HOMEPAGE PREVIEW
+   模仿 kkaa.co.jp 的图片 / 白底签名间距
+========================= */
+
+/* 首页首图不再做全屏宣言，不做渐变，像 KKAA 那样直接切到白底 */
+.hero{
+  height:42vh !important;
+  min-height:360px !important;
+  max-height:520px !important;
+  align-items:flex-start !important;
+  justify-content:flex-start !important;
+  overflow:hidden !important;
+  background:#fff !important;
+}
+
+.hero::after,
+.hero::before{
+  display:none !important;
+}
+
+.bg{
+  filter:none !important;
+  transform:scale(1.01) !important;
+  background-position:center center !important;
+  transition:opacity 1.2s ease, transform 4s ease !important;
+}
+
+/* 顶部纯文字导航压在图片上，不要玻璃底 */
+.home-topbar{
+  top:30px !important;
+  left:42px !important;
+  right:42px !important;
+}
+
+/* 去掉旧宣言所有影响 */
+.hero-manifesto,
+.hero-manifesto-v2,
+.hero-manifesto-minimal,
+.hero-signature-kkaa{
+  display:none !important;
+}
+
+/* KKAA 式白底签名区域 */
+.kkaa-signature-section{
+  position:relative;
+  height:300px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#1d1d1f;
+}
+
+.kkaa-signature-word{
+  font-size:clamp(18px, 1.95vw, 30px);
+  line-height:1;
+  font-weight:320;
+  letter-spacing:.42em;
+  color:rgba(29,29,31,.54);
+  white-space:nowrap;
+  transform:translateY(-4px);
+  opacity:0;
+  filter:blur(5px);
+  animation:kkaaWordIn 1.05s cubic-bezier(.2,.8,.2,1) .2s forwards;
+}
+
+/* 项目区跟在签名区下面，留白节奏更像 KKAA */
+.section{
+  background:#fff !important;
+  max-width:none !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:82px 40px 120px !important;
+  color:#1d1d1f !important;
+}
+
+.section .title{
+  text-align:center !important;
+  margin:0 auto 86px !important;
+  font-size:18px !important;
+  line-height:1.1 !important;
+  letter-spacing:.08em !important;
+  font-weight:360 !important;
+  color:rgba(29,29,31,.78) !important;
+  opacity:1 !important;
+}
+
+.section .title::before{
+  content:"精选项目";
+  display:block;
+  margin-bottom:12px;
+  font-size:11px;
+  font-weight:380;
+  letter-spacing:.14em;
+  color:rgba(29,29,31,.50);
+}
+
+.section .title::after{
+  content:"";
+  display:block;
+  width:34px;
+  height:1px;
+  margin:22px auto 0;
+  background:rgba(29,29,31,.38);
+}
+
+.cards{
+  max-width:1240px !important;
+  margin:0 auto !important;
+  gap:54px !important;
+}
+
+@keyframes kkaaWordIn{
+  to{
+    opacity:1;
+    filter:blur(0);
+    transform:translateY(0);
+  }
+}
+
+@media(max-width:980px){
+  .hero{
+    height:40vh !important;
+    min-height:300px !important;
+  }
+
+  .kkaa-signature-section{
+    height:260px;
+  }
+
+  .kkaa-signature-word{
+    font-size:clamp(16px, 3vw, 24px);
+    letter-spacing:.30em;
+  }
+
+  .section{
+    padding:72px 28px 108px !important;
+  }
+}
+
+@media(max-width:760px){
+  .hero{
+    height:38vh !important;
+    min-height:260px !important;
+  }
+
+  .home-topbar{
+    top:20px !important;
+    left:20px !important;
+    right:20px !important;
+  }
+
+  .kkaa-signature-section{
+    height:220px;
+  }
+
+  .kkaa-signature-word{
+    font-size:14px;
+    letter-spacing:.22em;
+  }
+
+  .section{
+    padding:58px 22px 96px !important;
+  }
+
+  .section .title{
+    margin-bottom:58px !important;
+  }
+}
+
+
+/* =========================
+   KKAA PROPORTION REFINEMENT
+   按参考网站重新调整：首图更大、更大气；签名改回设计理念
+========================= */
+
+.hero{
+  height:60vh !important;
+  min-height:540px !important;
+  max-height:720px !important;
+}
+
+.bg{
+  background-size:cover !important;
+  background-position:center center !important;
+  filter:none !important;
+  transform:scale(1.005) !important;
+}
+
+/* 图片直接切到白底，不要渐变雾化 */
+.hero::after,
+.hero::before{
+  display:none !important;
+}
+
+/* 白底签名段：保留大留白，但让图片和文字的距离更像参考图 */
+.kkaa-signature-section{
+  height:370px !important;
+  background:#fff !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding-top:18px !important;
+}
+
+.kkaa-signature-word{
+  font-size:clamp(17px, 1.55vw, 25px) !important;
+  line-height:1 !important;
+  font-weight:300 !important;
+  letter-spacing:.30em !important;
+  color:rgba(29,29,31,.50) !important;
+  white-space:nowrap !important;
+  transform:none !important;
+  text-align:center !important;
+  opacity:0;
+  filter:blur(5px);
+  animation:kkaaWordIn 1.05s cubic-bezier(.2,.8,.2,1) .2s forwards;
+}
+
+.kkaa-signature-cn{
+  margin-top:18px;
+  font-size:11px;
+  line-height:1;
+  font-weight:360;
+  letter-spacing:.18em;
+  color:rgba(29,29,31,.34);
+  opacity:0;
+  filter:blur(4px);
+  animation:kkaaWordIn .95s cubic-bezier(.2,.8,.2,1) .42s forwards;
+}
+
+/* 项目标题继续往下，形成参考图那种“图片 / 留白签名 / 项目入口”的节奏 */
+.section{
+  padding-top:76px !important;
+  background:#fff !important;
+}
+
+.section .title{
+  margin-bottom:88px !important;
+}
+
+/* 顶部文字保留悬浮感，但比上一版更靠近参考图的轻量状态 */
+.home-topbar{
+  top:34px !important;
+  left:46px !important;
+  right:46px !important;
+}
+
+.home-topbar-nav{
+  gap:34px !important;
+}
+
+.home-topbar-nav .item{
+  min-width:86px !important;
+}
+
+@media(max-width:980px){
+  .hero{
+    height:56vh !important;
+    min-height:420px !important;
+  }
+
+  .kkaa-signature-section{
+    height:320px !important;
+  }
+
+  .kkaa-signature-word{
+    font-size:clamp(14px, 2.2vw, 20px) !important;
+    letter-spacing:.22em !important;
+  }
+}
+
+@media(max-width:760px){
+  .hero{
+    height:52vh !important;
+    min-height:360px !important;
+  }
+
+  .kkaa-signature-section{
+    height:260px !important;
+  }
+
+  .kkaa-signature-word{
+    white-space:normal !important;
+    max-width:86vw !important;
+    font-size:13px !important;
+    line-height:1.65 !important;
+    letter-spacing:.16em !important;
+  }
+
+  .kkaa-signature-cn{
+    font-size:10px;
+    letter-spacing:.12em;
+  }
+}
+
+
+/* =========================
+   KKAA HERO RESPONSIVE RATIO
+   头图按屏幕宽度自适配，不用固定“小横幅”或固定高度
+========================= */
+
+/* 桌面端：让头图按浏览器宽度生成高度，接近 KKAA 那种宽屏横向建筑图比例 */
+.hero{
+  width:100vw !important;
+  height:clamp(420px, 28.5vw, 560px) !important;
+  min-height:0 !important;
+  max-height:none !important;
+  aspect-ratio:auto !important;
+}
+
+/* 图片永远铺满头图区域，随电脑屏幕宽度自适配 */
+.bg{
+  background-size:cover !important;
+  background-position:center center !important;
+  transform:none !important;
+  filter:none !important;
+}
+
+/* 不做渐变，图片到白底之间直接干净切换 */
+.hero::after,
+.hero::before{
+  display:none !important;
+}
+
+/* 头图变成更大气的横向比例后，白底签名区的距离也跟着重新压准 */
+.kkaa-signature-section{
+  height:360px !important;
+  padding-top:0 !important;
+}
+
+/* 中间理念文字更接近 KKAA：更淡、更细、更横向 */
+.kkaa-signature-word{
+  font-size:clamp(16px, 1.45vw, 24px) !important;
+  font-weight:300 !important;
+  letter-spacing:.34em !important;
+  color:rgba(29,29,31,.48) !important;
+}
+
+.kkaa-signature-cn{
+  margin-top:18px !important;
+  color:rgba(29,29,31,.32) !important;
+}
+
+/* 大屏幕时再稍微增加头图高度，避免显得小气 */
+@media(min-width:1600px){
+  .hero{
+    height:clamp(500px, 29vw, 640px) !important;
+  }
+
+  .kkaa-signature-section{
+    height:390px !important;
+  }
+}
+
+/* 笔记本屏幕：保持大气，不压太矮 */
+@media(max-width:1200px){
+  .hero{
+    height:clamp(380px, 32vw, 500px) !important;
+  }
+
+  .kkaa-signature-section{
+    height:330px !important;
+  }
+}
+
+/* 平板 / 手机：改用更接近屏幕比例的高度，避免图片被压扁 */
+@media(max-width:760px){
+  .hero{
+    height:56vh !important;
+    min-height:360px !important;
+  }
+
+  .bg{
+    background-position:center center !important;
+  }
+
+  .kkaa-signature-section{
+    height:260px !important;
+  }
+}
+
+
+/* =========================
+   KKAA V4 COORDINATION FIX
+   解决：头图太小 / 横字太浅 / 底部联系区灰底不协调
+========================= */
+
+/* 整个首页统一白底，不再出现底部联系区灰色断层 */
+html,
+body,
+#homePage,
+.kkaa-signature-section,
+.section,
+.contact,
+.contact-motion{
+  background:#ffffff !important;
+}
+
+/* 头版图片加大：按屏幕比例更接近大幅建筑首页图 */
+.hero{
+  width:100vw !important;
+  height:min(78vh, calc(100vw * 0.5625)) !important;
+  min-height:620px !important;
+  max-height:820px !important;
+  background:#ffffff !important;
+  overflow:hidden !important;
+}
+
+/* 图片铺满，不加渐变，不压暗 */
+.bg{
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  filter:none !important;
+  transform:none !important;
+}
+
+/* 彻底取消图片到白底的雾化/渐变 */
+.hero::after,
+.hero::before{
+  display:none !important;
+}
+
+/* 纯文字顶部导航，跟随图片上方，但不要玻璃底 */
+.home-topbar{
+  top:34px !important;
+  left:46px !important;
+  right:46px !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+/* 因为头图现在更亮，顶部文字稍微增强 */
+.home-topbar.text-light .home-topbar-brand,
+.home-topbar.text-light .home-topbar-nav .item{
+  color:rgba(255,255,255,.96) !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.28),
+    0 10px 26px rgba(0,0,0,.22) !important;
+}
+
+.home-topbar.text-light .home-topbar-brand .brand-zh,
+.home-topbar.text-light .home-topbar-nav .item span{
+  color:rgba(255,255,255,.82) !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.24),
+    0 10px 24px rgba(0,0,0,.18) !important;
+}
+
+/* 白底签名区：更接近参考图的留白节奏 */
+.kkaa-signature-section{
+  height:420px !important;
+  padding:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+/* 横字不再太浅：淡但有力量 */
+.kkaa-signature-word{
+  font-size:clamp(18px, 1.65vw, 28px) !important;
+  font-weight:320 !important;
+  letter-spacing:.34em !important;
+  color:rgba(29,29,31,.68) !important;
+  text-shadow:none !important;
+}
+
+.kkaa-signature-cn{
+  margin-top:18px !important;
+  font-size:11px !important;
+  font-weight:380 !important;
+  letter-spacing:.18em !important;
+  color:rgba(29,29,31,.46) !important;
+}
+
+/* PROJECTS 区统一白底，文字层级也更协调 */
+.section{
+  padding-top:84px !important;
+  padding-bottom:128px !important;
+  color:#1d1d1f !important;
+}
+
+.section .title{
+  color:rgba(29,29,31,.76) !important;
+}
+
+.section .title::before{
+  color:rgba(29,29,31,.52) !important;
+}
+
+.section .title::after{
+  background:rgba(29,29,31,.42) !important;
+}
+
+/* 底部联系区从灰底改成白底，并和上方保持统一 */
+.contact,
+.contact-motion{
+  padding-top:120px !important;
+  padding-bottom:140px !important;
+  color:#1d1d1f !important;
+  border-top:0 !important;
+}
+
+.contact-motion .contact-line.primary{
+  color:rgba(29,29,31,.86) !important;
+}
+
+.contact-motion .contact-line.secondary{
+  color:rgba(29,29,31,.58) !important;
+}
+
+/* 项目卡片区域避免出现灰色容器感 */
+.cards,
+.card,
+.card .text{
+  background:transparent !important;
+}
+
+/* 笔记本适配：仍然保持大图，不压成小条 */
+@media(max-width:1280px){
+  .hero{
+    height:72vh !important;
+    min-height:560px !important;
+  }
+
+  .kkaa-signature-section{
+    height:380px !important;
+  }
+}
+
+/* 小屏适配 */
+@media(max-width:760px){
+  .hero{
+    height:68vh !important;
+    min-height:460px !important;
+  }
+
+  .home-topbar{
+    top:20px !important;
+    left:20px !important;
+    right:20px !important;
+  }
+
+  .kkaa-signature-section{
+    height:280px !important;
+  }
+
+  .kkaa-signature-word{
+    max-width:86vw !important;
+    white-space:normal !important;
+    font-size:14px !important;
+    line-height:1.6 !important;
+    letter-spacing:.16em !important;
+  }
+
+  .kkaa-signature-cn{
+    font-size:10px !important;
+    letter-spacing:.12em !important;
+  }
+}
+
+
+/* =========================
+   KKAA SIGNATURE TYPE FIX
+   纠正横字：不要手动拉太散，改为正常文字 + 中等字距
+========================= */
+
+.kkaa-signature-section{
+  height:390px !important;
+  padding-top:0 !important;
+}
+
+/* 更接近 KKAA：细、淡灰、有骨架，但不是过度发散 */
+.kkaa-signature-word{
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Arial",sans-serif !important;
+  font-size:clamp(18px, 1.62vw, 27px) !important;
+  line-height:1 !important;
+  font-weight:300 !important;
+  letter-spacing:.24em !important;
+  word-spacing:.42em !important;
+  color:rgba(29,29,31,.56) !important;
+  white-space:nowrap !important;
+  text-align:center !important;
+  text-shadow:none !important;
+  transform:none !important;
+}
+
+/* 中文不要太抢，作为很轻的副信息 */
+.kkaa-signature-cn{
+  margin-top:20px !important;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif !important;
+  font-size:13px !important;
+  line-height:1 !important;
+  font-weight:300 !important;
+  letter-spacing:.12em !important;
+  color:rgba(29,29,31,.42) !important;
+  text-align:center !important;
+}
+
+/* 窄屏时不要横向撑爆 */
+@media(max-width:980px){
+  .kkaa-signature-word{
+    font-size:clamp(16px, 2.2vw, 22px) !important;
+    letter-spacing:.18em !important;
+    word-spacing:.34em !important;
+  }
+}
+
+@media(max-width:760px){
+  .kkaa-signature-section{
+    height:260px !important;
+  }
+
+  .kkaa-signature-word{
+    max-width:86vw !important;
+    white-space:normal !important;
+    font-size:13px !important;
+    line-height:1.6 !important;
+    letter-spacing:.11em !important;
+    word-spacing:.22em !important;
+  }
+
+  .kkaa-signature-cn{
+    margin-top:12px !important;
+    font-size:10px !important;
+    letter-spacing:.08em !important;
+  }
+}
+
+
+/* =========================
+   KKAA V5 PROJECT TITLE REBALANCE
+   项目入口减弱，去掉“精选项目”，让它和上方理念横字更对称
+========================= */
+
+/* 缩短签名区之后进入 projects 的距离，避免上下两组字不成关系 */
+.kkaa-signature-section{
+  height:360px !important;
+}
+
+/* 项目区标题不要再像一个大标题，只做安静入口 */
+.section{
+  padding-top:18px !important;
+  padding-bottom:120px !important;
+}
+
+/* 去掉“精选项目”和下划线 */
+.section .title::before,
+.section .title::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* PROJECTS 文字缩小、变轻、减少显眼程度 */
+.section .title{
+  margin:0 auto 72px !important;
+  text-align:center !important;
+  font-size:13px !important;
+  line-height:1 !important;
+  font-weight:320 !important;
+  letter-spacing:.22em !important;
+  color:rgba(29,29,31,.52) !important;
+  opacity:1 !important;
+}
+
+/* 让项目入口和上方设计理念在视觉中心线上更稳定 */
+.kkaa-signature-word,
+.kkaa-signature-cn,
+.section .title{
+  transform-origin:center center !important;
+}
+
+/* 项目卡片不要离标题太突兀 */
+.cards{
+  margin-top:0 !important;
+}
+
+@media(max-width:760px){
+  .kkaa-signature-section{
+    height:270px !important;
+  }
+
+  .section{
+    padding-top:8px !important;
+  }
+
+  .section .title{
+    font-size:12px !important;
+    letter-spacing:.16em !important;
+    margin-bottom:52px !important;
+  }
+}
+
+
+
+/* =========================
+   V6 TOP NAV INLINE BILINGUAL
+   顶部分类改成英文 / 中文同行样式
+========================= */
+.home-topbar-nav .item,
+.nav .item{
+  display:inline-flex !important;
+  align-items:baseline !important;
+  justify-content:center !important;
+  gap:.22em !important;
+  white-space:nowrap !important;
+}
+
+.home-topbar-nav .item span,
+.nav .item span{
+  display:inline !important;
+  margin:0 !important;
+  font-size:.56em !important;
+  line-height:1 !important;
+  letter-spacing:.04em !important;
+  opacity:.62 !important;
+  font-weight:400 !important;
+  transform:none !important;
+}
+
+.home-topbar-nav .item:hover span,
+.nav .item:hover span,
+.home-topbar-nav .item.active span,
+.nav .item.active span{
+  opacity:.72 !important;
+}
+
+.home-topbar-nav{
+  gap:72px !important;
+}
+
+.home-topbar-nav .item::after{
+  bottom:-18px !important;
+}
+
+@media (max-width: 900px){
+  .home-topbar-nav{
+    gap:32px !important;
+    flex-wrap:wrap !important;
+  }
+  .home-topbar-nav .item,
+  .nav .item{
+    font-size:14px !important;
+  }
+  .home-topbar-nav .item span,
+  .nav .item span{
+    font-size:.64em !important;
+  }
+}
+
+
+
+/* =========================
+   V7 TOPBAR NAV REFINEMENT
+   - 中文与英文同级显示
+   - 中文不再过小过淡
+   - 激活标识改为横线而非圆点
+========================= */
+.home-topbar-nav{
+  gap:72px !important;
+  align-items:flex-start !important;
+}
+
+.home-topbar-nav .item{
+  position:relative !important;
+  display:inline-flex !important;
+  align-items:baseline !important;
+  gap:.30em !important;
+  padding:0 0 18px !important;
+  font-size:17px !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  letter-spacing:.16em !important;
+  opacity:1 !important;
+  transform:none !important;
+}
+
+.home-topbar-nav .item span{
+  display:inline !important;
+  margin-top:0 !important;
+  font-size:.88em !important;
+  line-height:1 !important;
+  font-weight:500 !important;
+  letter-spacing:0 !important;
+  opacity:1 !important;
+}
+
+.home-topbar-nav .item::after{
+  content:"" !important;
+  position:absolute !important;
+  left:50% !important;
+  bottom:0 !important;
+  width:34px !important;
+  height:2px !important;
+  border-radius:999px !important;
+  background:currentColor !important;
+  transform:translateX(-50%) scaleX(0) !important;
+  transform-origin:center !important;
+  opacity:.9 !important;
+  transition:transform .24s ease, opacity .24s ease !important;
+}
+
+.home-topbar-nav .item.active::after{
+  transform:translateX(-50%) scaleX(1) !important;
+}
+
+.home-topbar-nav .item:hover::after{
+  transform:translateX(-50%) scaleX(.72) !important;
+  opacity:.72 !important;
+}
+
+.home-topbar-nav .item.active:hover::after{
+  transform:translateX(-50%) scaleX(1) !important;
+  opacity:.95 !important;
+}
+
+/* 暗底图上：字体浅色，但中文不再偏灰 */
+.home-topbar.text-light .home-topbar-nav .item{
+  color:rgba(255,255,255,.46) !important;
+}
+.home-topbar.text-light .home-topbar-nav .item span{
+  color:rgba(255,255,255,.70) !important;
+}
+.home-topbar.text-light .home-topbar-nav .item:hover,
+.home-topbar.text-light .home-topbar-nav .item.active{
+  color:rgba(255,255,255,.96) !important;
+}
+.home-topbar.text-light .home-topbar-nav .item:hover span,
+.home-topbar.text-light .home-topbar-nav .item.active span{
+  color:rgba(255,255,255,.86) !important;
+}
+
+/* 亮底图上：字体深色，中文与英文更接近 */
+.home-topbar.text-dark .home-topbar-nav .item{
+  color:rgba(29,29,31,.34) !important;
+}
+.home-topbar.text-dark .home-topbar-nav .item span{
+  color:rgba(29,29,31,.54) !important;
+}
+.home-topbar.text-dark .home-topbar-nav .item:hover,
+.home-topbar.text-dark .home-topbar-nav .item.active{
+  color:rgba(29,29,31,.92) !important;
+}
+.home-topbar.text-dark .home-topbar-nav .item:hover span,
+.home-topbar.text-dark .home-topbar-nav .item.active span{
+  color:rgba(29,29,31,.74) !important;
+}
+
+/* 小屏稍微收紧 */
+@media (max-width: 900px){
+  .home-topbar-nav{
+    gap:34px !important;
+  }
+  .home-topbar-nav .item{
+    font-size:14px !important;
+    padding-bottom:16px !important;
+  }
+  .home-topbar-nav .item::after{
+    width:26px !important;
+  }
+  .home-topbar-nav .item span{
+    font-size:.88em !important;
+  }
+}
+
+
+/* =========================
+   V8 TOPBAR FINAL CLEANUP
+   英文 LOGO + 顶部导航统一字级 + 单条贴字横线
+========================= */
+
+/* 左上角只保留英文 LOGO */
+.home-topbar-brand{
+  gap:0 !important;
+}
+
+.home-topbar-brand .brand-zh{
+  display:none !important;
+}
+
+.home-topbar-brand .brand-en{
+  font-size:17px !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  letter-spacing:.20em !important;
+}
+
+/* 顶部导航文字与 LOGO 视觉大小统一 */
+.home-topbar-nav{
+  gap:76px !important;
+  align-items:flex-start !important;
+}
+
+.home-topbar-nav .item{
+  position:relative !important;
+  display:inline-flex !important;
+  align-items:baseline !important;
+  justify-content:center !important;
+  gap:.32em !important;
+  min-width:auto !important;
+  padding:0 0 8px !important;
+  margin:0 !important;
+  font-size:17px !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  letter-spacing:.18em !important;
+  opacity:.42 !important;
+  transform:none !important;
+  transition:
+    opacity .24s ease,
+    color .24s ease,
+    transform .24s ease !important;
+}
+
+/* 中文与英文同一行，并且不再过小 */
+.home-topbar-nav .item span{
+  display:inline !important;
+  margin:0 !important;
+  padding:0 !important;
+  font-size:1em !important;
+  line-height:1 !important;
+  font-weight:400 !important;
+  letter-spacing:.02em !important;
+  opacity:.82 !important;
+  transform:none !important;
+}
+
+/* 只用一条 active 横线；hover 不再出现第二条线 */
+.home-topbar-nav .item::after{
+  content:"" !important;
+  position:absolute !important;
+  left:50% !important;
+  bottom:0 !important;
+  width:32px !important;
+  height:2px !important;
+  border-radius:999px !important;
+  background:currentColor !important;
+  opacity:0 !important;
+  transform:translateX(-50%) scaleX(0) !important;
+  transform-origin:center !important;
+  transition:
+    opacity .22s ease,
+    transform .22s ease !important;
+  box-shadow:none !important;
+}
+
+.home-topbar-nav .item.active::after{
+  opacity:.92 !important;
+  transform:translateX(-50%) scaleX(1) !important;
+}
+
+/* hover 只改变字体，不出现横线 */
+.home-topbar-nav .item:hover::after{
+  opacity:0 !important;
+  transform:translateX(-50%) scaleX(0) !important;
+}
+
+.home-topbar-nav .item.active:hover::after{
+  opacity:.92 !important;
+  transform:translateX(-50%) scaleX(1) !important;
+}
+
+.home-topbar-nav .item:hover{
+  opacity:.76 !important;
+  transform:translateY(-1px) !important;
+}
+
+.home-topbar-nav .item.active{
+  opacity:1 !important;
+}
+
+/* 亮底图 / 深色字状态 */
+.home-topbar.text-dark .home-topbar-brand,
+.home-topbar.text-dark .home-topbar-nav .item{
+  color:rgba(29,29,31,.34) !important;
+  text-shadow:none !important;
+}
+
+.home-topbar.text-dark .home-topbar-nav .item span{
+  color:rgba(29,29,31,.34) !important;
+  text-shadow:none !important;
+}
+
+.home-topbar.text-dark .home-topbar-nav .item:hover,
+.home-topbar.text-dark .home-topbar-nav .item.active{
+  color:rgba(29,29,31,.92) !important;
+}
+
+.home-topbar.text-dark .home-topbar-nav .item:hover span,
+.home-topbar.text-dark .home-topbar-nav .item.active span{
+  color:rgba(29,29,31,.92) !important;
+}
+
+/* 暗底图 / 浅色字状态 */
+.home-topbar.text-light .home-topbar-brand,
+.home-topbar.text-light .home-topbar-nav .item{
+  color:rgba(255,255,255,.46) !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.22),
+    0 10px 24px rgba(0,0,0,.16) !important;
+}
+
+.home-topbar.text-light .home-topbar-nav .item span{
+  color:rgba(255,255,255,.46) !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.20),
+    0 10px 24px rgba(0,0,0,.14) !important;
+}
+
+.home-topbar.text-light .home-topbar-nav .item:hover,
+.home-topbar.text-light .home-topbar-nav .item.active{
+  color:rgba(255,255,255,.96) !important;
+}
+
+.home-topbar.text-light .home-topbar-nav .item:hover span,
+.home-topbar.text-light .home-topbar-nav .item.active span{
+  color:rgba(255,255,255,.96) !important;
+}
+
+/* 小屏收紧 */
+@media(max-width:900px){
+  .home-topbar-brand .brand-en,
+  .home-topbar-nav .item{
+    font-size:14px !important;
+  }
+
+  .home-topbar-nav{
+    gap:34px !important;
+  }
+
+  .home-topbar-nav .item{
+    padding-bottom:7px !important;
+  }
+
+  .home-topbar-nav .item::after{
+    width:26px !important;
+    height:2px !important;
+  }
+}
+
+
+/* =========================
+   V9 CLEAN FILTER LANDING
+   点击分类后最终状态像截图2：不打架，只保留当前横线
+========================= */
+
+/* 给项目区一个固定的滚动安全区，避免 PROJECTS 标题贴到顶部导航 */
+#projects{
+  scroll-margin-top:148px !important;
+}
+
+/* PROJECTS 标题在项目区内保持安静，不顶到导航后面 */
+.section .title{
+  position:relative !important;
+  z-index:1 !important;
+  margin-top:0 !important;
+}
+
+/* 顶部导航始终在最上层，但不遮挡成“文字打架” */
+.home-topbar{
+  z-index:300 !important;
+}
+
+/* 彻底禁止非 active 项出现横线，包括 hover 状态 */
+.home-topbar-nav .item:not(.active)::after,
+.home-topbar-nav .item:not(.active):hover::after{
+  opacity:0 !important;
+  transform:translateX(-50%) scaleX(0) !important;
+}
+
+/* 只允许当前 active 项出现一条横线 */
+.home-topbar-nav .item.active::after,
+.home-topbar-nav .item.active:hover::after{
+  opacity:.92 !important;
+  transform:translateX(-50%) scaleX(1) !important;
+}
+
+/* 横线更贴近文字，不往下掉 */
+.home-topbar-nav .item{
+  padding-bottom:6px !important;
+}
+
+.home-topbar-nav .item::after{
+  bottom:-2px !important;
+  width:30px !important;
+  height:2px !important;
+}
+
+/* PROJECTS 标题稍微下沉一点，和顶部导航拉开视觉距离 */
+@media(min-width:901px){
+  .section{
+    padding-top:40px !important;
+  }
+}
+
+@media(max-width:900px){
+  #projects{
+    scroll-margin-top:128px !important;
+  }
+
+  .home-topbar-nav .item::after{
+    bottom:-1px !important;
+    width:24px !important;
+  }
+}
+
+
+/* =========================
+   V10 SPACE RETURN CLEAN LANDING
+   空间页返回主页时，避开顶部文字打架
+========================= */
+
+/* 返回落点视觉提示：非常轻，不改变框架 */
+.card.return-focus img{
+  transform:scale(1.018) !important;
+  filter:brightness(1.035) saturate(1.02) !important;
+  box-shadow:
+    0 22px 64px rgba(15,23,42,.12),
+    0 2px 10px rgba(15,23,42,.05) !important;
+}
+
+.card.return-focus .text{
+  opacity:1 !important;
+  transform:translateY(-2px) !important;
+}
+
+/* 给项目区顶部留出更稳定的滚动安全距离 */
+#projects{
+  scroll-margin-top:168px !important;
+}
+
+/* 防止返回项目区时 PROJECTS / 项目太靠上顶住导航 */
+.section .title{
+  padding-top:10px !important;
+}
+
+
+/* =========================
+   V11 SPACE RETURN LANDING FIX
+   增大返回主页时的顶部安全区，彻底避免 PROJECTS / 项目和导航打架
+========================= */
+
+#projects{
+  scroll-margin-top:240px !important;
+}
+
+/* 返回时项目卡片落点更低，PROJECTS 标题不会挤进顶部导航 */
+body.space-returning .section .title{
+  opacity:.42 !important;
+}
+
+/* 顶部导航保持干净在最上层 */
+.home-topbar{
+  z-index:400 !important;
+}
+
+/* 返回后的最终视觉：标题和导航之间留更大的白场 */
+.section .title{
+  margin-top:32px !important;
+}
+
+
+/* =========================
+   V12 UNIFIED LANDING FIX
+   主页分类点击 / 空间页返回主页：统一项目区落点
+========================= */
+
+#projects{
+  scroll-margin-top:150px !important;
+}
+
+.section{
+  padding-top:40px !important;
+}
+
+.section .title{
+  margin-top:0 !important;
+  margin-bottom:76px !important;
+  position:relative !important;
+  z-index:1 !important;
+}
+
+body.project-landing .section .title{
+  opacity:.52 !important;
+}
+
+/* 返回后给对应项目一个轻微定位提示，不改变统一落点 */
+.card.return-focus img{
+  transform:scale(1.018) !important;
+  filter:brightness(1.035) saturate(1.02) !important;
+  box-shadow:
+    0 22px 64px rgba(15,23,42,.12),
+    0 2px 10px rgba(15,23,42,.05) !important;
+}
+
+.card.return-focus .text{
+  opacity:1 !important;
+  transform:translateY(-2px) !important;
+}
+
+.home-topbar{
+  z-index:420 !important;
+}
+
+@media(max-width:900px){
+  #projects{
+    scroll-margin-top:122px !important;
+  }
+
+  .section{
+    padding-top:34px !important;
+  }
+
+  .section .title{
+    margin-bottom:58px !important;
+  }
+}
+
+
+/* =========================
+   V13 PROJECT LANDING AESTHETIC TUNE
+   统一落点后，整体略微上移，减少偏低感
+========================= */
+
+#projects{
+  scroll-margin-top:92px !important;
+}
+
+/* 视觉上让 PROJECTS / 项目与第一排卡片更靠近一点 */
+.section{
+  padding-top:26px !important;
+}
+
+.section .title{
+  margin-bottom:62px !important;
+}
+
+/* 保持顶部导航安全距离，不产生文字重叠 */
+.home-topbar{
+  z-index:430 !important;
+}
+
+@media(max-width:900px){
+  #projects{
+    scroll-margin-top:96px !important;
+  }
+
+  .section{
+    padding-top:24px !important;
+  }
+
+  .section .title{
+    margin-bottom:52px !important;
+  }
+}
+
+
+
+/* =========================================================
+   FULL-BLEED HERO PREVIEW / 首页首屏满铺预览版
+   Only changes homepage cover behavior: full viewport image.
+   Structure, project grid, filtering and space page remain untouched.
+========================================================= */
+html,
+body{
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 !important;
+  overflow-x:hidden !important;
+  background:#ffffff !important;
+}
+
+#homePage{
+  width:100% !important;
+  max-width:100% !important;
+  overflow-x:hidden !important;
+  background:#ffffff !important;
+}
+
+/* 第一屏真正满铺：图片占满整个浏览器视窗 */
+#homePage .hero{
+  position:relative !important;
+  display:block !important;
+  width:100% !important;
+  width:100dvw !important;
+  height:100vh !important;
+  height:100svh !important;
+  min-height:100vh !important;
+  min-height:100svh !important;
+  max-height:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  background:#000 !important;
+  text-align:left !important;
+}
+
+/* 背景图必须 cover，像案例一样铺满整屏 */
+#homePage .hero .bg,
+#bg{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  min-width:100% !important;
+  min-height:100% !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
+  transform:scale(1.015) !important;
+  transform-origin:center center !important;
+  opacity:1 !important;
+  filter:brightness(.94) saturate(1.02) contrast(1.04) !important;
+}
+
+/* 取消原来的白色雾化，让首屏不要露出白底页面感 */
+#homePage .hero::before{
+  display:none !important;
+  content:none !important;
+}
+
+/* 只保留很轻的阅读保护层，不再把图片洗白 */
+#homePage .hero::after{
+  display:block !important;
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:1 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.12) 0%,
+      rgba(0,0,0,.035) 28%,
+      rgba(0,0,0,.035) 66%,
+      rgba(0,0,0,.16) 100%
+    ) !important;
+}
+
+/* 顶部导航悬浮在满屏图片之上 */
+#homePage .home-hero-shell{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  z-index:4 !important;
+  pointer-events:none !important;
+}
+
+#homePage .home-topbar{
+  position:fixed !important;
+  top:32px !important;
+  left:48px !important;
+  right:48px !important;
+  z-index:160 !important;
+  width:auto !important;
+  min-height:auto !important;
+  padding:0 !important;
+  margin:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  pointer-events:auto !important;
+}
+
+/* 强制首页首屏导航保持轻、清楚、建筑事务所感 */
+#homePage .home-topbar .home-topbar-brand,
+#homePage .home-topbar .home-topbar-nav .item{
+  color:rgba(255,255,255,.92) !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.32),
+    0 10px 24px rgba(0,0,0,.22) !important;
+}
+
+#homePage .home-topbar .home-topbar-brand .brand-en{
+  font-size:14px !important;
+  font-weight:650 !important;
+  letter-spacing:.20em !important;
+  line-height:1 !important;
+}
+
+#homePage .home-topbar .home-topbar-brand .brand-zh,
+#homePage .home-topbar .home-topbar-nav .item span{
+  color:rgba(255,255,255,.68) !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.28),
+    0 8px 18px rgba(0,0,0,.18) !important;
+}
+
+#homePage .home-topbar-nav{
+  gap:44px !important;
+}
+
+#homePage .home-topbar-nav .item{
+  min-width:auto !important;
+  padding:0 !important;
+  font-size:12px !important;
+  font-weight:620 !important;
+  letter-spacing:.18em !important;
+  opacity:.68 !important;
+  transform:none !important;
+}
+
+#homePage .home-topbar-nav .item span{
+  display:inline !important;
+  margin-top:0 !important;
+  margin-left:4px !important;
+  font-size:10px !important;
+  font-weight:430 !important;
+  letter-spacing:.02em !important;
+}
+
+#homePage .home-topbar-nav .item.active,
+#homePage .home-topbar-nav .item:hover{
+  opacity:1 !important;
+  color:#fff !important;
+  transform:none !important;
+}
+
+#homePage .home-topbar-nav .item::after{
+  bottom:-13px !important;
+  width:18px !important;
+  height:1px !important;
+  margin-left:-9px !important;
+  border-radius:0 !important;
+  background:rgba(255,255,255,.90) !important;
+}
+
+/* 让下一段内容必须在首屏之后才出现 */
+#homePage .kkaa-signature-section{
+  margin-top:0 !important;
+}
+
+/* 防止旧的隐藏内容影响横向滚动 */
+#homePage .content{
+  display:none !important;
+}
+
+@media(max-width:980px){
+  #homePage .home-topbar{
+    top:22px !important;
+    left:24px !important;
+    right:24px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:18px !important;
+  }
+
+  #homePage .home-topbar-nav{
+    width:100% !important;
+    justify-content:space-between !important;
+    gap:10px !important;
+  }
+
+  #homePage .home-topbar-nav .item{
+    flex:0 1 auto !important;
+    font-size:11px !important;
+  }
+}
+
+@media(max-width:760px){
+  #homePage .hero{
+    height:100vh !important;
+    height:100svh !important;
+    min-height:100vh !important;
+    min-height:100svh !important;
+  }
+
+  #homePage .home-topbar{
+    top:18px !important;
+    left:18px !important;
+    right:18px !important;
+  }
+
+  #homePage .home-topbar .home-topbar-brand .brand-en{
+    font-size:12px !important;
+  }
+
+  #homePage .home-topbar-nav{
+    gap:8px !important;
+  }
+
+  #homePage .home-topbar-nav .item{
+    font-size:10px !important;
+    letter-spacing:.14em !important;
+  }
+
+  #homePage .home-topbar-nav .item span{
+    display:block !important;
+    margin-left:0 !important;
+    margin-top:5px !important;
+    font-size:9px !important;
+  }
+}
+
+
+/* =========================================================
+   V14.10 STRICT MOTION FIX
+   只控制 DESIGN IS A NARRATIVE TEXT 这段理念文字。
+   不改顶部导航、不改项目区背景、不改项目卡片、不改项目图片。
+========================================================= */
+
+#manifestoMotionSection{
+  pointer-events:none !important;
+}
+
+/* 只绑定理念文字本体 */
+#kkaaSignatureMotion.kkaa-signature-motion{
+  position:fixed !important;
+  left:50% !important;
+  top:73vh;
+  transform:translate3d(-50%,-50%,0) !important;
+  z-index:260 !important;
+  width:min(920px, 88vw) !important;
+  text-align:center !important;
+  pointer-events:none !important;
+  will-change:top, opacity !important;
+  opacity:1;
+  visibility:visible;
+}
+
+#kkaaSignatureMotion .kkaa-signature-word{
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  white-space:nowrap !important;
+  font-size:clamp(21px, 1.62vw, 31px) !important;
+  line-height:1.05 !important;
+  font-weight:320 !important;
+  letter-spacing:.34em !important;
+  color:rgba(255,255,255,.80) !important;
+  opacity:1 !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.24),
+    0 14px 34px rgba(0,0,0,.18) !important;
+}
+
+#kkaaSignatureMotion .kkaa-signature-cn{
+  display:block !important;
+  margin:20px 0 0 !important;
+  padding:0 !important;
+  font-size:12px !important;
+  line-height:1 !important;
+  font-weight:380 !important;
+  letter-spacing:.16em !important;
+  color:rgba(255,255,255,.52) !important;
+  opacity:1 !important;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.18),
+    0 10px 24px rgba(0,0,0,.12) !important;
+}
+
+#kkaaSignatureMotion.is-gone{
+  opacity:0 !important;
+  visibility:hidden !important;
+}
+
+@media(max-width:900px){
+  #kkaaSignatureMotion.kkaa-signature-motion{
+    width:90vw !important;
+  }
+
+  #kkaaSignatureMotion .kkaa-signature-word{
+    white-space:normal !important;
+    font-size:clamp(16px, 4.4vw, 25px) !important;
+    line-height:1.5 !important;
+    letter-spacing:.18em !important;
+  }
+
+  #kkaaSignatureMotion .kkaa-signature-cn{
+    margin-top:14px !important;
+    font-size:11px !important;
+    letter-spacing:.10em !important;
+  }
+}
+
+
+/* =========================================================
+   V14.14 TOP NAV AUTO COLOR — CASE METHOD APPLIED ONLY
+   学习案例 HTML 的核心方式：canvas 取图像亮度 + 根据亮度切换深/浅文字。
+   本补丁只作用于顶部 JOHN STUDIO / ALL / ARCH / INT / PROD。
+   不改理念文字运动、不改项目区、不改卡片、不改图片、不改交互。
+========================================================= */
+
+#homePage .home-topbar{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+/* 下划线颜色由 JS 写入 --auto-nav-line，避免旧 white !important 锁死 */
+html body #homePage .home-topbar .home-topbar-nav .item::after{
+  background:var(--auto-nav-line, currentColor) !important;
+  box-shadow:none !important;
+}
+
+
+/* =========================================================
+   V14.15 MANIFESTO AUTO COLOR
+   只新增：DESIGN IS A NARRATIVE TEXT / 设计即是叙述的文本
+   根据它背后的底图/白底自动切换深浅颜色。
+   不改运动、不改顶部导航、不改项目区、不改卡片、不改图片。
+========================================================= */
+#kkaaSignatureMotion .kkaa-signature-word,
+#kkaaSignatureMotion .kkaa-signature-cn{
+  transition:color .18s ease, text-shadow .18s ease !important;
+}
+
+
+/* =========================================================
+   V14.17 HOME HERO IMAGE TRANSITION — MATCH SPACE PAGE LOGIC
+   只改首页封面底图切换方式。
+   参考项目空间页 .slide / .slide.active 的做法：
+   - 多张绝对定位背景图叠放
+   - active 通过 opacity 切换
+   - 图片缓慢 scale，形成空间页那种轻微推进感
+   不改顶部导航、不改理念文字运动、不改项目区、不改卡片、不改筛选交互。
+========================================================= */
+
+/* 原 #bg 保留给旧代码和自动取色逻辑读取 backgroundImage，但视觉隐藏 */
+#homePage .hero #bg{
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+
+/* 首页专用 slide 容器，放在 hero 最底层 */
+#homePage .home-hero-slides{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  background:#000;
+  pointer-events:none;
+}
+
+/* 复刻项目空间页 slide 的核心视觉机制 */
+#homePage .home-hero-slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  opacity:0;
+  transform:scale(1.05);
+  transition:
+    opacity 1.2s ease,
+    transform 5s ease;
+  filter:brightness(0.92) saturate(0.97);
+  will-change:opacity, transform;
+}
+
+/* active 时轻微推进，和项目空间页类似 */
+#homePage .home-hero-slide.active{
+  opacity:1;
+  transform:scale(1.12);
+}
+
+/* 避免旧 hero overlay 抢走空间页式图片质感，只保留轻微可读性渐变 */
+#homePage .hero::before{
+  display:none !important;
+}
+
+#homePage .hero::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:1 !important;
+  pointer-events:none !important;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.02) 0%,
+    rgba(0,0,0,0.03) 52%,
+    rgba(0,0,0,0.12) 78%,
+    rgba(0,0,0,0.34) 100%
+  ) !important;
+}
+
+/* 确保首页文字和顶部导航仍在图片层上方 */
+#homePage .home-hero-shell,
+#homePage .content{
+  position:relative;
+  z-index:4;
+}
+
+
+/* =========================================================
+   NENDO TYPOGRAPHY COLOR SYSTEM (APPLIED)
+========================================================= */
+
+:root{
+  --nendo-primary: rgba(0,0,0,0.85);
+  --nendo-secondary: rgba(0,0,0,0.55);
+  --nendo-tertiary: rgba(0,0,0,0.38);
+}
+
+/* base */
+body{
+  color: var(--nendo-primary) !important;
+}
+
+/* headings */
+h1,h2,h3,h4,h5,h6,
+.project-title,.card-title{
+  color: var(--nendo-primary) !important;
+}
+
+/* secondary */
+p,.project-sub,.card-sub,.manifesto-cn{
+  color: var(--nendo-secondary) !important;
+}
+
+/* nav */
+.home-topbar .home-topbar-nav .item,
+.nav-item,
+.home-topbar-brand .brand-zh{
+  color: var(--nendo-tertiary) !important;
+}
+
+/* active */
+.home-topbar .home-topbar-nav .item.active,
+.home-topbar .home-topbar-nav .item:hover{
+  color: var(--nendo-primary) !important;
+}
+
+/* manifesto main */
+.manifesto-word,
+.kkaa-signature-word{
+  color: var(--nendo-primary) !important;
+}
+
+/* smoothing */
+*{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* =========================================================
+   V15 NENDO SPACING + TYPOGRAPHY RHYTHM SYSTEM
+   只升级空间节奏与字体层级。
+   不改：首页封面切换逻辑 / 顶部导航交互 / 理念文字运动 / 项目筛选 / 图片来源。
+========================================================= */
+
+:root{
+  --v15-bg:#f7f7f5;
+  --v15-text-1:rgba(0,0,0,.84);
+  --v15-text-2:rgba(0,0,0,.58);
+  --v15-text-3:rgba(0,0,0,.38);
+  --v15-text-4:rgba(0,0,0,.24);
+  --v15-max:1180px;
+  --v15-page-x:clamp(28px, 5vw, 72px);
+  --v15-section-y:clamp(132px, 16vw, 220px);
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body,
+#homePage{
+  background:var(--v15-bg) !important;
+  color:var(--v15-text-1) !important;
+  text-rendering:geometricPrecision;
+}
+
+/* 首页封面之后的白底空间更接近 nendo：轻、空、安静 */
+.section{
+  max-width:var(--v15-max) !important;
+  padding:
+    var(--v15-section-y)
+    var(--v15-page-x)
+    calc(var(--v15-section-y) * .82)
+    var(--v15-page-x) !important;
+}
+
+/* PROJECTS 标题：更小、更轻、更像索引，不抢图片 */
+.section .title{
+  margin-bottom:clamp(56px, 7vw, 96px) !important;
+  font-size:10px !important;
+  line-height:1 !important;
+  font-weight:520 !important;
+  letter-spacing:.28em !important;
+  color:var(--v15-text-4) !important;
+  opacity:1 !important;
+}
+
+/* 项目网格：拉开呼吸感，减少“卡片堆叠感” */
+.cards{
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  column-gap:clamp(36px, 5vw, 76px) !important;
+  row-gap:clamp(78px, 10vw, 132px) !important;
+  align-items:start !important;
+}
+
+/* 让第二列轻微下沉，形成展览式阅读节奏，不改变项目顺序 */
+.cards .card:nth-child(even){
+  margin-top:clamp(28px, 5vw, 72px) !important;
+}
+
+/* 图片保持原系统，但空间更安静 */
+.card img{
+  border-radius:24px !important;
+  box-shadow:
+    0 10px 26px rgba(0,0,0,.035),
+    0 1px 3px rgba(0,0,0,.025) !important;
+}
+
+/* 项目文字：标题更克制，中文/分类更轻 */
+.card .text{
+  padding:18px 2px 0 !important;
+  color:var(--v15-text-1) !important;
+  font-size:14px !important;
+  line-height:1.36 !important;
+  font-weight:520 !important;
+  letter-spacing:-.012em !important;
+}
+
+.card .text span{
+  margin-top:8px !important;
+  color:var(--v15-text-2) !important;
+  font-size:12px !important;
+  line-height:1.55 !important;
+  font-weight:430 !important;
+  letter-spacing:.01em !important;
+  opacity:1 !important;
+}
+
+/* Hover 不要太“网页感”，只保留轻微呼吸 */
+.card:hover img{
+  transform:scale(1.008) !important;
+}
+
+/* 顶部导航：更像 nendo 的半隐式 UI；颜色仍由自动取色 JS 接管 */
+.home-topbar{
+  top:clamp(24px, 3vw, 38px) !important;
+  left:var(--v15-page-x) !important;
+  right:var(--v15-page-x) !important;
+}
+
+.home-topbar-brand .brand-en{
+  font-size:11px !important;
+  line-height:1 !important;
+  font-weight:560 !important;
+  letter-spacing:.22em !important;
+}
+
+.home-topbar-nav{
+  gap:clamp(18px, 3.2vw, 44px) !important;
+}
+
+.home-topbar-nav .item{
+  min-width:auto !important;
+  padding:0 0 7px !important;
+  font-size:10px !important;
+  line-height:1 !important;
+  font-weight:540 !important;
+  letter-spacing:.24em !important;
+}
+
+.home-topbar-nav .item span{
+  margin-left:.18em !important;
+  font-size:.92em !important;
+  line-height:1 !important;
+  font-weight:400 !important;
+  letter-spacing:.02em !important;
+}
+
+.home-topbar-nav .item::after{
+  bottom:-6px !important;
+  width:22px !important;
+  height:1px !important;
+}
+
+/* 理念文字：保持运动与自动取色，只调整字体节奏 */
+#kkaaSignatureMotion .kkaa-signature-word{
+  font-size:clamp(17px, 2vw, 25px) !important;
+  line-height:1.08 !important;
+  font-weight:470 !important;
+  letter-spacing:.075em !important;
+}
+
+#kkaaSignatureMotion .kkaa-signature-cn{
+  margin-top:9px !important;
+  font-size:clamp(11px, .92vw, 13px) !important;
+  line-height:1.62 !important;
+  font-weight:380 !important;
+  letter-spacing:.06em !important;
+}
+
+/* 联系区：像展签/页脚，不抢主内容 */
+.contact{
+  max-width:var(--v15-max) !important;
+  padding:
+    calc(var(--v15-section-y) * .72)
+    var(--v15-page-x)
+    calc(var(--v15-section-y) * .70)
+    var(--v15-page-x) !important;
+  border-top:1px solid rgba(0,0,0,.055) !important;
+  color:var(--v15-text-2) !important;
+  font-size:11px !important;
+  line-height:1.9 !important;
+  font-weight:400 !important;
+  letter-spacing:.02em !important;
+}
+
+/* 空间页文字也降低对比，和首页字体气质统一 */
+#spaceStage{
+  --space-fg:rgba(255,255,255,.88);
+  --space-sub:rgba(255,255,255,.62);
+  --space-soft:rgba(255,255,255,.42);
+}
+
+#spaceStage.textOnLight{
+  --space-fg:rgba(0,0,0,.82);
+  --space-sub:rgba(0,0,0,.58);
+  --space-soft:rgba(0,0,0,.38);
+}
+
+.topnav{
+  gap:clamp(28px, 4vw, 56px) !important;
+}
+
+.tab{
+  font-size:10px !important;
+  font-weight:520 !important;
+  letter-spacing:.24em !important;
+}
+
+.projectOption{
+  font-size:14px !important;
+  line-height:1.32 !important;
+  font-weight:500 !important;
+  letter-spacing:.015em !important;
+}
+
+.projectOption span{
+  margin-top:7px !important;
+  font-size:11px !important;
+  line-height:1.42 !important;
+  font-weight:390 !important;
+}
+
+.space-title{
+  font-size:16px !important;
+  line-height:1.22 !important;
+  font-weight:540 !important;
+  letter-spacing:-.01em !important;
+}
+
+.desc{
+  margin-top:9px !important;
+  font-size:12px !important;
+  line-height:1.7 !important;
+  font-weight:390 !important;
+}
+
+/* 手机端：保持安静，不挤 */
+@media(max-width:900px){
+  .section{
+    padding:112px 24px 96px !important;
+  }
+
+  .cards{
+    grid-template-columns:1fr !important;
+    row-gap:72px !important;
+  }
+
+  .cards .card:nth-child(even){
+    margin-top:0 !important;
+  }
+
+  .home-topbar{
+    left:22px !important;
+    right:22px !important;
+  }
+
+  .home-topbar-nav{
+    gap:12px !important;
+  }
+
+  .home-topbar-nav .item{
+    font-size:9px !important;
+    letter-spacing:.16em !important;
+  }
+}
+
+
+/* =========================================================
+   V15.1 MINIMAL ALIGNED PROJECT GRID
+   只修正项目区对齐与简约感。
+   不改：首页封面 / 顶部导航 / 理念文字 / 自动取色 / 筛选交互 / 空间页。
+========================================================= */
+
+/* 项目区回到严谨对齐：取消第二列下沉 */
+.cards{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  column-gap:clamp(44px, 5.5vw, 78px) !important;
+  row-gap:clamp(68px, 8vw, 112px) !important;
+  align-items:start !important;
+}
+
+.cards .card,
+.cards .card:nth-child(even){
+  margin-top:0 !important;
+}
+
+/* 每张项目图统一比例和高度，形成更干净的建筑网格 */
+.card img{
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:4 / 3 !important;
+  object-fit:cover !important;
+  display:block !important;
+  border-radius:18px !important;
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.032),
+    0 1px 2px rgba(0,0,0,.022) !important;
+}
+
+/* 文字位置统一，减少“卡片感”，更像 nendo 的信息标注 */
+.card .text{
+  padding:16px 0 0 !important;
+  min-height:54px !important;
+}
+
+.card .text span{
+  margin-top:7px !important;
+}
+
+/* hover 更克制，避免网页组件感太强 */
+.card:hover img{
+  transform:scale(1.004) !important;
+}
+
+/* 手机端单列仍然严格对齐 */
+@media(max-width:900px){
+  .cards{
+    grid-template-columns:1fr !important;
+    row-gap:64px !important;
+  }
+}
+
+
+/* =========================================================
+   V15.2 CLEAN SYMMETRIC RESTORE
+   只修正：侧边色块 / 横向溢出 / 项目区与页脚对称排版。
+   不改：首页封面、顶部导航、理念文字、自动取色、筛选交互、空间页。
+========================================================= */
+
+/* 取消侧边“色块感”：全页面统一底色，不再出现左右不同底色区域 */
+html,
+body,
+#homePage{
+  width:100% !important;
+  max-width:100% !important;
+  overflow-x:hidden !important;
+  background:#f7f7f5 !important;
+}
+
+/* 中间内容恢复严格居中对称 */
+.section,
+.contact{
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:1180px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  padding-left:clamp(32px, 4vw, 56px) !important;
+  padding-right:clamp(32px, 4vw, 56px) !important;
+}
+
+/* 项目标题居中，和两列项目网格保持轴线统一 */
+.section .title{
+  text-align:center !important;
+}
+
+/* 项目网格恢复最简洁的对称两列 */
+.cards{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:clamp(52px, 5vw, 72px) !important;
+  align-items:start !important;
+  justify-content:center !important;
+}
+
+.cards .card,
+.cards .card:nth-child(even){
+  margin-top:0 !important;
+}
+
+/* 图片框统一，避免不同高度造成不简约 */
+.card img{
+  width:100% !important;
+  aspect-ratio:4 / 3 !important;
+  height:auto !important;
+  object-fit:cover !important;
+  display:block !important;
+  border-radius:20px !important;
+}
+
+/* 项目文字统一在图片下方，不制造错位 */
+.card .text{
+  padding:16px 0 0 !important;
+  min-height:auto !important;
+  text-align:left !important;
+}
+
+/* 页脚恢复三列对称排布，不要贴边 */
+.contact{
+  display:grid !important;
+  grid-template-columns:repeat(3, 1fr) !important;
+  gap:clamp(40px, 6vw, 96px) !important;
+  align-items:start !important;
+}
+
+/* 防止任何旧版大宽度元素造成右侧色块/横向滚动 */
+#homePage *,
+.section *,
+.contact *{
+  box-sizing:border-box !important;
+}
+
+@media(max-width:900px){
+  .section,
+  .contact{
+    padding-left:24px !important;
+    padding-right:24px !important;
+  }
+
+  .cards{
+    grid-template-columns:1fr !important;
+    gap:64px !important;
+  }
+
+  .contact{
+    grid-template-columns:1fr !important;
+    gap:28px !important;
+  }
+}
+
+
+/* =========================================================
+   V15.3 STRICT CLEAN WHITE + SYMMETRIC CONTENT RESTORE
+   只处理用户指出的问题：
+   1. 彻底取消两侧灰色色块
+   2. 中间项目内容恢复对称居中
+   不改首页封面、顶部导航、理念文字、自动取色、筛选交互、空间页逻辑。
+========================================================= */
+
+/* 彻底取消灰色边块：所有首页承载层统一纯白 */
+html,
+body,
+#homePage,
+#homePage::before,
+#homePage::after,
+.kkaa-signature-section,
+.section,
+.contact,
+.contact-motion{
+  background:#ffffff !important;
+}
+
+/* 防止任何旧版宽度/背景造成横向溢出或右侧灰边 */
+html,
+body{
+  margin:0 !important;
+  padding:0 !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow-x:hidden !important;
+}
+
+#homePage{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow-x:hidden !important;
+}
+
+/* 项目区：恢复中央对称容器，不再铺得过宽 */
+.section{
+  width:100% !important;
+  max-width:1180px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  padding-left:40px !important;
+  padding-right:40px !important;
+  box-sizing:border-box !important;
+}
+
+/* PROJECTS 标题居中 */
+.section .title{
+  text-align:center !important;
+}
+
+/* 项目网格：严格两列、等宽、等高、居中 */
+.cards{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  column-gap:48px !important;
+  row-gap:76px !important;
+  align-items:start !important;
+  justify-content:center !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  box-sizing:border-box !important;
+}
+
+.cards .card,
+.cards .card:nth-child(even){
+  margin:0 !important;
+  width:100% !important;
+}
+
+/* 图片框统一对齐，不再产生一边高一边低或错位 */
+.card img{
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:4 / 3 !important;
+  object-fit:cover !important;
+  display:block !important;
+  border-radius:20px !important;
+}
+
+/* 项目文字保持统一左对齐标注，但整体跟随图片网格对称 */
+.card .text{
+  padding:16px 0 0 !important;
+  text-align:left !important;
+}
+
+/* 页脚：纯白背景 + 中央对称三列 */
+.contact{
+  width:100% !important;
+  max-width:1180px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  padding-left:40px !important;
+  padding-right:40px !important;
+  box-sizing:border-box !important;
+  display:grid !important;
+  grid-template-columns:repeat(3, 1fr) !important;
+  gap:48px !important;
+  background:#ffffff !important;
+}
+
+@media(max-width:900px){
+  .section,
+  .contact{
+    max-width:100% !important;
+    padding-left:24px !important;
+    padding-right:24px !important;
+  }
+
+  .cards{
+    grid-template-columns:1fr !important;
+    gap:64px !important;
+  }
+
+  .contact{
+    grid-template-columns:1fr !important;
+  }
+}
+
+
+/* =========================================================
+   V15.4 FOOTER CENTER-AXIS SYMMETRY
+   只修正底部这排联系文字的中轴对称。
+   不改：首页封面、顶部导航、理念文字、项目区、卡片、筛选交互、空间页。
+========================================================= */
+
+/* 页脚从“内容盒子”改成“整页中轴系统” */
+.contact{
+  width:100% !important;
+  max-width:none !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  padding-left:clamp(72px, 10vw, 168px) !important;
+  padding-right:clamp(72px, 10vw, 168px) !important;
+  box-sizing:border-box !important;
+  display:grid !important;
+  grid-template-columns:1fr 1fr 1fr !important;
+  column-gap:0 !important;
+  align-items:start !important;
+  background:#ffffff !important;
+}
+
+/* 左 / 中 / 右 三个信息点围绕页面中轴对称 */
+.contact > div:nth-child(1){
+  justify-self:start !important;
+  text-align:left !important;
+}
+
+.contact > div:nth-child(2){
+  justify-self:center !important;
+  text-align:center !important;
+}
+
+.contact > div:nth-child(3){
+  justify-self:end !important;
+  text-align:right !important;
+}
+
+/* 避免页脚文字因为旧样式产生偏移 */
+.contact > div{
+  min-width:0 !important;
+  margin:0 !important;
+}
+
+@media(max-width:900px){
+  .contact{
+    padding-left:24px !important;
+    padding-right:24px !important;
+    grid-template-columns:1fr !important;
+    row-gap:28px !important;
+  }
+
+  .contact > div:nth-child(1),
+  .contact > div:nth-child(2),
+  .contact > div:nth-child(3){
+    justify-self:start !important;
+    text-align:left !important;
+  }
+}
+
+
+/* =========================================================
+   V15.7 SOLID AUTO-COLOR RESTORE
+   修正 V15.6 错误：不是固定死颜色，而是保留“根据背景自动变色”。
+   但颜色不再用 rgba 半透明，只用实色 hex。
+   只作用于：顶部导航 / 理念文字 / PROJECTS 标题。
+========================================================= */
+
+:root{
+  --solid-auto-dark-main:#3f4146;
+  --solid-auto-dark-sub:#5f6368;
+  --solid-auto-light-main:#f5f5f0;
+  --solid-auto-light-sub:#d8d8d2;
+}
+
+/* 去掉旧阴影/混合模式，由 JS 根据背景写入实色 */
+html body #homePage .home-topbar .home-topbar-brand,
+html body #homePage .home-topbar .home-topbar-brand .brand-en,
+html body #homePage .home-topbar .home-topbar-nav .item,
+html body #homePage .home-topbar .home-topbar-nav .item span,
+html body #homePage #kkaaSignatureMotion .kkaa-signature-word,
+html body #homePage #kkaaSignatureMotion .kkaa-signature-cn,
+html body #homePage .section .title{
+  text-shadow:none !important;
+  mix-blend-mode:normal !important;
+  filter:none !important;
+}
+
+/* PROJECTS 在白底上固定为清楚的辅助实色 */
+html body #homePage .section .title{
+  color:#5f6368 !important;
+  opacity:1 !important;
+  -webkit-text-fill-color:#5f6368 !important;
+}
+
 </style>
 </head>
 
@@ -429,18 +5736,49 @@ h1{
   <div class="hero">
     <div class="bg" id="bg"></div>
 
+    <div class="home-hero-shell">
+      <div class="home-topbar">
+        <button class="home-topbar-brand" id="homeTopBrand" type="button" aria-label="Back to top">
+          <span class="brand-en">JOHN STUDIO</span>
+          
+        </button>
+
+        <div class="home-topbar-nav">
+          <div class="item active" data-type="all">ALL <span>/ 全部</span></div>
+          <div class="item" data-type="arch">ARCH <span>/ 建筑</span></div>
+          <div class="item" data-type="interior">INT <span>/ 室内</span></div>
+          <div class="item" data-type="product">PROD <span>/ 产品</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+
+
     <div class="content">
       <h1>JOHN STUDIO</h1>
 
       <div class="nav">
-        <div class="item active" data-type="all">ALL<span>全部</span></div>
-        <div class="item" data-type="arch">ARCH<span>建筑</span></div>
-        <div class="item" data-type="interior">INT<span>室内</span></div>
-        <div class="item" data-type="product">PROD<span>产品</span></div>
+        <div class="item active" data-type="all">ALL <span>/ 全部</span></div>
+        <div class="item" data-type="arch">ARCH <span>/ 建筑</span></div>
+        <div class="item" data-type="interior">INT <span>/ 室内</span></div>
+        <div class="item" data-type="product">PROD <span>/ 产品</span></div>
       </div>
 
     </div>
   </div>
+
+
+  <!-- KKAA STYLE SIGNATURE / 白底横向签名：只让这段设计理念文字运动，不改变项目区和顶部导航 -->
+  <section class="kkaa-signature-section" id="manifestoMotionSection">
+    <div class="kkaa-signature-motion" id="kkaaSignatureMotion">
+      <div class="kkaa-signature-word">DESIGN IS A NARRATIVE TEXT</div>
+      <div class="kkaa-signature-cn">设计即是叙述的文本</div>
+    </div>
+  </section>
 
   <!-- SECTION -->
   <div class="section" id="projects">
@@ -452,10 +5790,20 @@ h1{
   </div>
 
   <!-- CONTACT -->
-  <div class="contact">
-    <div>JOHN STUDIO<br>Studio</div>
-    <div>971703097@qq.com<br>Instagram</div>
-    <div>中国 / 广州</div>
+  <div class="contact contact-motion">
+    <div class="contact-col">
+      <span class="contact-line primary">JOHN STUDIO</span>
+      <span class="contact-line secondary">Studio</span>
+    </div>
+
+    <div class="contact-col">
+      <span class="contact-line primary">971703097@qq.com</span>
+      <span class="contact-line secondary">Instagram</span>
+    </div>
+
+    <div class="contact-col">
+      <span class="contact-line primary">中国 / 广州</span>
+    </div>
   </div>
 
 </div>
@@ -486,7 +5834,7 @@ h1{
       <div class="project-index" id="projectIndex"></div>
     </div>
 
-    <div class="hint">Scroll within project · Hover ARCH / INT / PROD to switch project · Left click blank area to return</div>
+    <div class="hint">Scroll within project · Hover ARCH / INT / PROD for image previews · Left click blank area to return</div>
 
   </div>
 
@@ -494,7 +5842,127 @@ h1{
 
 <script>
 /* =========================
+   HOME HERO BACKGROUND
+========================= */
+const heroImages=[
+ "assets/projects/dongguan-new-world-interior/card.webp",
+ "assets/projects/nanjing-huaihe-wharf/card.webp",
+ "assets/projects/bar-interior/card.webp",
+ "assets/projects/fujian-lishui-hot-spring-visitor-center/card.webp",
+ "assets/projects/helong-hope-primary-school-extension/card.webp",
+ "assets/projects/dongguan-vanke-mountain-realm/card.webp",
+ "assets/projects/guangzhou-nansha-yitao-peninsula/card.webp"
+];
+
+let heroIndex=0;
+const bg=document.getElementById("bg");
+
+bg.style.backgroundImage=`url(${heroImages[0]})`;
+
+setInterval(()=>{
+  heroIndex=(heroIndex+1)%heroImages.length;
+  bg.style.opacity=0;
+  setTimeout(()=>{
+    bg.style.backgroundImage=`url(${heroImages[heroIndex]})`;
+    bg.style.opacity=1;
+  },600);
+},4000);
+
+
+/* =========================
+   UNIFIED PROJECT LANDING
+   主页分类点击 / 空间页返回主页，都走同一套落点规则
+========================= */
+const homeNavItems = document.querySelectorAll(".home-topbar-nav .item");
+const legacyNavItems = document.querySelectorAll(".content .nav .item");
+
+function applyHomeFilter(type){
+  const allNavItems = [...homeNavItems, ...legacyNavItems];
+
+  allNavItems.forEach(i=>{
+    i.classList.toggle("active", i.dataset.type === type);
+  });
+
+  document.querySelectorAll(".card").forEach(card=>{
+    if(type === "all"){
+      card.style.display = "block";
+    }else{
+      card.style.display = card.classList.contains(type) ? "block" : "none";
+    }
+  });
+}
+
+function getProjectTypeFromKey(projectKey){
+  if(!projectKey || !projects || !projects[projectKey]) return "all";
+  return projects[projectKey].type || "all";
+}
+
+function getProjectLandingY(){
+  const projectsEl = document.getElementById("projects");
+  if(!projectsEl) return 0;
+
+  // 统一落点：PROJECTS / 项目 稳定落在顶部导航下方，
+  // 第一排项目卡片完整出现，不再因为不同项目而忽高忽低。
+  // 视觉修正：上一版落点偏低，顶部留白太大。
+  // 现在让 PROJECTS / 项目 停在更舒服的位置，同时不和顶部导航打架。
+  const titleTargetY = window.innerWidth <= 900 ? 96 : 92;
+  return Math.max(0, projectsEl.offsetTop - titleTargetY);
+}
+
+function goToProjectLanding(type="all", targetProject=null, options={}){
+  applyHomeFilter(type);
+
+  const focusCard = targetProject
+    ? document.querySelector(`.card[data-project="${targetProject}"]`)
+    : null;
+
+  document.body.classList.add("project-landing");
+
+  // 等 display/grid 布局稳定，再统一滚动。
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      window.scrollTo({
+        top:getProjectLandingY(),
+        behavior:options.instant ? "auto" : "smooth"
+      });
+
+      if(focusCard){
+        setTimeout(()=>{
+          focusCard.classList.add("return-focus");
+          setTimeout(()=>focusCard.classList.remove("return-focus"), 1200);
+        }, 420);
+      }
+
+      setTimeout(()=>document.body.classList.remove("project-landing"), 1350);
+    });
+  });
+}
+
+homeNavItems.forEach(item=>{
+  item.addEventListener("click",(event)=>{
+    event.preventDefault();
+    event.stopPropagation();
+
+    const type = item.dataset.type || "all";
+    goToProjectLanding(type);
+  });
+});
+
+// 隐藏旧导航仍保留兼容，但统一调用同一套落点规则
+legacyNavItems.forEach(item=>{
+  item.addEventListener("click",(event)=>{
+    event.preventDefault();
+    event.stopPropagation();
+
+    const type = item.dataset.type || "all";
+    goToProjectLanding(type);
+  });
+});
+
+
+/* =========================
    PROJECT DATA
+   分类只负责组织项目；每个项目拥有自己的独立空间
 ========================= */
 const projectTypes = {
   arch: "ARCH",
@@ -604,80 +6072,25 @@ const projects = {
   }
 };
 
-/* =========================
-   GENERATE HOME CARDS
-========================= */
-const cardsContainer = document.getElementById("cardsContainer");
-
-Object.entries(projects).forEach(([key, p]) => {
-  if(!p.card) return;
-  const card = document.createElement("div");
-  card.className = "card " + p.type;
-  card.dataset.project = key;
-  card.innerHTML =
-    '<img src="' + p.card + '" alt="' + p.title + '">' +
-    '<div class="text">' + p.title + '<span>' + p.cn + '</span></div>';
-  cardsContainer.appendChild(card);
-});
-
-
-/* =========================
-   HOME HERO BACKGROUND
-========================= */
-const heroImages = Object.values(projects).filter(p => p.card).map(p => p.card);
-
-let heroIndex=0;
-const bg=document.getElementById("bg");
-
-bg.style.backgroundImage=`url(${heroImages[0]})`;
-
-setInterval(()=>{
-  heroIndex=(heroIndex+1)%heroImages.length;
-  bg.style.opacity=0;
-  setTimeout(()=>{
-    bg.style.backgroundImage=`url(${heroImages[heroIndex]})`;
-    bg.style.opacity=1;
-  },600);
-},4000);
-
-
-/* =========================
-   HOME FILTER + SCROLL
-========================= */
-const items=document.querySelectorAll(".item");
-
-items.forEach(item=>{
-  item.addEventListener("click",()=>{
-
-    const type=item.dataset.type;
-
-    items.forEach(i=>i.classList.remove("active"));
-    item.classList.add("active");
-
-    const cards=document.querySelectorAll(".card");
-
-    cards.forEach(c=>{
-      if(type==="all"){
-        c.style.display="block";
-      }else{
-        c.style.display=c.classList.contains(type)?"block":"none";
-      }
-    });
-
-    document.getElementById("projects")
-      .scrollIntoView({behavior:"smooth"});
-
-  });
-});
-
-
-/* =========================
-   SPACE ENGINE
-========================= */
 let currentProject = "dongguanNewWorld";
 let slideIndex = 0;
 let spaceTimer = null;
 let lastCard = null;
+
+/* Generate home cards from project data */
+const cardsContainer = document.getElementById("cardsContainer");
+if(cardsContainer){
+  Object.entries(projects).forEach(([key, p]) => {
+    if(!p.card) return;
+    const card = document.createElement("div");
+    card.className = "card " + p.type;
+    card.dataset.project = key;
+    card.innerHTML =
+      '<img src="' + p.card + '" alt="' + p.title + '">' +
+      '<div class="text">' + p.title + '<span>' + p.cn + '</span></div>';
+    cardsContainer.appendChild(card);
+  });
+}
 
 const slides = [
   document.getElementById("s0"),
@@ -698,11 +6111,17 @@ function renderProjectSwitcher(){
   switcher.innerHTML = Object.entries(projectTypes).map(([type,label])=>{
     const list = getProjectsByType(type).map(([key,p])=>{
       const current = key === currentProject ? "current" : "";
+      const preview = p.imgs[0];
+
       return `
-        <div class="projectOption ${current}" data-project="${key}">
-          ${p.title}
-          <span>${p.cn}</span>
-        </div>
+        <button class="projectOption projectPreview ${current}" data-project="${key}" type="button" aria-label="${p.title}">
+          <div class="projectPreviewCard" style="background-image:url('${preview}')">
+            <div class="projectPreviewMeta">
+              <strong>${p.title}</strong>
+              <small>${p.cn}</small>
+            </div>
+          </div>
+        </button>
       `;
     }).join("");
 
@@ -716,13 +6135,45 @@ function renderProjectSwitcher(){
     `;
   }).join("");
 
-  switcher.querySelectorAll(".projectOption").forEach(option=>{
+  switcher.querySelectorAll(".projectPreview").forEach(option=>{
     option.addEventListener("click",(e)=>{
       e.stopPropagation();
       const key = option.dataset.project;
       switchProject(key);
     });
   });
+}
+
+
+function getImageAverageBrightness(img){
+  try{
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d", { willReadFrequently:true });
+
+    const sampleSize = 48;
+    canvas.width = sampleSize;
+    canvas.height = sampleSize;
+
+    ctx.drawImage(img, 0, 0, sampleSize, sampleSize);
+    const data = ctx.getImageData(0, 0, sampleSize, sampleSize).data;
+
+    let total = 0;
+    let count = 0;
+
+    for(let i=0; i<data.length; i+=16){
+      const r = data[i];
+      const g = data[i+1];
+      const b = data[i+2];
+
+      // perceived luminance
+      total += 0.2126*r + 0.7152*g + 0.0722*b;
+      count++;
+    }
+
+    return total / count;
+  }catch(err){
+    return null;
+  }
 }
 
 function loadProject(){
@@ -732,16 +6183,18 @@ function loadProject(){
     const src = p.imgs[idx];
 
     sl.classList.remove("portrait", "landscape");
-    delete sl.dataset.orientation;
-
-    if(!src){
-      sl.style.backgroundImage = "";
-      return;
-    }
 
     const probe = new Image();
+    probe.crossOrigin = "anonymous";
     probe.onload = function(){
       const isPortrait = probe.naturalHeight > probe.naturalWidth;
+      const brightness = getImageAverageBrightness(probe);
+
+      if(brightness !== null){
+        sl.dataset.brightness = brightness.toFixed(2);
+      }else{
+        delete sl.dataset.brightness;
+      }
 
       if(isPortrait){
         sl.classList.add("portrait");
@@ -758,6 +6211,11 @@ function loadProject(){
       }
     };
 
+    probe.onerror = function(){
+      delete sl.dataset.brightness;
+      updateStageImageMode();
+    };
+
     probe.src = src;
   });
 
@@ -771,6 +6229,19 @@ function updateStageImageMode(){
   const activeSlide = slides[slideIndex];
   const isPortrait = activeSlide && activeSlide.dataset.orientation === "portrait";
   stage.classList.toggle("portraitMode", isPortrait);
+
+  const brightness = activeSlide ? Number(activeSlide.dataset.brightness) : NaN;
+
+  stage.classList.remove("textOnDark", "textOnLight");
+
+  if(!Number.isNaN(brightness)){
+    // brightness high = light image => use dark text
+    // brightness low = dark image => use light text
+    stage.classList.add(brightness > 148 ? "textOnLight" : "textOnDark");
+  }else{
+    // safe fallback: light text with dark halo is usually more readable over unknown image
+    stage.classList.add("textOnDark");
+  }
 }
 
 function setSlide(n){
@@ -826,6 +6297,10 @@ function openSpace(){
   document.getElementById("spacePage").style.display="block";
   document.body.style.overflow="hidden";
 
+  const stage = document.getElementById("spaceStage");
+  stage.classList.remove("textOnDark", "textOnLight");
+  stage.classList.add("textOnDark");
+
   renderProjectSwitcher();
   loadProject();
   setSlide(0);
@@ -864,15 +6339,1279 @@ function closeSpace(){
   document.getElementById("spacePage").style.display="none";
   document.body.style.overflow="auto";
 
-  if(lastCard){
-    setTimeout(()=>{
-      lastCard.scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
-    },80);
-  }
+  const type = getProjectTypeFromKey(currentProject);
+
+  // 空间页返回主页时，和主页点击分类完全使用同一套落点规则。
+  // 不再根据每张卡片单独计算位置，避免不同项目返回忽高忽低。
+  setTimeout(()=>{
+    goToProjectLanding(type, currentProject);
+  },80);
 }
+
+</script>
+
+
+<script>
+(function(){
+  const brandBtn = document.getElementById("homeTopBrand");
+  if(brandBtn){
+    brandBtn.addEventListener("click", ()=>{
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
+})();
+</script>
+
+
+<script>
+/* =========================
+   TRUE AUTO CONTRAST FOR HOME TOPBAR
+   - 首页 Hero 区：根据当前底图平均亮度自动切换
+   - 项目白底区：自动切换成深色字体
+   - 空间页：不影响
+========================= */
+(function(){
+  const topbar = document.querySelector(".home-topbar");
+  const hero = document.querySelector(".hero");
+  const bg = document.getElementById("bg");
+
+  if(!topbar || !hero || !bg) return;
+
+  const brightnessCache = new Map();
+
+  function getCurrentHeroImageUrl(){
+    const raw = bg.style.backgroundImage || "";
+    const match = raw.match(/url\(["']?(.*?)["']?\)/);
+    return match ? match[1] : null;
+  }
+
+  function setTopbarTheme(mode){
+    topbar.classList.toggle("text-light", mode === "light");
+    topbar.classList.toggle("text-dark", mode === "dark");
+  }
+
+  function estimateBrightnessFromImage(src){
+    return new Promise((resolve)=>{
+      if(!src) return resolve(null);
+
+      if(brightnessCache.has(src)){
+        return resolve(brightnessCache.get(src));
+      }
+
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+
+      img.onload = function(){
+        try{
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d", { willReadFrequently:true });
+          const size = 48;
+
+          canvas.width = size;
+          canvas.height = size;
+
+          ctx.drawImage(img, 0, 0, size, size);
+          const data = ctx.getImageData(0, 0, size, size).data;
+
+          let total = 0;
+          let count = 0;
+
+          for(let i=0; i<data.length; i+=16){
+            const r = data[i];
+            const g = data[i+1];
+            const b = data[i+2];
+            total += 0.2126*r + 0.7152*g + 0.0722*b;
+            count++;
+          }
+
+          const brightness = total / count;
+          brightnessCache.set(src, brightness);
+          resolve(brightness);
+        }catch(e){
+          resolve(null);
+        }
+      };
+
+      img.onerror = function(){
+        resolve(null);
+      };
+
+      img.src = src;
+    });
+  }
+
+  let requestId = 0;
+
+  async function updateTopbarContrast(){
+    const currentRequest = ++requestId;
+    const heroBottom = hero.offsetTop + hero.offsetHeight;
+
+    // 下面项目区是浅色背景，直接深色字体
+    if(window.scrollY > heroBottom - 120){
+      setTopbarTheme("dark");
+      return;
+    }
+
+    const src = getCurrentHeroImageUrl();
+    const brightness = await estimateBrightnessFromImage(src);
+
+    if(currentRequest !== requestId) return;
+
+    // 数值越高说明图片越亮：亮底用深字；暗底用浅字
+    if(brightness !== null){
+      setTopbarTheme(brightness > 150 ? "dark" : "light");
+    }else{
+      // 如果图片跨域采样失败，就根据位置保底：
+      // 首屏通常是图像区，用浅字；白色项目区上面已处理为深字。
+      setTopbarTheme("light");
+    }
+  }
+
+  window.addEventListener("scroll", updateTopbarContrast, {passive:true});
+  window.addEventListener("resize", updateTopbarContrast);
+  window.addEventListener("load", updateTopbarContrast);
+
+  // 观察 hero 背景图变化，轮播换图时自动重新判断
+  const observer = new MutationObserver(updateTopbarContrast);
+  observer.observe(bg, { attributes:true, attributeFilter:["style"] });
+
+  updateTopbarContrast();
+})();
+</script>
+
+
+<script>
+/* =========================
+   V3 INTERACTION ONLY
+   保留原页面框架：只给原有元素加滚动触发
+========================= */
+(function(){
+  const hero = document.querySelector(".hero");
+  const manifesto = document.querySelector(".hero-manifesto-v2");
+
+  function clamp(value, min, max){
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function updateHeroMotion(){
+    if(!hero || !manifesto) return;
+
+    const progress = clamp(window.scrollY / Math.max(hero.offsetHeight, 1), 0, 1);
+
+    // 非常轻，只让首页宣言有 Apple 式滚动响应，不让页面结构变化
+    const y = -34 * progress;
+    const opacity = 1 - progress * .36;
+    const blur = progress * 3.2;
+
+    manifesto.style.transform = `translate3d(0, ${y}px, 0)`;
+    manifesto.style.opacity = opacity.toFixed(3);
+    manifesto.style.filter = `blur(${blur.toFixed(2)}px)`;
+  }
+
+  const revealTargets = Array.from(document.querySelectorAll(".section .title, .cards .card"));
+
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("is-visible");
+      }else{
+        // 离开视口后重置，回滚再进入时可以重新播放动效
+        entry.target.classList.remove("is-visible");
+      }
+    });
+  }, {
+    threshold:.18,
+    rootMargin:"-8% 0px -12% 0px"
+  });
+
+  revealTargets.forEach((item)=>revealObserver.observe(item));
+
+  // 点击项目时，只加一个很短的触感，不改变原本进入 SPACE 的逻辑
+  document.querySelectorAll(".cards .card").forEach((card)=>{
+    card.addEventListener("click", ()=>{
+      card.classList.add("entering");
+      setTimeout(()=>card.classList.remove("entering"), 420);
+    }, {capture:true});
+  });
+
+  let ticking = false;
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+
+    requestAnimationFrame(()=>{
+      updateHeroMotion();
+      ticking = false;
+    });
+  }
+
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll);
+  window.addEventListener("load", onScroll);
+
+  updateHeroMotion();
+})();
+</script>
+
+
+<script>
+/* =========================
+   V3.5 CONTACT TEXT REPLAY
+   联系区字体滚动进入 / 离开后重置
+========================= */
+(function(){
+  const contact = document.querySelector(".contact-motion");
+  if(!contact) return;
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("is-visible");
+      }else{
+        entry.target.classList.remove("is-visible");
+      }
+    });
+  }, {
+    threshold:.26,
+    rootMargin:"-10% 0px -12% 0px"
+  });
+
+  observer.observe(contact);
+})();
+</script>
+
+
+<script>
+/* =========================================================
+   V14.10 MOTION LOGIC
+   修正重点：
+   不是延长固定到项目卡片上，而是：
+   - 在白底过渡区停在参考位置；
+   - 一旦项目卡片进入画面，理念文字就跟页面上移并消失。
+========================================================= */
+(function(){
+  const layer = document.getElementById("kkaaSignatureMotion");
+  if(!layer) return;
+
+  const word = layer.querySelector(".kkaa-signature-word");
+  const cn = layer.querySelector(".kkaa-signature-cn");
+  const cards = document.querySelector("#projects .cards");
+
+  const clamp = (v,min,max) => Math.max(min, Math.min(max, v));
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+  function applyImageColor(){
+    word.style.setProperty("color", "rgba(255,255,255,.80)", "important");
+    cn.style.setProperty("color", "rgba(255,255,255,.52)", "important");
+    word.style.setProperty("text-shadow", "0 1px 2px rgba(0,0,0,.24), 0 14px 34px rgba(0,0,0,.18)", "important");
+    cn.style.setProperty("text-shadow", "0 1px 2px rgba(0,0,0,.18), 0 10px 24px rgba(0,0,0,.12)", "important");
+  }
+
+  function applyPaperColor(){
+    word.style.setProperty("color", "rgba(29,29,31,.50)", "important");
+    cn.style.setProperty("color", "rgba(29,29,31,.30)", "important");
+    word.style.setProperty("text-shadow", "none", "important");
+    cn.style.setProperty("text-shadow", "none", "important");
+  }
+
+  function updateManifestoMotion(){
+    const y = window.scrollY || window.pageYOffset || 0;
+    const vh = window.innerHeight || 1;
+
+    /*
+      A 初始：在首页封面图偏下处。
+      B 过渡：到达参考图中的固定位置。
+      C 项目卡片进入：解除固定，随页面上移并消失。
+    */
+    const startTop = vh * 0.73;
+    const holdTop = vh * 0.435;
+    const arriveAtHold = vh * 0.56;
+
+    let top = startTop;
+    let opacity = 1;
+
+    if(y <= arriveAtHold){
+      const p = easeOutCubic(clamp(y / arriveAtHold, 0, 1));
+      top = startTop + (holdTop - startTop) * p;
+    }else{
+      top = holdTop;
+    }
+
+    /*
+      关键修正：
+      用“项目卡片距离视口顶部的位置”来决定什么时候释放。
+      当卡片顶部进入视口下方约 82% 位置时开始释放；
+      当卡片继续上移到约 54% 位置时，理念文字完全消失。
+    */
+    if(cards){
+      const cardsTop = cards.getBoundingClientRect().top;
+      const releaseCardsTop = vh * 0.82;
+      const goneCardsTop = vh * 0.54;
+
+      if(cardsTop < releaseCardsTop){
+        const releaseDistance = releaseCardsTop - cardsTop;
+        const totalRelease = releaseCardsTop - goneCardsTop;
+        const p = clamp(releaseDistance / totalRelease, 0, 1);
+
+        top = holdTop - releaseDistance;
+        opacity = 1 - p;
+      }
+    }
+
+    layer.style.setProperty("top", top + "px", "important");
+    layer.style.setProperty("opacity", opacity.toFixed(3), "important");
+    layer.classList.toggle("is-gone", opacity <= 0.01);
+
+    if(y >= vh * 0.48){
+      applyPaperColor();
+    }else{
+      applyImageColor();
+    }
+  }
+
+  updateManifestoMotion();
+  window.addEventListener("scroll", updateManifestoMotion, { passive:true });
+  window.addEventListener("resize", updateManifestoMotion);
+})();
+</script>
+
+
+<script>
+/* =========================================================
+   V14.14 TOP NAV AUTO COLOR — PER-ITEM CANVAS BRIGHTNESS
+   只处理顶部导航文字颜色。
+   逻辑来自案例：读取图片像素亮度，亮底用深字，暗底用浅字。
+   为了适配“同一条导航横跨深图/白底”的情况，这里对每个导航项
+   分别采样其中心点下方的真实背景，而不是整条导航统一判断。
+========================================================= */
+(function(){
+  const topbar = document.querySelector(".home-topbar");
+  if(!topbar) return;
+
+  const imageCache = new Map();
+  const brightnessCache = new Map();
+
+  const mainTargets = Array.from(document.querySelectorAll(
+    ".home-topbar-brand, .home-topbar-nav .item"
+  ));
+
+  function clamp(value, min, max){
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function parseRgb(color){
+    if(!color || color === "transparent") return null;
+    const match = color.match(/rgba?\(([^)]+)\)/i);
+    if(!match) return null;
+    const parts = match[1].split(",").map(v=>parseFloat(v.trim()));
+    if(parts.length < 3) return null;
+    const alpha = parts.length >= 4 ? parts[3] : 1;
+    if(alpha <= 0.05) return null;
+    return { r:parts[0], g:parts[1], b:parts[2], a:alpha };
+  }
+
+  function brightnessFromRgb(rgb){
+    return 0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b;
+  }
+
+  function getUrlFromBackgroundImage(value){
+    if(!value || value === "none") return null;
+    const match = value.match(/url\(["']?(.*?)["']?\)/);
+    return match ? match[1] : null;
+  }
+
+  function loadImage(src){
+    if(!src) return Promise.resolve(null);
+    if(imageCache.has(src)) return imageCache.get(src);
+
+    const promise = new Promise(resolve=>{
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+
+    imageCache.set(src, promise);
+    return promise;
+  }
+
+  async function sampleImageBrightness(src, sx, sy){
+    const key = `${src}|${Math.round(sx)}|${Math.round(sy)}`;
+    if(brightnessCache.has(key)) return brightnessCache.get(key);
+
+    const img = await loadImage(src);
+    if(!img) return null;
+
+    try{
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d", { willReadFrequently:true });
+      canvas.width = 1;
+      canvas.height = 1;
+
+      const x = clamp(Math.round(sx), 0, img.naturalWidth - 1);
+      const y = clamp(Math.round(sy), 0, img.naturalHeight - 1);
+
+      ctx.drawImage(img, x, y, 1, 1, 0, 0, 1, 1);
+      const data = ctx.getImageData(0, 0, 1, 1).data;
+      const brightness = 0.2126 * data[0] + 0.7152 * data[1] + 0.0722 * data[2];
+
+      brightnessCache.set(key, brightness);
+      return brightness;
+    }catch(err){
+      return null;
+    }
+  }
+
+  function getObjectFitImagePoint(imgEl, viewportX, viewportY){
+    const rect = imgEl.getBoundingClientRect();
+    const style = getComputedStyle(imgEl);
+    const fit = style.objectFit || "fill";
+
+    const localX = viewportX - rect.left;
+    const localY = viewportY - rect.top;
+
+    const nw = imgEl.naturalWidth || 1;
+    const nh = imgEl.naturalHeight || 1;
+
+    let drawnW = rect.width;
+    let drawnH = rect.height;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if(fit === "cover" || fit === "contain"){
+      const scale = fit === "cover"
+        ? Math.max(rect.width / nw, rect.height / nh)
+        : Math.min(rect.width / nw, rect.height / nh);
+
+      drawnW = nw * scale;
+      drawnH = nh * scale;
+      offsetX = (rect.width - drawnW) / 2;
+      offsetY = (rect.height - drawnH) / 2;
+    }
+
+    const sx = ((localX - offsetX) / drawnW) * nw;
+    const sy = ((localY - offsetY) / drawnH) * nh;
+
+    return { sx, sy };
+  }
+
+  function getBackgroundImagePoint(el, viewportX, viewportY, img){
+    const rect = el.getBoundingClientRect();
+    const style = getComputedStyle(el);
+
+    const localX = viewportX - rect.left;
+    const localY = viewportY - rect.top;
+
+    const nw = img.naturalWidth || 1;
+    const nh = img.naturalHeight || 1;
+
+    /*
+      当前网站的 hero 与卡片图主要是 cover/center。
+      这里严格按 cover/center 计算，和案例 canvas 亮度逻辑一致。
+    */
+    const scale = Math.max(rect.width / nw, rect.height / nh);
+    const drawnW = nw * scale;
+    const drawnH = nh * scale;
+    const offsetX = (rect.width - drawnW) / 2;
+    const offsetY = (rect.height - drawnH) / 2;
+
+    const sx = ((localX - offsetX) / drawnW) * nw;
+    const sy = ((localY - offsetY) / drawnH) * nh;
+
+    return { sx, sy };
+  }
+
+  async function brightnessUnderPoint(x, y){
+    const oldVisibility = topbar.style.visibility;
+    topbar.style.visibility = "hidden";
+
+    let el = document.elementFromPoint(x, y);
+
+    topbar.style.visibility = oldVisibility;
+
+    if(!el) return 255;
+
+    let node = el;
+
+    while(node && node !== document.documentElement){
+      if(node.tagName === "IMG" && node.currentSrc){
+        const pt = getObjectFitImagePoint(node, x, y);
+        const b = await sampleImageBrightness(node.currentSrc, pt.sx, pt.sy);
+        if(b !== null) return b;
+      }
+
+      const style = getComputedStyle(node);
+      const bgUrl = getUrlFromBackgroundImage(style.backgroundImage);
+
+      if(bgUrl){
+        const img = await loadImage(bgUrl);
+        if(img){
+          const pt = getBackgroundImagePoint(node, x, y, img);
+          const b = await sampleImageBrightness(bgUrl, pt.sx, pt.sy);
+          if(b !== null) return b;
+        }
+      }
+
+      const rgb = parseRgb(style.backgroundColor);
+      if(rgb){
+        return brightnessFromRgb(rgb);
+      }
+
+      node = node.parentElement;
+    }
+
+    const bodyBg = parseRgb(getComputedStyle(document.body).backgroundColor);
+    return bodyBg ? brightnessFromRgb(bodyBg) : 255;
+  }
+
+  function applyReadableColor(target, brightness){
+    const isLightBackground = brightness > 156;
+
+    const mainColor = isLightBackground
+      ? "rgba(29,29,31,.82)"
+      : "rgba(255,255,255,.92)";
+
+    const subColor = isLightBackground
+      ? "rgba(29,29,31,.52)"
+      : "rgba(255,255,255,.66)";
+
+    const lineColor = isLightBackground
+      ? "rgba(29,29,31,.74)"
+      : "rgba(255,255,255,.88)";
+
+    const shadow = isLightBackground
+      ? "none"
+      : "0 1px 2px rgba(0,0,0,.30), 0 8px 18px rgba(0,0,0,.18)";
+
+    target.style.setProperty("color", mainColor, "important");
+    target.style.setProperty("text-shadow", shadow, "important");
+    target.style.setProperty("--auto-nav-line", lineColor);
+
+    const spans = target.querySelectorAll("span, .brand-zh");
+    spans.forEach(span=>{
+      span.style.setProperty("color", subColor, "important");
+      span.style.setProperty("text-shadow", shadow, "important");
+    });
+
+    const brandEn = target.querySelector(".brand-en");
+    if(brandEn){
+      brandEn.style.setProperty("color", mainColor, "important");
+      brandEn.style.setProperty("text-shadow", shadow, "important");
+    }
+  }
+
+  let ticking = false;
+  let updateSerial = 0;
+
+  function scheduleUpdate(){
+    if(ticking) return;
+    ticking = true;
+
+    requestAnimationFrame(async ()=>{
+      ticking = false;
+      const serial = ++updateSerial;
+
+      const samples = mainTargets.map(target=>{
+        const rect = target.getBoundingClientRect();
+        return {
+          target,
+          x: rect.left + rect.width / 2,
+          y: rect.top + Math.min(rect.height / 2, 18)
+        };
+      });
+
+      for(const sample of samples){
+        const brightness = await brightnessUnderPoint(sample.x, sample.y);
+        if(serial !== updateSerial) return;
+        applyReadableColor(sample.target, brightness);
+      }
+    });
+  }
+
+  window.addEventListener("scroll", scheduleUpdate, { passive:true });
+  window.addEventListener("resize", scheduleUpdate);
+  window.addEventListener("load", scheduleUpdate);
+  document.addEventListener("DOMContentLoaded", scheduleUpdate);
+
+  const bg = document.getElementById("bg");
+  if(bg){
+    const observer = new MutationObserver(scheduleUpdate);
+    observer.observe(bg, { attributes:true, attributeFilter:["style"] });
+  }
+
+  scheduleUpdate();
+})();
+</script>
+
+
+<script>
+/* =========================================================
+   V14.15 MANIFESTO AUTO COLOR — CASE METHOD
+   复刻案例 HTML 的思路：canvas 采样背景亮度，然后自动切换文字深浅。
+   作用范围只限 #kkaaSignatureMotion，不影响顶部导航和其它元素。
+========================================================= */
+(function(){
+  const manifesto = document.getElementById("kkaaSignatureMotion");
+  if(!manifesto) return;
+
+  const word = manifesto.querySelector(".kkaa-signature-word");
+  const cn = manifesto.querySelector(".kkaa-signature-cn");
+  if(!word || !cn) return;
+
+  const imageCache = new Map();
+  const brightnessCache = new Map();
+
+  function clamp(value, min, max){
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function parseRgb(color){
+    if(!color || color === "transparent") return null;
+    const match = color.match(/rgba?\(([^)]+)\)/i);
+    if(!match) return null;
+
+    const parts = match[1].split(",").map(v=>parseFloat(v.trim()));
+    if(parts.length < 3) return null;
+
+    const alpha = parts.length >= 4 ? parts[3] : 1;
+    if(alpha <= 0.05) return null;
+
+    return { r:parts[0], g:parts[1], b:parts[2], a:alpha };
+  }
+
+  function brightnessFromRgb(rgb){
+    return 0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b;
+  }
+
+  function getUrlFromBackgroundImage(value){
+    if(!value || value === "none") return null;
+    const match = value.match(/url\(["']?(.*?)["']?\)/);
+    return match ? match[1] : null;
+  }
+
+  function loadImage(src){
+    if(!src) return Promise.resolve(null);
+    if(imageCache.has(src)) return imageCache.get(src);
+
+    const promise = new Promise(resolve=>{
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+
+    imageCache.set(src, promise);
+    return promise;
+  }
+
+  async function sampleImageBrightness(src, sx, sy){
+    const key = `${src}|${Math.round(sx)}|${Math.round(sy)}`;
+    if(brightnessCache.has(key)) return brightnessCache.get(key);
+
+    const img = await loadImage(src);
+    if(!img) return null;
+
+    try{
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d", { willReadFrequently:true });
+      canvas.width = 1;
+      canvas.height = 1;
+
+      const x = clamp(Math.round(sx), 0, img.naturalWidth - 1);
+      const y = clamp(Math.round(sy), 0, img.naturalHeight - 1);
+
+      ctx.drawImage(img, x, y, 1, 1, 0, 0, 1, 1);
+      const data = ctx.getImageData(0, 0, 1, 1).data;
+      const brightness = 0.2126 * data[0] + 0.7152 * data[1] + 0.0722 * data[2];
+
+      brightnessCache.set(key, brightness);
+      return brightness;
+    }catch(err){
+      return null;
+    }
+  }
+
+  function getObjectFitImagePoint(imgEl, viewportX, viewportY){
+    const rect = imgEl.getBoundingClientRect();
+    const style = getComputedStyle(imgEl);
+    const fit = style.objectFit || "fill";
+
+    const localX = viewportX - rect.left;
+    const localY = viewportY - rect.top;
+
+    const nw = imgEl.naturalWidth || 1;
+    const nh = imgEl.naturalHeight || 1;
+
+    let drawnW = rect.width;
+    let drawnH = rect.height;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if(fit === "cover" || fit === "contain"){
+      const scale = fit === "cover"
+        ? Math.max(rect.width / nw, rect.height / nh)
+        : Math.min(rect.width / nw, rect.height / nh);
+
+      drawnW = nw * scale;
+      drawnH = nh * scale;
+      offsetX = (rect.width - drawnW) / 2;
+      offsetY = (rect.height - drawnH) / 2;
+    }
+
+    return {
+      sx: ((localX - offsetX) / drawnW) * nw,
+      sy: ((localY - offsetY) / drawnH) * nh
+    };
+  }
+
+  function getBackgroundImagePoint(el, viewportX, viewportY, img){
+    const rect = el.getBoundingClientRect();
+
+    const localX = viewportX - rect.left;
+    const localY = viewportY - rect.top;
+
+    const nw = img.naturalWidth || 1;
+    const nh = img.naturalHeight || 1;
+
+    // 当前网页中的背景图主要使用 cover / center。
+    const scale = Math.max(rect.width / nw, rect.height / nh);
+    const drawnW = nw * scale;
+    const drawnH = nh * scale;
+    const offsetX = (rect.width - drawnW) / 2;
+    const offsetY = (rect.height - drawnH) / 2;
+
+    return {
+      sx: ((localX - offsetX) / drawnW) * nw,
+      sy: ((localY - offsetY) / drawnH) * nh
+    };
+  }
+
+  async function brightnessUnderPoint(x, y){
+    const oldVisibility = manifesto.style.visibility;
+    manifesto.style.visibility = "hidden";
+
+    const el = document.elementFromPoint(x, y);
+
+    manifesto.style.visibility = oldVisibility;
+
+    if(!el) return 255;
+
+    let node = el;
+
+    while(node && node !== document.documentElement){
+      if(node.tagName === "IMG" && node.currentSrc){
+        const pt = getObjectFitImagePoint(node, x, y);
+        const b = await sampleImageBrightness(node.currentSrc, pt.sx, pt.sy);
+        if(b !== null) return b;
+      }
+
+      const style = getComputedStyle(node);
+      const bgUrl = getUrlFromBackgroundImage(style.backgroundImage);
+
+      if(bgUrl){
+        const img = await loadImage(bgUrl);
+        if(img){
+          const pt = getBackgroundImagePoint(node, x, y, img);
+          const b = await sampleImageBrightness(bgUrl, pt.sx, pt.sy);
+          if(b !== null) return b;
+        }
+      }
+
+      const rgb = parseRgb(style.backgroundColor);
+      if(rgb){
+        return brightnessFromRgb(rgb);
+      }
+
+      node = node.parentElement;
+    }
+
+    const bodyBg = parseRgb(getComputedStyle(document.body).backgroundColor);
+    return bodyBg ? brightnessFromRgb(bodyBg) : 255;
+  }
+
+  async function averageBrightnessBehindManifesto(){
+    const rect = manifesto.getBoundingClientRect();
+
+    if(rect.bottom < 0 || rect.top > window.innerHeight){
+      return null;
+    }
+
+    /*
+      采样理念文字背后的多个点：
+      左 / 中 / 右 + 中文行位置。
+      这样比只取中心点稳定，不会因为某一个点刚好压在图片边缘而误判。
+    */
+    const points = [
+      [rect.left + rect.width * 0.28, rect.top + rect.height * 0.36],
+      [rect.left + rect.width * 0.50, rect.top + rect.height * 0.36],
+      [rect.left + rect.width * 0.72, rect.top + rect.height * 0.36],
+      [rect.left + rect.width * 0.50, rect.top + rect.height * 0.72]
+    ];
+
+    const values = [];
+    for(const [x, y] of points){
+      const b = await brightnessUnderPoint(x, y);
+      if(typeof b === "number" && !Number.isNaN(b)){
+        values.push(b);
+      }
+    }
+
+    if(!values.length) return null;
+    return values.reduce((a,b)=>a+b,0) / values.length;
+  }
+
+  function applyManifestoColor(brightness){
+    const isLightBackground = brightness > 156;
+
+    const wordColor = isLightBackground
+      ? "rgba(29,29,31,.50)"
+      : "rgba(255,255,255,.82)";
+
+    const cnColor = isLightBackground
+      ? "rgba(29,29,31,.30)"
+      : "rgba(255,255,255,.54)";
+
+    const shadow = isLightBackground
+      ? "none"
+      : "0 1px 2px rgba(0,0,0,.24), 0 14px 34px rgba(0,0,0,.18)";
+
+    word.style.setProperty("color", wordColor, "important");
+    word.style.setProperty("text-shadow", shadow, "important");
+
+    cn.style.setProperty("color", cnColor, "important");
+    cn.style.setProperty("text-shadow", shadow, "important");
+  }
+
+  let ticking = false;
+  let serial = 0;
+
+  function scheduleManifestoColorUpdate(){
+    if(ticking) return;
+    ticking = true;
+
+    requestAnimationFrame(async ()=>{
+      ticking = false;
+      const current = ++serial;
+
+      const brightness = await averageBrightnessBehindManifesto();
+      if(current !== serial || brightness === null) return;
+
+      applyManifestoColor(brightness);
+    });
+  }
+
+  window.addEventListener("scroll", scheduleManifestoColorUpdate, { passive:true });
+  window.addEventListener("resize", scheduleManifestoColorUpdate);
+  window.addEventListener("load", scheduleManifestoColorUpdate);
+  document.addEventListener("DOMContentLoaded", scheduleManifestoColorUpdate);
+
+  const bg = document.getElementById("bg");
+  if(bg){
+    const observer = new MutationObserver(scheduleManifestoColorUpdate);
+    observer.observe(bg, { attributes:true, attributeFilter:["style"] });
+  }
+
+  scheduleManifestoColorUpdate();
+})();
+</script>
+
+
+<script>
+/* =========================================================
+   V14.17 HOME HERO SLIDES — SPACE PAGE STYLE
+   用和项目空间页相同的 active slide 思路重做首页封面切换。
+   不再做额外电影暗角、不做复杂双层呼吸，只保留空间页式：
+   opacity fade + slow scale.
+========================================================= */
+(function(){
+  const hero = document.querySelector("#homePage .hero");
+  const bg = document.getElementById("bg");
+  if(!hero || !bg) return;
+
+  const images = Array.isArray(window.heroImages) && window.heroImages.length
+    ? window.heroImages.slice()
+    : [
+      "assets/projects/dongguan-new-world-interior/card.webp",
+      "assets/projects/nanjing-huaihe-wharf/card.webp",
+      "assets/projects/bar-interior/card.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/card.webp"
+    ];
+
+  const slideWrap = document.createElement("div");
+  slideWrap.className = "home-hero-slides";
+
+  const slides = images.map((src, index)=>{
+    const slide = document.createElement("div");
+    slide.className = "home-hero-slide";
+    if(index === 0) slide.classList.add("active");
+    slide.style.backgroundImage = `url("${src}")`;
+    slideWrap.appendChild(slide);
+    return slide;
+  });
+
+  hero.insertBefore(slideWrap, hero.firstChild);
+
+  let index = 0;
+
+  /*
+    保留 #bg 的 backgroundImage 同步更新：
+    顶部导航/理念文字自动取色系统仍然可以读取当前图片。
+  */
+  bg.style.backgroundImage = `url("${images[0]}")`;
+  bg.style.opacity = "0";
+
+  function activateSlide(nextIndex){
+    slides[index].classList.remove("active");
+    slides[nextIndex].classList.add("active");
+
+    index = nextIndex;
+    bg.style.backgroundImage = `url("${images[index]}")`;
+
+    /* 主动刷新自动取色系统 */
+    window.dispatchEvent(new Event("scroll"));
+  }
+
+  /*
+    项目空间页本来是沉浸浏览，这里首页也放慢一点：
+    每张图停留 5.8s，切换动画由 CSS 1.2s opacity + 5s scale 完成。
+  */
+  setInterval(()=>{
+    const next = (index + 1) % slides.length;
+    activateSlide(next);
+  }, 5800);
+})();
+</script>
+
+
+<script>
+/* =========================================================
+   V15.7 SOLID AUTO-COLOR ENGINE
+   要点：
+   1. 继续根据背后背景深浅自动变色；
+   2. 不再用 rgba 半透明，只用 hex 实色；
+   3. 暗背景用浅色字，亮背景用深色字；
+   4. 不改位置 / 大小 / 排版 / 动效 / 项目区 / 空间页。
+========================================================= */
+(function(){
+  const DARK_MAIN = "#3f4146";
+  const DARK_SUB = "#5f6368";
+  const LIGHT_MAIN = "#f5f5f0";
+  const LIGHT_SUB = "#d8d8d2";
+  const THRESHOLD = 142;
+
+  const imageCache = new Map();
+  const pixelCache = new Map();
+
+  function clamp(value, min, max){
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function parseRgb(color){
+    if(!color || color === "transparent") return null;
+    const m = color.match(/rgba?\(([^)]+)\)/i);
+    if(!m) return null;
+    const parts = m[1].split(",").map(v=>parseFloat(v.trim()));
+    if(parts.length < 3) return null;
+    const a = parts.length >= 4 ? parts[3] : 1;
+    if(a <= 0.05) return null;
+    return {r:parts[0], g:parts[1], b:parts[2], a};
+  }
+
+  function luminance(rgb){
+    return 0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b;
+  }
+
+  function bgUrl(value){
+    if(!value || value === "none") return null;
+    const m = value.match(/url\(["']?(.*?)["']?\)/);
+    return m ? m[1] : null;
+  }
+
+  function loadImage(src){
+    if(!src) return Promise.resolve(null);
+    if(imageCache.has(src)) return imageCache.get(src);
+
+    const promise = new Promise(resolve=>{
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = ()=>resolve(img);
+      img.onerror = ()=>resolve(null);
+      img.src = src;
+    });
+
+    imageCache.set(src, promise);
+    return promise;
+  }
+
+  async function samplePixel(src, sx, sy){
+    const img = await loadImage(src);
+    if(!img) return null;
+
+    const x = clamp(Math.round(sx), 0, img.naturalWidth - 1);
+    const y = clamp(Math.round(sy), 0, img.naturalHeight - 1);
+    const key = `${src}|${x}|${y}`;
+
+    if(pixelCache.has(key)) return pixelCache.get(key);
+
+    try{
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d", {willReadFrequently:true});
+      canvas.width = 1;
+      canvas.height = 1;
+      ctx.drawImage(img, x, y, 1, 1, 0, 0, 1, 1);
+      const d = ctx.getImageData(0,0,1,1).data;
+      const b = 0.2126*d[0] + 0.7152*d[1] + 0.0722*d[2];
+      pixelCache.set(key, b);
+      return b;
+    }catch(err){
+      return null;
+    }
+  }
+
+  function imagePointForCover(el, x, y, img){
+    const rect = el.getBoundingClientRect();
+    const localX = x - rect.left;
+    const localY = y - rect.top;
+
+    const nw = img.naturalWidth || 1;
+    const nh = img.naturalHeight || 1;
+    const scale = Math.max(rect.width / nw, rect.height / nh);
+    const drawnW = nw * scale;
+    const drawnH = nh * scale;
+    const offsetX = (rect.width - drawnW) / 2;
+    const offsetY = (rect.height - drawnH) / 2;
+
+    return {
+      sx: ((localX - offsetX) / drawnW) * nw,
+      sy: ((localY - offsetY) / drawnH) * nh
+    };
+  }
+
+  function imagePointForImg(imgEl, x, y){
+    const rect = imgEl.getBoundingClientRect();
+    const style = getComputedStyle(imgEl);
+    const fit = style.objectFit || "fill";
+
+    const localX = x - rect.left;
+    const localY = y - rect.top;
+    const nw = imgEl.naturalWidth || 1;
+    const nh = imgEl.naturalHeight || 1;
+
+    let drawnW = rect.width;
+    let drawnH = rect.height;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if(fit === "cover" || fit === "contain"){
+      const scale = fit === "cover"
+        ? Math.max(rect.width / nw, rect.height / nh)
+        : Math.min(rect.width / nw, rect.height / nh);
+
+      drawnW = nw * scale;
+      drawnH = nh * scale;
+      offsetX = (rect.width - drawnW) / 2;
+      offsetY = (rect.height - drawnH) / 2;
+    }
+
+    return {
+      sx: ((localX - offsetX) / drawnW) * nw,
+      sy: ((localY - offsetY) / drawnH) * nh
+    };
+  }
+
+  async function brightnessAtPoint(x, y, hiddenElements){
+    const old = hiddenElements.map(el=>[el, el.style.visibility]);
+    hiddenElements.forEach(el=>{ if(el) el.style.visibility = "hidden"; });
+
+    let el = document.elementFromPoint(x, y);
+
+    old.forEach(([el, visibility])=>{ if(el) el.style.visibility = visibility; });
+
+    if(!el) return 255;
+
+    let node = el;
+    while(node && node !== document.documentElement){
+      if(node.tagName === "IMG" && node.currentSrc){
+        const p = imagePointForImg(node, x, y);
+        const b = await samplePixel(node.currentSrc, p.sx, p.sy);
+        if(b !== null) return b;
+      }
+
+      const style = getComputedStyle(node);
+      const url = bgUrl(style.backgroundImage);
+      if(url){
+        const img = await loadImage(url);
+        if(img){
+          const p = imagePointForCover(node, x, y, img);
+          const b = await samplePixel(url, p.sx, p.sy);
+          if(b !== null) return b;
+        }
+      }
+
+      const rgb = parseRgb(style.backgroundColor);
+      if(rgb) return luminance(rgb);
+
+      node = node.parentElement;
+    }
+
+    const bodyRgb = parseRgb(getComputedStyle(document.body).backgroundColor);
+    return bodyRgb ? luminance(bodyRgb) : 255;
+  }
+
+  function setColor(el, color){
+    if(!el) return;
+    el.style.setProperty("color", color, "important");
+    el.style.setProperty("-webkit-text-fill-color", color, "important");
+    el.style.setProperty("opacity", "1", "important");
+    el.style.setProperty("text-shadow", "none", "important");
+    el.style.setProperty("filter", "none", "important");
+    el.style.setProperty("mix-blend-mode", "normal", "important");
+  }
+
+  function applyPair(mainEl, subEls, brightness){
+    const isLightBackground = brightness > THRESHOLD;
+    const main = isLightBackground ? DARK_MAIN : LIGHT_MAIN;
+    const sub = isLightBackground ? DARK_SUB : LIGHT_SUB;
+
+    setColor(mainEl, main);
+    subEls.forEach(el=>setColor(el, sub));
+  }
+
+  async function updateTopbar(){
+    const topbar = document.querySelector(".home-topbar");
+    if(!topbar) return;
+
+    const groups = [
+      {
+        main: document.querySelector(".home-topbar .home-topbar-brand"),
+        subs: Array.from(document.querySelectorAll(".home-topbar .home-topbar-brand .brand-zh, .home-topbar .home-topbar-brand span:not(.brand-en)"))
+      },
+      ...Array.from(document.querySelectorAll(".home-topbar .home-topbar-nav .item")).map(item=>({
+        main:item,
+        subs:Array.from(item.querySelectorAll("span"))
+      }))
+    ].filter(g=>g.main);
+
+    for(const group of groups){
+      const rect = group.main.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + Math.min(rect.height / 2, 18);
+      const b = await brightnessAtPoint(x, y, [topbar]);
+      applyPair(group.main, group.subs, b);
+    }
+
+    topbar.style.setProperty("--auto-nav-line", DARK_MAIN);
+  }
+
+  async function updateManifesto(){
+    const manifesto = document.getElementById("kkaaSignatureMotion");
+    if(!manifesto) return;
+
+    const word = manifesto.querySelector(".kkaa-signature-word");
+    const cn = manifesto.querySelector(".kkaa-signature-cn");
+    if(!word || !cn) return;
+
+    const rect = manifesto.getBoundingClientRect();
+    if(rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+    const points = [
+      [rect.left + rect.width * .25, rect.top + rect.height * .38],
+      [rect.left + rect.width * .50, rect.top + rect.height * .38],
+      [rect.left + rect.width * .75, rect.top + rect.height * .38],
+      [rect.left + rect.width * .50, rect.top + rect.height * .72]
+    ];
+
+    const values = [];
+    for(const [x,y] of points){
+      values.push(await brightnessAtPoint(x, y, [manifesto]));
+    }
+
+    const b = values.reduce((a,c)=>a+c,0) / values.length;
+    applyPair(word, [cn], b);
+  }
+
+  function updateProjectsTitle(){
+    document.querySelectorAll("#homePage .section .title").forEach(title=>{
+      setColor(title, DARK_SUB);
+    });
+  }
+
+  let raf = null;
+  let running = false;
+
+  function schedule(){
+    if(raf) return;
+    raf = requestAnimationFrame(async ()=>{
+      raf = null;
+      if(running) return;
+      running = true;
+      await updateTopbar();
+      await updateManifesto();
+      updateProjectsTitle();
+      running = false;
+    });
+  }
+
+  schedule();
+
+  window.addEventListener("scroll", schedule, {passive:true});
+  window.addEventListener("resize", schedule);
+  window.addEventListener("load", schedule);
+  document.addEventListener("DOMContentLoaded", schedule);
+
+  const bg = document.getElementById("bg");
+  if(bg){
+    const observer = new MutationObserver(schedule);
+    observer.observe(bg, {attributes:true, attributeFilter:["style"]});
+  }
+
+  /*
+    原文件有轮播和旧自动取色脚本。
+    这里用低频刷新兜底，但仍然是根据背景实时判断，不是固定死颜色。
+  */
+  setInterval(schedule, 500);
+})();
+</script>
+
+
+<script>
+/* =========================================================
+   V15.8 PROJECT LANDING POSITION FIX
+   只修正：从项目空间页返回主页 / 点击分类时，PROJECTS 区域落点太偏下的问题。
+   不改：项目区排版、图片、颜色、顶部导航、理念文字、筛选逻辑、空间页显示。
+========================================================= */
+(function(){
+  function absoluteTop(el){
+    const rect = el.getBoundingClientRect();
+    return rect.top + window.scrollY;
+  }
+
+  /*
+    原逻辑用 #projects 的 section 顶部来计算。
+    现在 V15 项目区上方留白更大，所以返回时会停得太早，
+    导致 PROJECTS 和第一排卡片整体偏下。
+
+    新逻辑改为以 PROJECTS / 项目 这行标题作为锚点：
+    让它稳定落在顶部导航下方的视觉位置。
+  */
+  window.getProjectLandingY = function(){
+    const projectsEl = document.getElementById("projects");
+    if(!projectsEl) return 0;
+
+    const title = projectsEl.querySelector(".title");
+
+    // 第一张截图想要的效果：PROJECTS 在顶部导航下方，不要落到屏幕中部。
+    const titleTargetY = window.innerWidth <= 900 ? 112 : 138;
+
+    if(title){
+      return Math.max(0, absoluteTop(title) - titleTargetY);
+    }
+
+    return Math.max(0, projectsEl.offsetTop - titleTargetY);
+  };
+})();
 </script>
 
 </body>

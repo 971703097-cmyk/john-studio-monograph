@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>JOHN STUDIO - PROJECT SPACE SYSTEM</title>
+<title>JOHN STUDIO - COVER FIRST ROBUST PREVIEW</title>
 
 <style>
 /* =========================
@@ -5840,6 +5840,162 @@ html body #homePage .section .title{
   opacity:1 !important;
 }
 
+
+/* =========================================================
+   LOCAL FIX: PROJECT SPACE PHOTO CLARITY
+   减弱空间页照片上的白雾 / 白膜 / 柔化感。
+   只作用于项目空间页面，不改首页、不改项目网格、不改返回逻辑、不改轮播逻辑。
+========================================================= */
+
+#spacePage{
+  background:#000 !important;
+}
+
+/* 空间页图片恢复更干净、真实、通透的质感 */
+#spaceStage .slide{
+  filter:none !important;
+}
+
+/* 取消原本偏白的浅色遮罩，只保留极轻的底部暗部保护，避免照片发白 */
+#spaceStage::after{
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.00) 0%,
+    rgba(0,0,0,0.00) 52%,
+    rgba(0,0,0,0.035) 76%,
+    rgba(0,0,0,0.12) 100%
+  ) !important;
+}
+
+/* 竖图两侧玻璃感保留，但降低雾化强度，不再像一层白膜盖在照片上 */
+#spaceStage .sideBlur{
+  backdrop-filter:blur(7px) saturate(1.00) brightness(1.00) !important;
+  -webkit-backdrop-filter:blur(7px) saturate(1.00) brightness(1.00) !important;
+}
+
+#spaceStage.portraitMode .sideBlur{
+  opacity:.42 !important;
+}
+
+#spaceStage .sideBlur.left{
+  background:linear-gradient(
+    to right,
+    rgba(255,255,255,.055) 0%,
+    rgba(255,255,255,.030) 26%,
+    rgba(255,255,255,.012) 56%,
+    rgba(255,255,255,0) 100%
+  ) !important;
+  box-shadow:none !important;
+}
+
+#spaceStage .sideBlur.right{
+  background:linear-gradient(
+    to left,
+    rgba(255,255,255,.055) 0%,
+    rgba(255,255,255,.030) 26%,
+    rgba(255,255,255,.012) 56%,
+    rgba(255,255,255,0) 100%
+  ) !important;
+  box-shadow:none !important;
+}
+
+
+
+/* =========================================================
+   LOCAL FIX: PORTRAIT MODE SIDE BACKGROUND DE-EMPHASIS
+   竖向排版时，两侧背景更雾化、更退后，避免抢中间主体图焦点
+   只作用于项目空间页的 portraitMode
+========================================================= */
+
+/* 仅在竖图模式下加强两侧雾化与压暗 */
+#spaceStage.portraitMode .sideBlur{
+  opacity:.82 !important;
+  backdrop-filter:blur(18px) saturate(.92) brightness(.92) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(.92) brightness(.92) !important;
+}
+
+#spaceStage.portraitMode .sideBlur.left{
+  background:linear-gradient(
+    to right,
+    rgba(255,255,255,.10) 0%,
+    rgba(255,255,255,.06) 18%,
+    rgba(255,255,255,.03) 42%,
+    rgba(255,255,255,.015) 64%,
+    rgba(255,255,255,0) 100%
+  ) !important;
+}
+
+#spaceStage.portraitMode .sideBlur.right{
+  background:linear-gradient(
+    to left,
+    rgba(255,255,255,.10) 0%,
+    rgba(255,255,255,.06) 18%,
+    rgba(255,255,255,.03) 42%,
+    rgba(255,255,255,.015) 64%,
+    rgba(255,255,255,0) 100%
+  ) !important;
+}
+
+/* 给两侧再加一层轻微暗雾，进一步弱化边缘视觉存在感 */
+#spaceStage.portraitMode .sideBlur::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+#spaceStage.portraitMode .sideBlur.left::after{
+  background:linear-gradient(
+    to right,
+    rgba(0,0,0,.18) 0%,
+    rgba(0,0,0,.10) 26%,
+    rgba(0,0,0,.04) 58%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+#spaceStage.portraitMode .sideBlur.right::after{
+  background:linear-gradient(
+    to left,
+    rgba(0,0,0,.18) 0%,
+    rgba(0,0,0,.10) 26%,
+    rgba(0,0,0,.04) 58%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+
+
+/* =========================================================
+   LOCAL FIX: LANDSCAPE IMAGE FRAMING
+   横图与首页封面底图整体上移取景，减少上部，露出更多底部内容
+   保持 cover 全屏沉浸感，不改结构，只微调垂直取景位置
+========================================================= */
+
+/* 项目空间：横图整体上移，让建筑底板 / 地面多显示一点 */
+#spaceStage .slide.landscape{
+  background-position:center 38% !important;
+}
+
+/* 首页 Hero 封面轮播底图：同样上移取景，避免底部重要内容被切掉 */
+#homePage .home-hero-slide,
+#homePage .hero .bg,
+#homePage #bg,
+#bg{
+  background-position:center 38% !important;
+}
+
+/* 小屏上稍微保守一点，避免上移过多 */
+@media (max-width: 760px){
+  #spaceStage .slide.landscape,
+  #homePage .home-hero-slide,
+  #homePage .hero .bg,
+  #homePage #bg,
+  #bg{
+    background-position:center 42% !important;
+  }
+}
+
 </style>
 </head>
 
@@ -6291,12 +6447,61 @@ const slides = [
   document.getElementById("s3")
 ];
 
+/* =========================
+   LOCAL FIX: NO BLANK SLIDE IN PROJECT SPACE
+   清理空图片地址；轮播只在真实图片数量内运行。
+   如果某张图片加载失败，立即从当前项目图片组中移除，避免出现白页。
+========================= */
+function normalizeProjectImages(projectKey){
+  const p = projects[projectKey];
+  if(!p) return [];
+
+  const seen = new Set();
+  const rawImgs = Array.isArray(p.imgs) ? p.imgs : [];
+
+  const cleanImgs = rawImgs
+    .map(src => typeof src === "string" ? src.trim() : "")
+    .filter(src => src && src !== "none" && src !== "undefined" && src !== "null")
+    .filter(src => {
+      if(seen.has(src)) return false;
+      seen.add(src);
+      return true;
+    })
+    .slice(0, slides.length);
+
+  p.imgs = cleanImgs;
+  return cleanImgs;
+}
+
+function removeBrokenProjectImage(projectKey, badSrc){
+  const p = projects[projectKey];
+  if(!p || !badSrc) return;
+
+  const before = Array.isArray(p.imgs) ? p.imgs.length : 0;
+  p.imgs = (Array.isArray(p.imgs) ? p.imgs : []).filter(src => src && src !== badSrc);
+  normalizeProjectImages(projectKey);
+
+  if(p.imgs.length !== before){
+    slideIndex = Math.min(slideIndex, Math.max(p.imgs.length - 1, 0));
+    loadProject();
+    if(p.imgs.length){
+      setSlide(slideIndex);
+    }
+  }
+}
+
+function getProjectImageCount(projectKey){
+  return normalizeProjectImages(projectKey).length;
+}
+
 function getProjectsByType(type){
   return Object.entries(projects).filter(([key,p])=>p.type===type);
 }
 
 /* 顶部 ARCH / INT / PROD 项目切换菜单 */
 function renderProjectSwitcher(){
+  syncProjectCoverImages();
+
   const switcher = document.getElementById("projectSwitcher");
   const currentType = projects[currentProject].type;
 
@@ -6369,19 +6574,34 @@ function getImageAverageBrightness(img){
 }
 
 function loadProject(){
+  // LOCAL FIX: COVER IMAGE MUST BE FIRST IN PROJECT SPACE
+  // 每次载入项目空间前都重新同步首页卡片封面，避免后续局部修改封面后空间页没有跟着更新。
+  syncProjectCoverImages();
+
   const p = projects[currentProject];
+  const projectImgs = normalizeProjectImages(currentProject);
 
   slides.forEach((sl,idx)=>{
-    const src = p.imgs[idx];
+    const src = projectImgs[idx];
 
     sl.classList.remove("portrait", "landscape");
+    delete sl.dataset.orientation;
+    delete sl.dataset.brightness;
 
     if(!src){
       sl.style.backgroundImage = "none";
-      delete sl.dataset.brightness;
-      delete sl.dataset.orientation;
+      sl.classList.remove("active");
+      sl.dataset.empty = "true";
       return;
     }
+
+    delete sl.dataset.empty;
+
+    // 先立即把图片写入 slide，避免等待图片探测期间仍显示上一张旧图。
+    // 这样进入项目空间后的第 1 张，会马上就是首页对应项目卡片的封面图。
+    sl.classList.add("landscape");
+    sl.dataset.orientation = "landscape";
+    sl.style.backgroundImage = `url(${src})`;
 
     const probe = new Image();
     probe.crossOrigin = "anonymous";
@@ -6394,6 +6614,8 @@ function loadProject(){
       }else{
         delete sl.dataset.brightness;
       }
+
+      sl.classList.remove("portrait", "landscape");
 
       if(isPortrait){
         sl.classList.add("portrait");
@@ -6412,6 +6634,9 @@ function loadProject(){
 
     probe.onerror = function(){
       delete sl.dataset.brightness;
+      sl.style.backgroundImage = "none";
+      sl.dataset.empty = "true";
+      removeBrokenProjectImage(currentProject, src);
       updateStageImageMode();
     };
 
@@ -6444,14 +6669,25 @@ function updateStageImageMode(){
 }
 
 function setSlide(n){
+  const count = getProjectImageCount(currentProject);
+
   slides.forEach(s=>s.classList.remove("active"));
-  slides[n].classList.add("active");
+
+  if(!count){
+    slideIndex = 0;
+    updateStageImageMode();
+    return;
+  }
+
+  slideIndex = ((n % count) + count) % count;
+  slides[slideIndex].classList.add("active");
   updateStageImageMode();
 }
 
 function nextSlide(){
-  const p = projects[currentProject];
-  slideIndex = (slideIndex + 1) % p.imgs.length;
+  const count = getProjectImageCount(currentProject);
+  if(!count) return;
+  slideIndex = (slideIndex + 1) % count;
   setSlide(slideIndex);
 }
 
@@ -6501,6 +6737,7 @@ function openSpace(){
   stage.classList.remove("textOnDark", "textOnLight");
   stage.classList.add("textOnDark");
 
+  syncProjectCoverImages();
   renderProjectSwitcher();
   loadProject();
   setSlide(0);
@@ -6517,8 +6754,9 @@ document.getElementById("spaceStage").addEventListener("wheel",(e)=>{
   if(e.deltaY > 0){
     nextSlide();
   }else{
-    const p = projects[currentProject];
-    slideIndex = (slideIndex - 1 + p.imgs.length) % p.imgs.length;
+    const count = getProjectImageCount(currentProject);
+    if(!count) return;
+    slideIndex = (slideIndex - 1 + count) % count;
     setSlide(slideIndex);
   }
 

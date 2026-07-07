@@ -6376,6 +6376,13 @@ function loadProject(){
 
     sl.classList.remove("portrait", "landscape");
 
+    if(!src){
+      sl.style.backgroundImage = "none";
+      delete sl.dataset.brightness;
+      delete sl.dataset.orientation;
+      return;
+    }
+
     const probe = new Image();
     probe.crossOrigin = "anonymous";
     probe.onload = function(){

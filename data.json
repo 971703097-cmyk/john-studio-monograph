@@ -185,47 +185,47 @@
       "gallery": [
         {
           "src": "assets/projects/dongguan-new-world-interior/01.webp",
-          "alt": "Dongguan New World Residence view 1"
+          "alt": "Dongguan New World view 1"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/02.webp",
-          "alt": "Dongguan New World Residence view 2"
+          "alt": "Dongguan New World view 2"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/03.webp",
-          "alt": "Dongguan New World Residence view 3"
+          "alt": "Dongguan New World view 3"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/04.webp",
-          "alt": "Dongguan New World Residence view 4"
+          "alt": "Dongguan New World view 4"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/05.webp",
-          "alt": "Dongguan New World Residence view 5"
+          "alt": "Dongguan New World view 5"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/06.webp",
-          "alt": "Dongguan New World Residence view 6"
+          "alt": "Dongguan New World view 6"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/07.webp",
-          "alt": "Dongguan New World Residence view 7"
+          "alt": "Dongguan New World view 7"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/08.webp",
-          "alt": "Dongguan New World Residence view 8"
+          "alt": "Dongguan New World view 8"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/09.webp",
-          "alt": "Dongguan New World Residence view 9"
+          "alt": "Dongguan New World view 9"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/10.webp",
-          "alt": "Dongguan New World Residence view 10"
+          "alt": "Dongguan New World view 10"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/11.webp",
-          "alt": "Dongguan New World Residence view 11"
+          "alt": "Dongguan New World view 11"
         }
       ],
       "technicalNotes": [
@@ -307,19 +307,19 @@
       "gallery": [
         {
           "src": "assets/projects/nanjing-huaihe-wharf/01.webp",
-          "alt": "Huaihe Wharf, Nanjing Qinshuang Line view 1"
+          "alt": "Huaihe Wharf, Nanjing view 1"
         },
         {
           "src": "assets/projects/nanjing-huaihe-wharf/02.webp",
-          "alt": "Huaihe Wharf, Nanjing Qinshuang Line view 2"
+          "alt": "Huaihe Wharf, Nanjing view 2"
         },
         {
           "src": "assets/projects/nanjing-huaihe-wharf/03.webp",
-          "alt": "Huaihe Wharf, Nanjing Qinshuang Line view 3"
+          "alt": "Huaihe Wharf, Nanjing view 3"
         },
         {
           "src": "assets/projects/nanjing-huaihe-wharf/04.webp",
-          "alt": "Huaihe Wharf, Nanjing Qinshuang Line view 4"
+          "alt": "Huaihe Wharf, Nanjing view 4"
         }
       ],
       "technicalNotes": [
@@ -585,15 +585,11 @@
       "gallery": [
         {
           "src": "assets/projects/helong-hope-primary-school-extension/01.webp",
-          "alt": "He Long Hope Primary School Extension view 1"
+          "alt": "He Long Hope Primary School view 1"
         },
         {
           "src": "assets/projects/helong-hope-primary-school-extension/02.webp",
-          "alt": "He Long Hope Primary School Extension view 2"
-        },
-        {
-          "src": "assets/projects/helong-hope-primary-school-extension/03.webp",
-          "alt": "He Long Hope Primary School Extension view 3"
+          "alt": "He Long Hope Primary School view 2"
         }
       ],
       "technicalNotes": [
@@ -688,10 +684,6 @@
         {
           "src": "assets/projects/dongguan-vanke-mountain-realm/04.webp",
           "alt": "Dongguan Vanke Mountain Realm view 4"
-        },
-        {
-          "src": "assets/projects/dongguan-vanke-mountain-realm/05.webp",
-          "alt": "Dongguan Vanke Mountain Realm view 5"
         }
       ],
       "technicalNotes": [

@@ -6248,7 +6248,15 @@ const projects = {
       "assets/projects/dongguan-new-world-interior/01.webp",
       "assets/projects/dongguan-new-world-interior/02.webp",
       "assets/projects/dongguan-new-world-interior/03.webp",
-      "assets/projects/dongguan-new-world-interior/04.webp"
+      "assets/projects/dongguan-new-world-interior/04.webp",
+      "assets/projects/dongguan-new-world-interior/05.webp",
+      "assets/projects/dongguan-new-world-interior/06.webp",
+      "assets/projects/dongguan-new-world-interior/07.webp",
+      "assets/projects/dongguan-new-world-interior/08.webp",
+      "assets/projects/dongguan-new-world-interior/09.webp",
+      "assets/projects/dongguan-new-world-interior/10.webp",
+      "assets/projects/dongguan-new-world-interior/11.webp",
+      "assets/projects/dongguan-new-world-interior/closing.webp"
     ]
   },
   nanjingHuaihe:{
@@ -6262,7 +6270,8 @@ const projects = {
       "assets/projects/nanjing-huaihe-wharf/01.webp",
       "assets/projects/nanjing-huaihe-wharf/02.webp",
       "assets/projects/nanjing-huaihe-wharf/03.webp",
-      "assets/projects/nanjing-huaihe-wharf/04.webp"
+      "assets/projects/nanjing-huaihe-wharf/04.webp",
+      "assets/projects/nanjing-huaihe-wharf/closing.webp"
     ]
   },
   barInterior:{
@@ -6276,7 +6285,9 @@ const projects = {
       "assets/projects/bar-interior/01.webp",
       "assets/projects/bar-interior/02.webp",
       "assets/projects/bar-interior/03.webp",
-      "assets/projects/bar-interior/04.webp"
+      "assets/projects/bar-interior/04.webp",
+      "assets/projects/bar-interior/05.webp",
+      "assets/projects/bar-interior/closing.webp"
     ]
   },
   fujianLishui:{
@@ -6302,7 +6313,7 @@ const projects = {
       "assets/projects/helong-hope-primary-school-extension/hero.webp",
       "assets/projects/helong-hope-primary-school-extension/01.webp",
       "assets/projects/helong-hope-primary-school-extension/02.webp",
-      "assets/projects/helong-hope-primary-school-extension/03.webp"
+      "assets/projects/helong-hope-primary-school-extension/closing.webp"
     ]
   },
   dongguanVanke:{
@@ -6316,7 +6327,8 @@ const projects = {
       "assets/projects/dongguan-vanke-mountain-realm/01.webp",
       "assets/projects/dongguan-vanke-mountain-realm/02.webp",
       "assets/projects/dongguan-vanke-mountain-realm/03.webp",
-      "assets/projects/dongguan-vanke-mountain-realm/04.webp"
+      "assets/projects/dongguan-vanke-mountain-realm/04.webp",
+      "assets/projects/dongguan-vanke-mountain-realm/closing.webp"
     ]
   },
   guangzhouNansha:{
@@ -6330,7 +6342,13 @@ const projects = {
       "assets/projects/guangzhou-nansha-yitao-peninsula/01.webp",
       "assets/projects/guangzhou-nansha-yitao-peninsula/02.webp",
       "assets/projects/guangzhou-nansha-yitao-peninsula/03.webp",
-      "assets/projects/guangzhou-nansha-yitao-peninsula/04.webp"
+      "assets/projects/guangzhou-nansha-yitao-peninsula/04.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/05.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/06.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/07.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/08.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/09.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/closing.webp"
     ]
   },
   guangzhouDongshankou:{
@@ -6346,16 +6364,9 @@ const projects = {
       "assets/projects/guangzhou-dongshankou-south-plaza/03.webp",
       "assets/projects/guangzhou-dongshankou-south-plaza/04.webp",
       "assets/projects/guangzhou-dongshankou-south-plaza/05.webp",
-      "assets/projects/guangzhou-dongshankou-south-plaza/06.webp"
+      "assets/projects/guangzhou-dongshankou-south-plaza/06.webp",
+      "assets/projects/guangzhou-dongshankou-south-plaza/closing.webp"
     ]
-  },
-  productConcept:{
-    id:8, type:"product",
-    title:"Product Concept",
-    cn:"产品概念",
-    desc:"Independent product concept space / 独立产品概念空间",
-    card:"",
-    imgs:[]
   }
 };
 
@@ -6367,26 +6378,11 @@ const projects = {
    不改变页面结构、设计样式、动画、导航和空间页逻辑。
 ========================= */
 function syncProjectCoverImages(){
-  const normalizeSrc = src => {
-    try{ return new URL(src, document.baseURI).href; }
-    catch(err){ return String(src || "").trim(); }
-  };
-
   document.querySelectorAll(".card[data-project]").forEach(card=>{
     const key = card.dataset.project;
     const img = card.querySelector("img");
-
     if(!key || !projects[key] || !img) return;
-
-    const coverSrc = img.getAttribute("src") || img.currentSrc;
-    if(!coverSrc) return;
-
-    const coverKey = normalizeSrc(coverSrc);
-    const originalImgs = Array.isArray(projects[key].imgs) ? projects[key].imgs : [];
-    const otherImgs = originalImgs.filter(src=>normalizeSrc(src) !== coverKey);
-
-    projects[key].cover = coverSrc;
-    projects[key].imgs = [coverSrc, ...otherImgs];
+    projects[key].cover = img.getAttribute("src") || img.currentSrc || projects[key].card;
   });
 }
 

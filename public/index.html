@@ -6054,6 +6054,16 @@ html body #homePage .section .title{
   transform:translateX(-50%);
 }
 
+#spaceStage .sideBlur{
+  opacity:0 !important;
+  visibility:hidden !important;
+}
+
+#spaceStage.verticalImageMode .sideBlur{
+  opacity:.78 !important;
+  visibility:visible !important;
+}
+
 #spaceStage .slide::after{
   content:"";
   position:absolute;
@@ -6072,7 +6082,36 @@ html body #homePage .section .title{
 #spaceStage .topnav,
 #spaceStage .meta,
 #spaceStage .hint{
-  z-index:5;
+  z-index:20;
+}
+
+#spaceStage .meta{
+  isolation:isolate;
+}
+
+#spaceStage .meta::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:-18px;
+  right:-22px;
+  top:-14px;
+  bottom:-16px;
+  pointer-events:none;
+  background:linear-gradient(
+    to right,
+    rgba(0,0,0,.34) 0%,
+    rgba(0,0,0,.20) 68%,
+    rgba(0,0,0,0) 100%
+  );
+  filter:blur(.2px);
+}
+
+#spaceStage:not(.verticalImageMode) .sideBlur{
+  opacity:0 !important;
+  visibility:hidden !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
 }
 
 </style>
@@ -7281,7 +7320,9 @@ function updateStageImageMode(){
   const stage = document.getElementById("spaceStage");
   const activeSlide = slides[slideIndex];
   const isPortrait = activeSlide && activeSlide.dataset.orientation === "portrait";
+  const isVerticalImage = activeSlide && activeSlide.dataset.displayMode === "height";
   stage.classList.toggle("portraitMode", isPortrait);
+  stage.classList.toggle("verticalImageMode", isVerticalImage);
 
   const brightness = activeSlide ? Number(activeSlide.dataset.brightness) : NaN;
 

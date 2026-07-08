@@ -6030,6 +6030,20 @@ html body #homePage .section .title{
 }
 
 #spaceStage .spacePhoto{
+  object-position:center center;
+  z-index:1;
+}
+
+#spaceStage .slide.displayCover .spacePhoto{
+  inset:0;
+  width:100%;
+  max-width:none;
+  height:100%;
+  object-fit:cover;
+  transform:none;
+}
+
+#spaceStage .slide.displayHeight .spacePhoto{
   inset:auto;
   top:0;
   left:50%;
@@ -6038,7 +6052,6 @@ html body #homePage .section .title{
   height:100%;
   object-fit:initial;
   transform:translateX(-50%);
-  z-index:1;
 }
 
 #spaceStage .slide::after{
@@ -6569,6 +6582,50 @@ function getProjectImageCount(projectKey){
   return normalizeProjectImages(projectKey).length;
 }
 
+function getSpaceImageDisplayClass(width, height){
+  const imageRatio = width / height;
+  const viewportRatio = window.innerWidth / window.innerHeight;
+
+  if(imageRatio <= 1.25){
+    return "displayHeight";
+  }
+
+  if(imageRatio < viewportRatio){
+    const horizontalGap = 1 - (imageRatio / viewportRatio);
+    return horizontalGap <= 0.18 ? "displayCover" : "displayHeight";
+  }
+
+  return "displayCover";
+}
+
+function applySpaceImageDisplayMode(sl, width, height){
+  if(!sl || !width || !height) return;
+
+  const imageRatio = width / height;
+  const displayClass = getSpaceImageDisplayClass(width, height);
+
+  sl.classList.remove("displayCover", "displayHeight", "portrait", "landscape");
+  sl.classList.add(displayClass);
+  sl.classList.add(imageRatio <= 1.25 ? "portrait" : "landscape");
+
+  sl.dataset.orientation = imageRatio <= 1.25 ? "portrait" : "landscape";
+  sl.dataset.aspectRatio = imageRatio.toFixed(3);
+  sl.dataset.displayMode = displayClass === "displayCover" ? "cover" : "height";
+  sl.dataset.naturalWidth = String(width);
+  sl.dataset.naturalHeight = String(height);
+}
+
+function reapplySpaceImageDisplayModes(){
+  slides.forEach(sl=>{
+    const width = Number(sl.dataset.naturalWidth);
+    const height = Number(sl.dataset.naturalHeight);
+    if(width && height){
+      applySpaceImageDisplayMode(sl, width, height);
+    }
+  });
+  updateStageImageMode();
+}
+
 function getProjectsByType(type){
   return Object.entries(projects).filter(([key,p])=>p.type===type);
 }
@@ -6660,8 +6717,12 @@ function loadProject(){
   slides.forEach((sl,idx)=>{
     const src = projectImgs[idx];
 
-    sl.classList.remove("portrait", "landscape");
+    sl.classList.remove("portrait", "landscape", "displayCover", "displayHeight");
     delete sl.dataset.orientation;
+    delete sl.dataset.aspectRatio;
+    delete sl.dataset.displayMode;
+    delete sl.dataset.naturalWidth;
+    delete sl.dataset.naturalHeight;
     delete sl.dataset.brightness;
 
     if(!src){
@@ -6677,7 +6738,7 @@ function loadProject(){
 
     // 先立即把图片写入 slide，避免等待图片探测期间仍显示上一张旧图。
     // 这样进入项目空间后的第 1 张，会马上就是首页对应项目卡片的封面图。
-    sl.classList.add("landscape");
+    sl.classList.add("landscape", "displayHeight");
     sl.dataset.orientation = "landscape";
     sl.style.backgroundImage = `url(${src}), url(${src})`;
     const backdrop = sl.querySelector(".spaceBackdrop");
@@ -6691,7 +6752,8 @@ function loadProject(){
     const probe = new Image();
     probe.crossOrigin = "anonymous";
     probe.onload = function(){
-      const isPortrait = probe.naturalHeight > probe.naturalWidth;
+      const imageRatio = probe.naturalWidth / probe.naturalHeight;
+      const isPortrait = imageRatio <= 1.25;
       const brightness = getImageAverageBrightness(probe);
 
       if(brightness !== null){
@@ -6700,14 +6762,13 @@ function loadProject(){
         delete sl.dataset.brightness;
       }
 
-      sl.classList.remove("portrait", "landscape");
+      sl.classList.remove("portrait", "landscape", "displayCover", "displayHeight");
+      applySpaceImageDisplayMode(sl, probe.naturalWidth, probe.naturalHeight);
 
       if(isPortrait){
-        sl.classList.add("portrait");
         sl.dataset.orientation = "portrait";
         sl.style.backgroundImage = `url(${src}), url(${src})`;
       }else{
-        sl.classList.add("landscape");
         sl.dataset.orientation = "landscape";
         sl.style.backgroundImage = `url(${src}), url(${src})`;
       }
@@ -6856,6 +6917,12 @@ document.getElementById("spaceStage").addEventListener("wheel",(e)=>{
 
   setTimeout(startSpace,120);
 },{passive:false});
+
+window.addEventListener("resize", ()=>{
+  if(document.getElementById("spacePage").style.display === "block"){
+    reapplySpaceImageDisplayModes();
+  }
+});
 
 
 /* SPACE LEFT CLICK -> HOME, RETURN TO CURRENT PROJECT CARD */

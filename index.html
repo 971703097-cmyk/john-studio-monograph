@@ -5997,8 +5997,8 @@ html body #homePage .section .title{
 }
 
 /* =========================================================
-   PROJECT SPACE COMPLETE IMAGE MODE
-   项目空间页以“完整看图”为优先：主图不裁切，背景只负责承托画面比例差异。
+   PROJECT SPACE HEIGHT-FIRST IMAGE MODE
+   项目空间页以上下完整为优先：保留图片高度，允许左右按屏幕比例裁切。
 ========================================================= */
 #spaceStage .slide{
   background-size:contain, cover !important;
@@ -6030,7 +6030,14 @@ html body #homePage .section .title{
 }
 
 #spaceStage .spacePhoto{
-  object-fit:contain;
+  inset:auto;
+  top:0;
+  left:50%;
+  width:auto;
+  max-width:none;
+  height:100%;
+  object-fit:initial;
+  transform:translateX(-50%);
   z-index:1;
 }
 

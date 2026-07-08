@@ -6116,10 +6116,7 @@ html body #homePage .section .title{
     <div class="topnav" id="projectSwitcher"></div>
 
     <!-- SLIDES -->
-    <div class="slide active" id="s0"></div>
-    <div class="slide" id="s1"></div>
-    <div class="slide" id="s2"></div>
-    <div class="slide" id="s3"></div>
+    <div class="projectSlides" id="projectSlides"></div>
 
     <!-- META -->
     <div class="meta">
@@ -6320,8 +6317,6 @@ const projects = {
    不改变页面结构、设计样式、动画、导航和空间页逻辑。
 ========================= */
 function syncProjectCoverImages(){
-  const maxSpaceSlides = 4;
-
   document.querySelectorAll(".card[data-project]").forEach(card=>{
     const key = card.dataset.project;
     const img = card.querySelector("img");
@@ -6335,7 +6330,7 @@ function syncProjectCoverImages(){
     const otherImgs = originalImgs.filter(src=>src !== coverSrc);
 
     projects[key].cover = coverSrc;
-    projects[key].imgs = [coverSrc, ...otherImgs].slice(0, maxSpaceSlides);
+    projects[key].imgs = [coverSrc, ...otherImgs];
   });
 }
 
@@ -6371,12 +6366,20 @@ function captureHomeReturnState(card){
   };
 }
 
-const slides = [
-  document.getElementById("s0"),
-  document.getElementById("s1"),
-  document.getElementById("s2"),
-  document.getElementById("s3")
-];
+let slides = [];
+
+function renderProjectSlides(imageCount){
+  const container = document.getElementById("projectSlides");
+  if(!container) return;
+
+  const count = Math.max(Number(imageCount) || 0, 1);
+  container.innerHTML = Array.from({length:count}, (_,idx)=>{
+    const active = idx === 0 ? " active" : "";
+    return `<div class="slide${active}" data-slide-index="${idx}"></div>`;
+  }).join("");
+
+  slides = Array.from(container.querySelectorAll(".slide"));
+}
 
 /* =========================
    LOCAL FIX: NO BLANK SLIDE IN PROJECT SPACE
@@ -6397,8 +6400,7 @@ function normalizeProjectImages(projectKey){
       if(seen.has(src)) return false;
       seen.add(src);
       return true;
-    })
-    .slice(0, slides.length);
+    });
 
   p.imgs = cleanImgs;
   return cleanImgs;
@@ -6511,6 +6513,7 @@ function loadProject(){
 
   const p = projects[currentProject];
   const projectImgs = normalizeProjectImages(currentProject);
+  renderProjectSlides(projectImgs.length);
 
   slides.forEach((sl,idx)=>{
     const src = projectImgs[idx];

@@ -6058,29 +6058,7 @@ html body #homePage .section .title{
   <div class="section" id="projects">
     <div class="title">PROJECTS / 项目</div>
 
-    <div class="cards">
-
-      <div class="card arch" data-project="architectureA">
-        <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2e4b">
-        <div class="text">Architecture A<span>建筑项目 A</span></div>
-      </div>
-
-      <div class="card interior" data-project="interiorA">
-        <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625">
-        <div class="text">Interior A<span>室内项目 A</span></div>
-      </div>
-
-      <div class="card product" data-project="productConcept">
-        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e">
-        <div class="text">Product Concept<span>产品概念</span></div>
-      </div>
-
-      <div class="card arch" data-project="architectureB">
-        <img src="https://images.unsplash.com/photo-1496307653780-42ee777d4833">
-        <div class="text">Architecture B<span>建筑项目 B</span></div>
-      </div>
-
-    </div>
+    <div class="cards" id="cardsContainer"></div>
   </div>
 
   <!-- CONTACT -->
@@ -6259,53 +6237,125 @@ const projectTypes = {
 };
 
 const projects = {
-  architectureA:{
-    type:"arch",
-    title:"Architecture A",
-    cn:"建筑项目 A",
-    desc:"Independent architectural project space / 独立建筑项目空间 A",
+  dongguanNewWorld:{
+    id:0, type:"interior",
+    title:"Dongguan New World",
+    cn:"东莞新世界",
+    desc:"A calm interior sequence shaped by material restraint, light, and spatial rhythm.",
+    card:"assets/projects/dongguan-new-world-interior/card.webp",
     imgs:[
-      "https://images.unsplash.com/photo-1505691723518-36a5ac3b2e4b",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e",
-      "https://images.unsplash.com/photo-1496307653780-42ee777d4833",
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625"
+      "assets/projects/dongguan-new-world-interior/hero.webp",
+      "assets/projects/dongguan-new-world-interior/01.webp",
+      "assets/projects/dongguan-new-world-interior/02.webp",
+      "assets/projects/dongguan-new-world-interior/03.webp",
+      "assets/projects/dongguan-new-world-interior/04.webp"
     ]
   },
-  architectureB:{
-    type:"arch",
-    title:"Architecture B",
-    cn:"建筑项目 B",
-    desc:"Independent architectural project space / 独立建筑项目空间 B",
+  nanjingHuaihe:{
+    id:1, type:"arch",
+    title:"Huaihe Wharf, Nanjing",
+    cn:"南京秦双线淮河码头",
+    desc:"A restrained architectural project shaped by site, movement, and public spatial sequence.",
+    card:"assets/projects/nanjing-huaihe-wharf/card.webp",
     imgs:[
-      "https://images.unsplash.com/photo-1496307653780-42ee777d4833",
-      "https://images.unsplash.com/photo-1518005020951-eccb494ad742",
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2",
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+      "assets/projects/nanjing-huaihe-wharf/hero.webp",
+      "assets/projects/nanjing-huaihe-wharf/01.webp",
+      "assets/projects/nanjing-huaihe-wharf/02.webp",
+      "assets/projects/nanjing-huaihe-wharf/03.webp",
+      "assets/projects/nanjing-huaihe-wharf/04.webp"
     ]
   },
-  interiorA:{
-    type:"interior",
-    title:"Interior A",
-    cn:"室内项目 A",
-    desc:"Independent interior project space / 独立室内项目空间 A",
+  barInterior:{
+    id:2, type:"interior",
+    title:"Bar Interior",
+    cn:"酒吧室内",
+    desc:"A calm interior sequence shaped by material restraint, light, and spatial rhythm.",
+    card:"assets/projects/bar-interior/card.webp",
     imgs:[
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
-      "https://images.unsplash.com/photo-1505691723518-36a5ac3b2e4b",
-      "https://images.unsplash.com/photo-1518005020951-eccb494ad742",
-      "https://images.unsplash.com/photo-1496307653780-42ee777d4833"
+      "assets/projects/bar-interior/hero.webp",
+      "assets/projects/bar-interior/01.webp",
+      "assets/projects/bar-interior/02.webp",
+      "assets/projects/bar-interior/03.webp",
+      "assets/projects/bar-interior/04.webp"
+    ]
+  },
+  fujianLishui:{
+    id:3, type:"arch",
+    title:"Lishui Hot Spring Visitor Center",
+    cn:"福建利水温泉游客中心",
+    desc:"A restrained architectural project shaped by site, movement, and public spatial sequence.",
+    card:"assets/projects/fujian-lishui-hot-spring-visitor-center/card.webp",
+    imgs:[
+      "assets/projects/fujian-lishui-hot-spring-visitor-center/hero.webp",
+      "assets/projects/fujian-lishui-hot-spring-visitor-center/01.webp",
+      "assets/projects/fujian-lishui-hot-spring-visitor-center/02.webp",
+      "assets/projects/fujian-lishui-hot-spring-visitor-center/closing.webp"
+    ]
+  },
+  helongSchool:{
+    id:4, type:"arch",
+    title:"He Long Hope Primary School",
+    cn:"贺龙希望小学扩建",
+    desc:"A restrained architectural project shaped by site, movement, and public spatial sequence.",
+    card:"assets/projects/helong-hope-primary-school-extension/card.webp",
+    imgs:[
+      "assets/projects/helong-hope-primary-school-extension/hero.webp",
+      "assets/projects/helong-hope-primary-school-extension/01.webp",
+      "assets/projects/helong-hope-primary-school-extension/02.webp",
+      "assets/projects/helong-hope-primary-school-extension/03.webp"
+    ]
+  },
+  dongguanVanke:{
+    id:5, type:"interior",
+    title:"Dongguan Vanke Mountain Realm",
+    cn:"东莞 · 万科山境",
+    desc:"A calm interior sequence shaped by material restraint, light, and spatial rhythm.",
+    card:"assets/projects/dongguan-vanke-mountain-realm/card.webp",
+    imgs:[
+      "assets/projects/dongguan-vanke-mountain-realm/hero.webp",
+      "assets/projects/dongguan-vanke-mountain-realm/01.webp",
+      "assets/projects/dongguan-vanke-mountain-realm/02.webp",
+      "assets/projects/dongguan-vanke-mountain-realm/03.webp",
+      "assets/projects/dongguan-vanke-mountain-realm/04.webp"
+    ]
+  },
+  guangzhouNansha:{
+    id:6, type:"interior",
+    title:"Guangzhou Nansha Yitao Peninsula",
+    cn:"广州 · 南沙逸涛半岛",
+    desc:"A calm interior sequence shaped by material restraint, light, and spatial rhythm.",
+    card:"assets/projects/guangzhou-nansha-yitao-peninsula/card.webp",
+    imgs:[
+      "assets/projects/guangzhou-nansha-yitao-peninsula/hero.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/01.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/02.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/03.webp",
+      "assets/projects/guangzhou-nansha-yitao-peninsula/04.webp"
+    ]
+  },
+  guangzhouDongshankou:{
+    id:7, type:"arch",
+    title:"Dongshankou South Plaza",
+    cn:"广州东山口南广场",
+    desc:"An urban public space intervention shaped by site memory, community rhythm, and architectural dialogue.",
+    card:"assets/projects/guangzhou-dongshankou-south-plaza/card.webp",
+    imgs:[
+      "assets/projects/guangzhou-dongshankou-south-plaza/hero.webp",
+      "assets/projects/guangzhou-dongshankou-south-plaza/01.webp",
+      "assets/projects/guangzhou-dongshankou-south-plaza/02.webp",
+      "assets/projects/guangzhou-dongshankou-south-plaza/03.webp",
+      "assets/projects/guangzhou-dongshankou-south-plaza/04.webp",
+      "assets/projects/guangzhou-dongshankou-south-plaza/05.webp",
+      "assets/projects/guangzhou-dongshankou-south-plaza/06.webp"
     ]
   },
   productConcept:{
-    type:"product",
+    id:8, type:"product",
     title:"Product Concept",
     cn:"产品概念",
     desc:"Independent product concept space / 独立产品概念空间",
-    imgs:[
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e",
-      "https://images.unsplash.com/photo-1505691723518-36a5ac3b2e4b",
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
-      "https://images.unsplash.com/photo-1496307653780-42ee777d4833"
-    ]
+    card:"",
+    imgs:[]
   }
 };
 
@@ -6336,7 +6386,7 @@ function syncProjectCoverImages(){
 
 syncProjectCoverImages();
 
-let currentProject = "architectureA";
+let currentProject = "dongguanNewWorld";
 let slideIndex = 0;
 let spaceTimer = null;
 let lastCard = null;
@@ -6656,7 +6706,7 @@ document.querySelectorAll(".card").forEach(card=>{
 
     captureHomeReturnState(card);
     lastCard = card;
-    currentProject = card.dataset.project || "architectureA";
+    currentProject = card.dataset.project || "dongguanNewWorld";
     slideIndex = 0;
 
     openSpace();

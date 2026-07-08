@@ -6114,10 +6114,10 @@ html body #homePage .section .title{
    HOME HERO BACKGROUND
 ========================= */
 const heroImages=[
- "https://images.unsplash.com/photo-1505691723518-36a5ac3b2e4b",
- "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
- "https://images.unsplash.com/photo-1503387762-592deb58ef4e",
- "https://images.unsplash.com/photo-1496307653780-42ee777d4833"
+ "assets/projects/dongguan-new-world-interior/hero.webp",
+ "assets/projects/nanjing-huaihe-wharf/hero.webp",
+ "assets/projects/bar-interior/hero.webp",
+ "assets/projects/guangzhou-dongshankou-south-plaza/hero.webp"
 ];
 
 let heroIndex=0;
@@ -6367,22 +6367,47 @@ const projects = {
    不改变页面结构、设计样式、动画、导航和空间页逻辑。
 ========================= */
 function syncProjectCoverImages(){
+  const normalizeSrc = src => {
+    try{ return new URL(src, document.baseURI).href; }
+    catch(err){ return String(src || "").trim(); }
+  };
+
   document.querySelectorAll(".card[data-project]").forEach(card=>{
     const key = card.dataset.project;
     const img = card.querySelector("img");
 
     if(!key || !projects[key] || !img) return;
 
-    const coverSrc = img.currentSrc || img.getAttribute("src");
+    const coverSrc = img.getAttribute("src") || img.currentSrc;
     if(!coverSrc) return;
 
+    const coverKey = normalizeSrc(coverSrc);
     const originalImgs = Array.isArray(projects[key].imgs) ? projects[key].imgs : [];
-    const otherImgs = originalImgs.filter(src=>src !== coverSrc);
+    const otherImgs = originalImgs.filter(src=>normalizeSrc(src) !== coverKey);
 
     projects[key].cover = coverSrc;
     projects[key].imgs = [coverSrc, ...otherImgs];
   });
 }
+
+function renderHomeProjectCards(){
+  const cardsContainer = document.getElementById("cardsContainer");
+  if(!cardsContainer) return;
+
+  cardsContainer.innerHTML = Object.entries(projects)
+    .filter(([key, p]) => p.card)
+    .map(([key, p]) => {
+      return `
+        <div class="card ${p.type}" data-project="${key}">
+          <img src="${p.card}" alt="${p.title}">
+          <div class="text">${p.title}<span>${p.cn}</span></div>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+renderHomeProjectCards();
 
 syncProjectCoverImages();
 
@@ -6489,7 +6514,7 @@ function renderProjectSwitcher(){
   const currentType = projects[currentProject].type;
 
   switcher.innerHTML = Object.entries(projectTypes).map(([type,label])=>{
-    const list = getProjectsByType(type).map(([key,p])=>{
+    const list = getProjectsByType(type).filter(([key,p])=>Array.isArray(p.imgs) && p.imgs.length).map(([key,p])=>{
       const current = key === currentProject ? "current" : "";
       const preview = p.imgs[0];
 
@@ -6700,18 +6725,25 @@ function switchProject(key){
 }
 
 /* HOME CARD -> PROJECT SPACE */
-document.querySelectorAll(".card").forEach(card=>{
-  card.addEventListener("click",(e)=>{
-    e.stopPropagation();
+function bindProjectCardClicks(){
+  document.querySelectorAll(".card").forEach(card=>{
+    if(card.dataset.bound === "true") return;
+    card.dataset.bound = "true";
 
-    captureHomeReturnState(card);
-    lastCard = card;
-    currentProject = card.dataset.project || "dongguanNewWorld";
-    slideIndex = 0;
+    card.addEventListener("click",(e)=>{
+      e.stopPropagation();
 
-    openSpace();
+      captureHomeReturnState(card);
+      lastCard = card;
+      currentProject = card.dataset.project || "dongguanNewWorld";
+      slideIndex = 0;
+
+      openSpace();
+    });
   });
-});
+}
+
+bindProjectCardClicks();
 
 function openSpace(){
   document.getElementById("spacePage").style.display="block";
@@ -7703,10 +7735,10 @@ function closeSpace(){
   const images = Array.isArray(window.heroImages) && window.heroImages.length
     ? window.heroImages.slice()
     : [
-      "https://images.unsplash.com/photo-1505691723518-36a5ac3b2e4b",
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e",
-      "https://images.unsplash.com/photo-1496307653780-42ee777d4833"
+      "assets/projects/dongguan-new-world-interior/hero.webp",
+      "assets/projects/nanjing-huaihe-wharf/hero.webp",
+      "assets/projects/bar-interior/hero.webp",
+      "assets/projects/guangzhou-dongshankou-south-plaza/hero.webp"
     ];
 
   const slideWrap = document.createElement("div");

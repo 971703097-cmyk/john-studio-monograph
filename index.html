@@ -6060,8 +6060,32 @@ html body #homePage .section .title{
 }
 
 #spaceStage.verticalImageMode .sideBlur{
-  opacity:.78 !important;
+  opacity:.62 !important;
   visibility:visible !important;
+}
+
+#spaceStage.verticalImageMode .sideBlur.left,
+#spaceStage.verticalImageMode .sideBlur.right{
+  background:rgba(18,18,18,.18) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.055),
+    inset 0 0 40px rgba(255,255,255,.035) !important;
+  backdrop-filter:blur(18px) saturate(1.08) brightness(.86) contrast(.96) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(1.08) brightness(.86) contrast(.96) !important;
+}
+
+#spaceStage.verticalImageMode .sideBlur.left{
+  mask-image:linear-gradient(to right, rgba(0,0,0,.95) 0%, rgba(0,0,0,.82) 62%, rgba(0,0,0,0) 100%) !important;
+  -webkit-mask-image:linear-gradient(to right, rgba(0,0,0,.95) 0%, rgba(0,0,0,.82) 62%, rgba(0,0,0,0) 100%) !important;
+}
+
+#spaceStage.verticalImageMode .sideBlur.right{
+  mask-image:linear-gradient(to left, rgba(0,0,0,.95) 0%, rgba(0,0,0,.82) 62%, rgba(0,0,0,0) 100%) !important;
+  -webkit-mask-image:linear-gradient(to left, rgba(0,0,0,.95) 0%, rgba(0,0,0,.82) 62%, rgba(0,0,0,0) 100%) !important;
+}
+
+#spaceStage.verticalImageMode .sideBlur::after{
+  display:none !important;
 }
 
 #spaceStage .slide::after{

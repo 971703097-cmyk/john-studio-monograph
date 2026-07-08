@@ -5996,6 +5996,65 @@ html body #homePage .section .title{
   }
 }
 
+/* =========================================================
+   PROJECT SPACE COMPLETE IMAGE MODE
+   项目空间页以“完整看图”为优先：主图不裁切，背景只负责承托画面比例差异。
+========================================================= */
+#spaceStage .slide{
+  background-size:contain, cover !important;
+  background-position:center, center !important;
+  background-repeat:no-repeat, no-repeat !important;
+  transform:none !important;
+  overflow:hidden;
+}
+
+#spaceStage .slide.active{
+  transform:none !important;
+}
+
+#spaceStage .spaceBackdrop,
+#spaceStage .spacePhoto{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  user-select:none;
+}
+
+#spaceStage .spaceBackdrop{
+  object-fit:cover;
+  filter:blur(24px) brightness(.52) saturate(.9);
+  transform:scale(1.06);
+  opacity:.72;
+}
+
+#spaceStage .spacePhoto{
+  object-fit:contain;
+  z-index:1;
+}
+
+#spaceStage .slide::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.10) 0%,
+    rgba(0,0,0,0) 22%,
+    rgba(0,0,0,0) 68%,
+    rgba(0,0,0,.18) 100%
+  );
+}
+
+#spaceStage .topnav,
+#spaceStage .meta,
+#spaceStage .hint{
+  z-index:5;
+}
+
 </style>
 </head>
 
@@ -6446,7 +6505,12 @@ function renderProjectSlides(imageCount){
   const count = Math.max(Number(imageCount) || 0, 1);
   container.innerHTML = Array.from({length:count}, (_,idx)=>{
     const active = idx === 0 ? " active" : "";
-    return `<div class="slide${active}" data-slide-index="${idx}"></div>`;
+    return `
+      <div class="slide${active}" data-slide-index="${idx}">
+        <img class="spaceBackdrop" alt="" aria-hidden="true">
+        <img class="spacePhoto" alt="">
+      </div>
+    `;
   }).join("");
 
   slides = Array.from(container.querySelectorAll(".slide"));
@@ -6595,6 +6659,8 @@ function loadProject(){
 
     if(!src){
       sl.style.backgroundImage = "none";
+      sl.querySelector(".spaceBackdrop")?.removeAttribute("src");
+      sl.querySelector(".spacePhoto")?.removeAttribute("src");
       sl.classList.remove("active");
       sl.dataset.empty = "true";
       return;
@@ -6606,7 +6672,14 @@ function loadProject(){
     // 这样进入项目空间后的第 1 张，会马上就是首页对应项目卡片的封面图。
     sl.classList.add("landscape");
     sl.dataset.orientation = "landscape";
-    sl.style.backgroundImage = `url(${src})`;
+    sl.style.backgroundImage = `url(${src}), url(${src})`;
+    const backdrop = sl.querySelector(".spaceBackdrop");
+    const photo = sl.querySelector(".spacePhoto");
+    if(backdrop) backdrop.src = src;
+    if(photo){
+      photo.src = src;
+      photo.alt = `${p.title} image ${idx + 1}`;
+    }
 
     const probe = new Image();
     probe.crossOrigin = "anonymous";
@@ -6629,7 +6702,7 @@ function loadProject(){
       }else{
         sl.classList.add("landscape");
         sl.dataset.orientation = "landscape";
-        sl.style.backgroundImage = `url(${src})`;
+        sl.style.backgroundImage = `url(${src}), url(${src})`;
       }
 
       if(sl.classList.contains("active")){
@@ -6640,6 +6713,8 @@ function loadProject(){
     probe.onerror = function(){
       delete sl.dataset.brightness;
       sl.style.backgroundImage = "none";
+      sl.querySelector(".spaceBackdrop")?.removeAttribute("src");
+      sl.querySelector(".spacePhoto")?.removeAttribute("src");
       sl.dataset.empty = "true";
       removeBrokenProjectImage(currentProject, src);
       updateStageImageMode();

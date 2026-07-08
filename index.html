@@ -6004,12 +6004,14 @@ html body #homePage .section .title{
   background-size:contain, cover !important;
   background-position:center, center !important;
   background-repeat:no-repeat, no-repeat !important;
-  transform:none !important;
+  transform:scale(1.05);
+  transition:opacity 1.2s ease, transform 5s ease;
+  will-change:opacity, transform;
   overflow:hidden;
 }
 
 #spaceStage .slide.active{
-  transform:none !important;
+  transform:scale(1.12);
 }
 
 #spaceStage .spaceBackdrop,

@@ -185,47 +185,47 @@
       "gallery": [
         {
           "src": "assets/projects/dongguan-new-world-interior/01.webp",
-          "alt": "Dongguan New World view 1"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 1"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/02.webp",
-          "alt": "Dongguan New World view 2"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 2"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/03.webp",
-          "alt": "Dongguan New World view 3"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 3"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/04.webp",
-          "alt": "Dongguan New World view 4"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 4"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/05.webp",
-          "alt": "Dongguan New World view 5"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 5"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/06.webp",
-          "alt": "Dongguan New World view 6"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 6"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/07.webp",
-          "alt": "Dongguan New World view 7"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 7"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/08.webp",
-          "alt": "Dongguan New World view 8"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 8"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/09.webp",
-          "alt": "Dongguan New World view 9"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 9"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/10.webp",
-          "alt": "Dongguan New World view 10"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 10"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/11.webp",
-          "alt": "Dongguan New World view 11"
+          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 11"
         }
       ],
       "technicalNotes": [
@@ -307,19 +307,19 @@
       "gallery": [
         {
           "src": "assets/projects/nanjing-huaihe-wharf/01.webp",
-          "alt": "Huaihe Wharf, Nanjing view 1"
+          "alt": "{'en': 'Huaihe Wharf, Nanjing Qinshuang Line', 'cn': '南京秦双线淮河码头'} view 1"
         },
         {
           "src": "assets/projects/nanjing-huaihe-wharf/02.webp",
-          "alt": "Huaihe Wharf, Nanjing view 2"
+          "alt": "{'en': 'Huaihe Wharf, Nanjing Qinshuang Line', 'cn': '南京秦双线淮河码头'} view 2"
         },
         {
           "src": "assets/projects/nanjing-huaihe-wharf/03.webp",
-          "alt": "Huaihe Wharf, Nanjing view 3"
+          "alt": "{'en': 'Huaihe Wharf, Nanjing Qinshuang Line', 'cn': '南京秦双线淮河码头'} view 3"
         },
         {
           "src": "assets/projects/nanjing-huaihe-wharf/04.webp",
-          "alt": "Huaihe Wharf, Nanjing view 4"
+          "alt": "{'en': 'Huaihe Wharf, Nanjing Qinshuang Line', 'cn': '南京秦双线淮河码头'} view 4"
         }
       ],
       "technicalNotes": [
@@ -401,23 +401,23 @@
       "gallery": [
         {
           "src": "assets/projects/bar-interior/01.webp",
-          "alt": "Bar Interior view 1"
+          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 1"
         },
         {
           "src": "assets/projects/bar-interior/02.webp",
-          "alt": "Bar Interior view 2"
+          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 2"
         },
         {
           "src": "assets/projects/bar-interior/03.webp",
-          "alt": "Bar Interior view 3"
+          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 3"
         },
         {
           "src": "assets/projects/bar-interior/04.webp",
-          "alt": "Bar Interior view 4"
+          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 4"
         },
         {
           "src": "assets/projects/bar-interior/05.webp",
-          "alt": "Bar Interior view 5"
+          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 5"
         }
       ],
       "technicalNotes": [
@@ -499,11 +499,11 @@
       "gallery": [
         {
           "src": "assets/projects/fujian-lishui-hot-spring-visitor-center/01.webp",
-          "alt": "Lishui Hot Spring Visitor Center view 1"
+          "alt": "{'en': 'Lishui Hot Spring Visitor Center', 'cn': '福建利水温泉游客中心'} view 1"
         },
         {
           "src": "assets/projects/fujian-lishui-hot-spring-visitor-center/02.webp",
-          "alt": "Lishui Hot Spring Visitor Center view 2"
+          "alt": "{'en': 'Lishui Hot Spring Visitor Center', 'cn': '福建利水温泉游客中心'} view 2"
         }
       ],
       "technicalNotes": [
@@ -585,11 +585,11 @@
       "gallery": [
         {
           "src": "assets/projects/helong-hope-primary-school-extension/01.webp",
-          "alt": "He Long Hope Primary School view 1"
+          "alt": "{'en': 'He Long Hope Primary School Extension', 'cn': '贺龙希望小学扩建'} view 1"
         },
         {
           "src": "assets/projects/helong-hope-primary-school-extension/02.webp",
-          "alt": "He Long Hope Primary School view 2"
+          "alt": "{'en': 'He Long Hope Primary School Extension', 'cn': '贺龙希望小学扩建'} view 2"
         }
       ],
       "technicalNotes": [
@@ -671,19 +671,19 @@
       "gallery": [
         {
           "src": "assets/projects/dongguan-vanke-mountain-realm/01.webp",
-          "alt": "Dongguan Vanke Mountain Realm view 1"
+          "alt": "{'en': 'Dongguan Vanke Mountain Realm', 'cn': '东莞 · 万科山境'} view 1"
         },
         {
           "src": "assets/projects/dongguan-vanke-mountain-realm/02.webp",
-          "alt": "Dongguan Vanke Mountain Realm view 2"
+          "alt": "{'en': 'Dongguan Vanke Mountain Realm', 'cn': '东莞 · 万科山境'} view 2"
         },
         {
           "src": "assets/projects/dongguan-vanke-mountain-realm/03.webp",
-          "alt": "Dongguan Vanke Mountain Realm view 3"
+          "alt": "{'en': 'Dongguan Vanke Mountain Realm', 'cn': '东莞 · 万科山境'} view 3"
         },
         {
           "src": "assets/projects/dongguan-vanke-mountain-realm/04.webp",
-          "alt": "Dongguan Vanke Mountain Realm view 4"
+          "alt": "{'en': 'Dongguan Vanke Mountain Realm', 'cn': '东莞 · 万科山境'} view 4"
         }
       ],
       "technicalNotes": [
@@ -765,39 +765,39 @@
       "gallery": [
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/01.webp",
-          "alt": "Guangzhou Nansha Yitao Peninsula view 1"
+          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 1"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/02.webp",
-          "alt": "Guangzhou Nansha Yitao Peninsula view 2"
+          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 2"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/03.webp",
-          "alt": "Guangzhou Nansha Yitao Peninsula view 3"
+          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 3"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/04.webp",
-          "alt": "Guangzhou Nansha Yitao Peninsula view 4"
+          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 4"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/05.webp",
-          "alt": "Guangzhou Nansha Yitao Peninsula view 5"
+          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 5"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/06.webp",
-          "alt": "Guangzhou Nansha Yitao Peninsula view 6"
+          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 6"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/07.webp",
-          "alt": "Guangzhou Nansha Yitao Peninsula view 7"
+          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 7"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/08.webp",
-          "alt": "Guangzhou Nansha Yitao Peninsula view 8"
+          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 8"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/09.webp",
-          "alt": "Guangzhou Nansha Yitao Peninsula view 9"
+          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 9"
         }
       ],
       "technicalNotes": [
@@ -879,27 +879,27 @@
       "gallery": [
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/01.webp",
-          "alt": "Dongshankou South Plaza view 1"
+          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 1"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/02.webp",
-          "alt": "Dongshankou South Plaza view 2"
+          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 2"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/03.webp",
-          "alt": "Dongshankou South Plaza view 3"
+          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 3"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/04.webp",
-          "alt": "Dongshankou South Plaza view 4"
+          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 4"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/05.webp",
-          "alt": "Dongshankou South Plaza view 5"
+          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 5"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/06.webp",
-          "alt": "Dongshankou South Plaza view 6"
+          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 6"
         }
       ],
       "closingImage": "assets/projects/guangzhou-dongshankou-south-plaza/closing.webp",

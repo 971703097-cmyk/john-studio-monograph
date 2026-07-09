@@ -6282,8 +6282,14 @@ const heroImages=[
  "assets/projects/dongguan-new-world-interior/hero.webp",
  "assets/projects/nanjing-huaihe-wharf/hero.webp",
  "assets/projects/bar-interior/hero.webp",
+ "assets/projects/fujian-lishui-hot-spring-visitor-center/hero.webp",
+ "assets/projects/helong-hope-primary-school-extension/hero.webp",
+ "assets/projects/dongguan-vanke-mountain-realm/hero.webp",
+ "assets/projects/zhaoqing-huaiji-hotel/hero.webp",
+ "assets/projects/guangzhou-nansha-yitao-peninsula/hero.webp",
  "assets/projects/guangzhou-dongshankou-south-plaza/hero.webp"
 ];
+window.heroImages = heroImages;
 
 let heroIndex=0;
 const bg=document.getElementById("bg");
@@ -6558,6 +6564,10 @@ const projects = {
     ]
   }
 };
+
+window.heroImages = Object.values(projects)
+  .map(project => project && project.imgs && project.imgs[0])
+  .filter(Boolean);
 
 const projectImageMeta = {
   "assets/projects/bar-interior/01.webp": {

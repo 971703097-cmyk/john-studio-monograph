@@ -6197,6 +6197,90 @@ html body #homePage .section .title{
   -webkit-backdrop-filter:none !important;
 }
 
+/* =========================================================
+   FINAL PROJECT IMAGE MODE RULES
+   Canonical display behavior after image-ratio scan:
+   panorama = horizontal pan, landscape = full cover,
+   square / portrait = full-height image with glass side support.
+========================================================= */
+#spaceStage.portraitMode .sideBlur{
+  opacity:0 !important;
+  visibility:hidden !important;
+}
+
+#spaceStage[data-image-mode="cover"] .sideBlur,
+#spaceStage[data-image-mode="panorama"] .sideBlur{
+  opacity:0 !important;
+  visibility:hidden !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+#spaceStage .slide.displayCover.landscape,
+#spaceStage .slide.displayCover.landscape.active{
+  background-size:cover !important;
+  background-position:center bottom !important;
+}
+
+#spaceStage .slide.displayCover.landscape .spaceBackdrop{
+  opacity:0 !important;
+  visibility:hidden !important;
+}
+
+#spaceStage .slide.displayCover.landscape .spacePhoto{
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  object-fit:cover !important;
+  object-position:center bottom !important;
+  transform:none !important;
+}
+
+#spaceStage .slide.displayHeight,
+#spaceStage .slide.displayHeight.active{
+  transform:none !important;
+  background-size:cover !important;
+  background-position:center center !important;
+}
+
+#spaceStage .slide.displayHeight .spaceBackdrop{
+  opacity:.72 !important;
+  visibility:visible !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+  filter:blur(22px) brightness(.48) saturate(.96) !important;
+  transform:scale(1.08) !important;
+}
+
+#spaceStage .slide.displayHeight .spacePhoto{
+  inset:auto !important;
+  top:0 !important;
+  bottom:auto !important;
+  left:50% !important;
+  width:auto !important;
+  max-width:none !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  transform:translateX(-50%) !important;
+}
+
+#spaceStage.verticalImageMode .sideBlur{
+  opacity:.58 !important;
+  visibility:visible !important;
+  z-index:6 !important;
+}
+
+#spaceStage.verticalImageMode .sideBlur.left,
+#spaceStage.verticalImageMode .sideBlur.right{
+  background:rgba(18,18,18,.16) !important;
+  backdrop-filter:blur(18px) saturate(1.04) brightness(.86) contrast(.96) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(1.04) brightness(.86) contrast(.96) !important;
+}
+
 </style>
 </head>
 
@@ -7322,39 +7406,52 @@ function getProjectImageCount(projectKey){
   return normalizeProjectImages(projectKey).length;
 }
 
-function getSpaceImageDisplayClass(width, height){
+function getSpaceImageKind(width, height){
   const imageRatio = width / height;
 
   if(imageRatio > 2.2){
+    return "panorama";
+  }
+
+  if(imageRatio >= 1.25){
+    return "landscape";
+  }
+
+  if(imageRatio >= 0.85){
+    return "square";
+  }
+
+  return "portrait";
+}
+
+function getSpaceImageDisplayClass(width, height){
+  const imageKind = getSpaceImageKind(width, height);
+
+  if(imageKind === "panorama"){
     return "displayPanorama";
   }
 
-  if(imageRatio < 1.25){
-    return "displayHeight";
+  if(imageKind === "landscape"){
+    return "displayCover";
   }
 
-  return "displayCover";
-}
-
-function getSpaceImageDisplayClassFromMeta(meta){
-  if(!meta || !meta.width || !meta.height) return null;
-  return getSpaceImageDisplayClass(meta.width, meta.height);
+  return "displayHeight";
 }
 
 function applySpaceImageDisplayMode(sl, width, height){
   if(!sl || !width || !height) return;
 
   const imageRatio = width / height;
-  const meta = projectImageMeta && projectImageMeta[sl.dataset.src];
-  const displayClass = getSpaceImageDisplayClassFromMeta(meta) || getSpaceImageDisplayClass(width, height);
+  const imageKind = getSpaceImageKind(width, height);
+  const displayClass = getSpaceImageDisplayClass(width, height);
 
-  sl.classList.remove("displayCover", "displayHeight", "displayPanorama", "portrait", "landscape");
+  sl.classList.remove("displayCover", "displayHeight", "displayPanorama", "portrait", "landscape", "square", "panorama");
   sl.classList.add(displayClass);
-  sl.classList.add(imageRatio <= 1.25 ? "portrait" : "landscape");
+  sl.classList.add(imageKind);
 
-  sl.dataset.orientation = imageRatio <= 1.25 ? "portrait" : "landscape";
+  sl.dataset.orientation = imageKind;
   sl.dataset.aspectRatio = imageRatio.toFixed(3);
-  sl.dataset.displayMode = displayClass === "displayPanorama" ? "panorama" : (displayClass === "displayCover" ? "cover" : "height");
+  sl.dataset.displayMode = imageKind === "panorama" ? "panorama" : (imageKind === "landscape" ? "cover" : "height");
   sl.dataset.naturalWidth = String(width);
   sl.dataset.naturalHeight = String(height);
 }
@@ -7461,7 +7558,7 @@ function loadProject(){
   slides.forEach((sl,idx)=>{
     const src = projectImgs[idx];
 
-    sl.classList.remove("portrait", "landscape", "displayCover", "displayHeight", "displayPanorama");
+    sl.classList.remove("portrait", "landscape", "square", "panorama", "displayCover", "displayHeight", "displayPanorama");
     delete sl.dataset.orientation;
     delete sl.dataset.aspectRatio;
     delete sl.dataset.displayMode;
@@ -7484,8 +7581,9 @@ function loadProject(){
 
     // 先立即把图片写入 slide，避免等待图片探测期间仍显示上一张旧图。
     // 这样进入项目空间后的第 1 张，会马上就是首页对应项目卡片的封面图。
-    sl.classList.add("landscape", "displayHeight");
+    sl.classList.add("landscape", "displayCover");
     sl.dataset.orientation = "landscape";
+    sl.dataset.displayMode = "cover";
     sl.style.backgroundImage = `url(${src}), url(${src})`;
     const backdrop = sl.querySelector(".spaceBackdrop");
     const photo = sl.querySelector(".spacePhoto");
@@ -7495,16 +7593,10 @@ function loadProject(){
       photo.alt = `${p.title} image ${idx + 1}`;
     }
 
-    const meta = projectImageMeta && projectImageMeta[src];
-    if(meta){
-      applySpaceImageDisplayMode(sl, meta.width, meta.height);
-    }
-
     const probe = new Image();
     probe.crossOrigin = "anonymous";
     probe.onload = function(){
-      const imageRatio = probe.naturalWidth / probe.naturalHeight;
-      const isPortrait = imageRatio <= 1.25;
+      const imageKind = getSpaceImageKind(probe.naturalWidth, probe.naturalHeight);
       const brightness = getImageAverageBrightness(probe);
 
       if(brightness !== null){
@@ -7513,16 +7605,11 @@ function loadProject(){
         delete sl.dataset.brightness;
       }
 
-      sl.classList.remove("portrait", "landscape", "displayCover", "displayHeight", "displayPanorama");
+      sl.classList.remove("portrait", "landscape", "square", "panorama", "displayCover", "displayHeight", "displayPanorama");
       applySpaceImageDisplayMode(sl, probe.naturalWidth, probe.naturalHeight);
 
-      if(isPortrait){
-        sl.dataset.orientation = "portrait";
-        sl.style.backgroundImage = `url(${src}), url(${src})`;
-      }else{
-        sl.dataset.orientation = "landscape";
-        sl.style.backgroundImage = `url(${src}), url(${src})`;
-      }
+      sl.dataset.orientation = imageKind;
+      sl.style.backgroundImage = `url(${src}), url(${src})`;
 
       if(sl.classList.contains("active")){
         updateStageImageMode();
@@ -7550,10 +7637,11 @@ function loadProject(){
 function updateStageImageMode(){
   const stage = document.getElementById("spaceStage");
   const activeSlide = slides[slideIndex];
-  const isPortrait = activeSlide && activeSlide.dataset.orientation === "portrait";
   const isVerticalImage = activeSlide && activeSlide.dataset.displayMode === "height";
-  stage.classList.toggle("portraitMode", isPortrait);
+  stage.classList.remove("portraitMode");
   stage.classList.toggle("verticalImageMode", isVerticalImage);
+  stage.dataset.imageMode = activeSlide ? (activeSlide.dataset.displayMode || "") : "";
+  stage.dataset.imageOrientation = activeSlide ? (activeSlide.dataset.orientation || "") : "";
 
   const brightness = activeSlide ? Number(activeSlide.dataset.brightness) : NaN;
 

@@ -6014,6 +6014,14 @@ html body #homePage .section .title{
   transform:scale(1.12);
 }
 
+#spaceStage .slide.displayHeight{
+  transform:scale(.965);
+}
+
+#spaceStage .slide.displayHeight.active{
+  transform:scale(1);
+}
+
 #spaceStage .spaceBackdrop,
 #spaceStage .spacePhoto{
   position:absolute;
@@ -6034,6 +6042,11 @@ html body #homePage .section .title{
 #spaceStage .spacePhoto{
   object-position:center center;
   z-index:1;
+}
+
+#spaceStage .slide.displayCover.landscape .spaceBackdrop,
+#spaceStage .slide.displayCover.landscape .spacePhoto{
+  object-position:center 42%;
 }
 
 #spaceStage .slide.displayCover .spacePhoto{
@@ -7122,7 +7135,7 @@ function getProjectImageCount(projectKey){
 function getSpaceImageDisplayClass(width, height){
   const imageRatio = width / height;
 
-  if(imageRatio < 0.85){
+  if(imageRatio < 1.25){
     return "displayHeight";
   }
 
@@ -7131,8 +7144,6 @@ function getSpaceImageDisplayClass(width, height){
 
 function getSpaceImageDisplayClassFromMeta(meta){
   if(!meta || !meta.width || !meta.height) return null;
-  if(meta.mode === "height") return "displayHeight";
-  if(meta.mode === "cover") return "displayCover";
   return getSpaceImageDisplayClass(meta.width, meta.height);
 }
 

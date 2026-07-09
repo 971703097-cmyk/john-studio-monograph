@@ -6046,7 +6046,7 @@ html body #homePage .section .title{
 
 #spaceStage .slide.displayCover.landscape .spaceBackdrop,
 #spaceStage .slide.displayCover.landscape .spacePhoto{
-  object-position:center 42%;
+  object-position:center bottom;
 }
 
 #spaceStage .slide.displayCover .spacePhoto{
@@ -6056,6 +6056,14 @@ html body #homePage .section .title{
   height:100%;
   object-fit:cover;
   transform:none;
+}
+
+#spaceStage .slide.displayCover.landscape .spaceBackdrop{
+  transform:translateY(3.5%) scale(1.06);
+}
+
+#spaceStage .slide.displayCover.landscape .spacePhoto{
+  transform:translateY(3.5%) !important;
 }
 
 #spaceStage .slide.displayHeight .spacePhoto{
@@ -6413,6 +6421,8 @@ const projects = {
       "assets/projects/dongguan-new-world-interior/09.webp",
       "assets/projects/dongguan-new-world-interior/10.webp",
       "assets/projects/dongguan-new-world-interior/11.webp",
+      "assets/projects/dongguan-new-world-interior/12.webp",
+      "assets/projects/dongguan-new-world-interior/13.webp",
       "assets/projects/dongguan-new-world-interior/closing.webp"
     ]
   },
@@ -6444,6 +6454,7 @@ const projects = {
       "assets/projects/bar-interior/03.webp",
       "assets/projects/bar-interior/04.webp",
       "assets/projects/bar-interior/05.webp",
+      "assets/projects/bar-interior/06.webp",
       "assets/projects/bar-interior/closing.webp"
     ]
   },
@@ -6488,8 +6499,29 @@ const projects = {
       "assets/projects/dongguan-vanke-mountain-realm/closing.webp"
     ]
   },
+  zhaoqingHuaijiHotel:{
+    id:6, type:"arch",
+    title:"Zhaoqing Huaiji Hotel",
+    cn:"肇庆怀集酒店",
+    desc:"A hotel sequence shaped by landscape, arrival, courtyard movement, and quiet interior atmosphere.",
+    card:"assets/projects/zhaoqing-huaiji-hotel/card.webp",
+    imgs:[
+      "assets/projects/zhaoqing-huaiji-hotel/hero.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/01.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/02.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/03.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/04.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/05.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/06.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/07.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/08.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/09.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/10.webp",
+      "assets/projects/zhaoqing-huaiji-hotel/closing.webp"
+    ]
+  },
   guangzhouNansha:{
-    id:6, type:"interior",
+    id:7, type:"interior",
     title:"Guangzhou Nansha Yitao Peninsula",
     cn:"广州 · 南沙逸涛半岛",
     desc:"A calm interior sequence shaped by material restraint, light, and spatial rhythm.",
@@ -6509,7 +6541,7 @@ const projects = {
     ]
   },
   guangzhouDongshankou:{
-    id:7, type:"arch",
+    id:8, type:"arch",
     title:"Dongshankou South Plaza",
     cn:"广州东山口南广场",
     desc:"An urban public space intervention shaped by site memory, community rhythm, and architectural dialogue.",
@@ -6529,473 +6561,585 @@ const projects = {
 
 const projectImageMeta = {
   "assets/projects/bar-interior/01.webp": {
-    "width": 1900,
-    "height": 1378,
-    "ratio": 1.3788,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "width": 1080,
+    "height": 1508,
+    "ratio": 0.7162,
+    "kind": "vertical",
+    "mode": "height"
   },
   "assets/projects/bar-interior/02.webp": {
     "width": 1900,
-    "height": 1414,
-    "ratio": 1.3437,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "height": 1378,
+    "ratio": 1.3788,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/bar-interior/03.webp": {
     "width": 1900,
-    "height": 1419,
-    "ratio": 1.339,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "height": 1414,
+    "ratio": 1.3437,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/bar-interior/04.webp": {
+    "width": 1900,
+    "height": 1419,
+    "ratio": 1.339,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/bar-interior/05.webp": {
     "width": 1243,
     "height": 1900,
     "ratio": 0.6542,
-    "mode": "height",
-    "kind": "vertical"
+    "kind": "vertical",
+    "mode": "height"
   },
-  "assets/projects/bar-interior/05.webp": {
+  "assets/projects/bar-interior/06.webp": {
     "width": 1268,
     "height": 1900,
     "ratio": 0.6674,
-    "mode": "height",
-    "kind": "vertical"
+    "kind": "vertical",
+    "mode": "height"
   },
   "assets/projects/bar-interior/card.webp": {
     "width": 1200,
     "height": 751,
     "ratio": 1.5979,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/bar-interior/closing.webp": {
     "width": 1595,
     "height": 2400,
     "ratio": 0.6646,
-    "mode": "height",
-    "kind": "vertical"
+    "kind": "vertical",
+    "mode": "height"
   },
   "assets/projects/bar-interior/hero.webp": {
     "width": 2400,
     "height": 1501,
     "ratio": 1.5989,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-new-world-interior/01.webp": {
-    "width": 1267,
+    "width": 1425,
     "height": 1900,
-    "ratio": 0.6668,
-    "mode": "height",
-    "kind": "vertical"
+    "ratio": 0.75,
+    "kind": "vertical",
+    "mode": "height"
   },
   "assets/projects/dongguan-new-world-interior/02.webp": {
+    "width": 1424,
+    "height": 1900,
+    "ratio": 0.7495,
+    "kind": "vertical",
+    "mode": "height"
+  },
+  "assets/projects/dongguan-new-world-interior/03.webp": {
     "width": 1267,
     "height": 1900,
     "ratio": 0.6668,
-    "mode": "height",
-    "kind": "vertical"
-  },
-  "assets/projects/dongguan-new-world-interior/03.webp": {
-    "width": 1900,
-    "height": 1267,
-    "ratio": 1.4996,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "vertical",
+    "mode": "height"
   },
   "assets/projects/dongguan-new-world-interior/04.webp": {
     "width": 1269,
     "height": 1900,
     "ratio": 0.6679,
-    "mode": "height",
-    "kind": "vertical"
+    "kind": "vertical",
+    "mode": "height"
   },
   "assets/projects/dongguan-new-world-interior/05.webp": {
-    "width": 1093,
-    "height": 1477,
-    "ratio": 0.74,
-    "mode": "height",
-    "kind": "vertical"
-  },
-  "assets/projects/dongguan-new-world-interior/06.webp": {
-    "width": 937,
-    "height": 1093,
-    "ratio": 0.8573,
-    "mode": "cover",
-    "kind": "near-square-cover"
-  },
-  "assets/projects/dongguan-new-world-interior/07.webp": {
     "width": 1900,
     "height": 1451,
     "ratio": 1.3094,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
-  "assets/projects/dongguan-new-world-interior/08.webp": {
+  "assets/projects/dongguan-new-world-interior/06.webp": {
     "width": 1267,
     "height": 1900,
     "ratio": 0.6668,
-    "mode": "height",
-    "kind": "vertical"
+    "kind": "vertical",
+    "mode": "height"
   },
-  "assets/projects/dongguan-new-world-interior/09.webp": {
-    "width": 1900,
-    "height": 1711,
-    "ratio": 1.1105,
-    "mode": "cover",
-    "kind": "near-square-cover"
-  },
-  "assets/projects/dongguan-new-world-interior/10.webp": {
+  "assets/projects/dongguan-new-world-interior/07.webp": {
     "width": 1170,
     "height": 1721,
     "ratio": 0.6798,
-    "mode": "height",
-    "kind": "vertical"
+    "kind": "vertical",
+    "mode": "height"
   },
-  "assets/projects/dongguan-new-world-interior/11.webp": {
+  "assets/projects/dongguan-new-world-interior/08.webp": {
     "width": 869,
     "height": 1473,
     "ratio": 0.59,
-    "mode": "height",
-    "kind": "vertical"
+    "kind": "vertical",
+    "mode": "height"
+  },
+  "assets/projects/dongguan-new-world-interior/09.webp": {
+    "width": 1093,
+    "height": 1477,
+    "ratio": 0.74,
+    "kind": "vertical",
+    "mode": "height"
+  },
+  "assets/projects/dongguan-new-world-interior/10.webp": {
+    "width": 937,
+    "height": 1093,
+    "ratio": 0.8573,
+    "kind": "near-square",
+    "mode": "height"
+  },
+  "assets/projects/dongguan-new-world-interior/11.webp": {
+    "width": 1900,
+    "height": 1267,
+    "ratio": 1.4996,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/dongguan-new-world-interior/12.webp": {
+    "width": 1267,
+    "height": 1900,
+    "ratio": 0.6668,
+    "kind": "vertical",
+    "mode": "height"
+  },
+  "assets/projects/dongguan-new-world-interior/13.webp": {
+    "width": 1900,
+    "height": 1339,
+    "ratio": 1.419,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-new-world-interior/card.webp": {
     "width": 1200,
-    "height": 1015,
-    "ratio": 1.1823,
-    "mode": "cover",
-    "kind": "near-square-cover"
+    "height": 872,
+    "ratio": 1.3761,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-new-world-interior/closing.webp": {
     "width": 1800,
     "height": 2400,
     "ratio": 0.75,
-    "mode": "height",
-    "kind": "vertical"
+    "kind": "vertical",
+    "mode": "height"
   },
   "assets/projects/dongguan-new-world-interior/hero.webp": {
     "width": 2400,
-    "height": 2031,
-    "ratio": 1.1817,
-    "mode": "cover",
-    "kind": "near-square-cover"
+    "height": 1744,
+    "ratio": 1.3761,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-vanke-mountain-realm/01.webp": {
     "width": 1900,
     "height": 1277,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-vanke-mountain-realm/02.webp": {
     "width": 1900,
     "height": 1277,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-vanke-mountain-realm/03.webp": {
     "width": 1900,
     "height": 1277,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-vanke-mountain-realm/04.webp": {
     "width": 1900,
     "height": 1277,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-vanke-mountain-realm/card.webp": {
     "width": 1200,
     "height": 807,
     "ratio": 1.487,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-vanke-mountain-realm/closing.webp": {
     "width": 2400,
     "height": 1613,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/dongguan-vanke-mountain-realm/hero.webp": {
     "width": 2400,
     "height": 1613,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/fujian-lishui-hot-spring-visitor-center/01.webp": {
     "width": 1900,
     "height": 1069,
     "ratio": 1.7774,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/fujian-lishui-hot-spring-visitor-center/02.webp": {
     "width": 1900,
     "height": 1069,
     "ratio": 1.7774,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/fujian-lishui-hot-spring-visitor-center/card.webp": {
     "width": 1200,
     "height": 675,
     "ratio": 1.7778,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/fujian-lishui-hot-spring-visitor-center/closing.webp": {
     "width": 2400,
     "height": 1350,
     "ratio": 1.7778,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/fujian-lishui-hot-spring-visitor-center/hero.webp": {
     "width": 2400,
     "height": 1350,
     "ratio": 1.7778,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-dongshankou-south-plaza/01.webp": {
     "width": 1900,
-    "height": 1258,
-    "ratio": 1.5103,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "height": 1399,
+    "ratio": 1.3581,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-dongshankou-south-plaza/02.webp": {
     "width": 1900,
-    "height": 1267,
-    "ratio": 1.4996,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "height": 1431,
+    "ratio": 1.3277,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-dongshankou-south-plaza/03.webp": {
-    "width": 1453,
-    "height": 1900,
-    "ratio": 0.7647,
-    "mode": "height",
-    "kind": "vertical"
-  },
-  "assets/projects/guangzhou-dongshankou-south-plaza/04.webp": {
     "width": 1900,
     "height": 1599,
     "ratio": 1.1882,
-    "mode": "cover",
-    "kind": "near-square-cover"
+    "kind": "near-square",
+    "mode": "cover"
+  },
+  "assets/projects/guangzhou-dongshankou-south-plaza/04.webp": {
+    "width": 1453,
+    "height": 1900,
+    "ratio": 0.7647,
+    "kind": "vertical",
+    "mode": "height"
   },
   "assets/projects/guangzhou-dongshankou-south-plaza/05.webp": {
     "width": 1900,
-    "height": 1431,
-    "ratio": 1.3277,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "height": 1267,
+    "ratio": 1.4996,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-dongshankou-south-plaza/06.webp": {
     "width": 1900,
-    "height": 1399,
-    "ratio": 1.3581,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "height": 1258,
+    "ratio": 1.5103,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-dongshankou-south-plaza/card.webp": {
     "width": 1200,
     "height": 811,
     "ratio": 1.4797,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-dongshankou-south-plaza/closing.webp": {
     "width": 2400,
     "height": 1799,
     "ratio": 1.3341,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-dongshankou-south-plaza/hero.webp": {
     "width": 2400,
     "height": 1623,
     "ratio": 1.4787,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/01.webp": {
     "width": 1900,
     "height": 663,
     "ratio": 2.8658,
-    "mode": "cover",
-    "kind": "wide-landscape-cover"
+    "kind": "wide",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/02.webp": {
     "width": 1900,
-    "height": 922,
-    "ratio": 2.0607,
-    "mode": "cover",
-    "kind": "wide-landscape-cover"
+    "height": 953,
+    "ratio": 1.9937,
+    "kind": "wide",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/03.webp": {
     "width": 1900,
     "height": 869,
     "ratio": 2.1864,
-    "mode": "cover",
-    "kind": "wide-landscape-cover"
+    "kind": "wide",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/04.webp": {
     "width": 1900,
     "height": 934,
     "ratio": 2.0343,
-    "mode": "cover",
-    "kind": "wide-landscape-cover"
+    "kind": "wide",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/05.webp": {
     "width": 1900,
     "height": 1253,
     "ratio": 1.5164,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/06.webp": {
     "width": 1900,
-    "height": 953,
-    "ratio": 1.9937,
-    "mode": "cover",
-    "kind": "wide-landscape-cover"
+    "height": 922,
+    "ratio": 2.0607,
+    "kind": "wide",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/07.webp": {
     "width": 1900,
-    "height": 869,
-    "ratio": 2.1864,
-    "mode": "cover",
-    "kind": "wide-landscape-cover"
+    "height": 1711,
+    "ratio": 1.1105,
+    "kind": "near-square",
+    "mode": "height"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/08.webp": {
     "width": 1900,
-    "height": 1711,
-    "ratio": 1.1105,
-    "mode": "cover",
-    "kind": "near-square-cover"
+    "height": 901,
+    "ratio": 2.1088,
+    "kind": "wide",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/09.webp": {
     "width": 1900,
-    "height": 901,
-    "ratio": 2.1088,
-    "mode": "cover",
-    "kind": "wide-landscape-cover"
+    "height": 869,
+    "ratio": 2.1864,
+    "kind": "wide",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/card.webp": {
     "width": 1200,
     "height": 549,
     "ratio": 2.1858,
-    "mode": "cover",
-    "kind": "wide-landscape-cover"
+    "kind": "wide",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/closing.webp": {
     "width": 2400,
     "height": 1241,
     "ratio": 1.9339,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/guangzhou-nansha-yitao-peninsula/hero.webp": {
     "width": 2400,
     "height": 1098,
     "ratio": 2.1858,
-    "mode": "cover",
-    "kind": "wide-landscape-cover"
+    "kind": "wide",
+    "mode": "cover"
   },
   "assets/projects/helong-hope-primary-school-extension/01.webp": {
     "width": 1900,
-    "height": 1069,
-    "ratio": 1.7774,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "height": 1310,
+    "ratio": 1.4504,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/helong-hope-primary-school-extension/02.webp": {
-    "width": 1865,
-    "height": 1900,
-    "ratio": 0.9816,
-    "mode": "cover",
-    "kind": "near-square-cover"
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/helong-hope-primary-school-extension/card.webp": {
-    "width": 1171,
-    "height": 1200,
-    "ratio": 0.9758,
-    "mode": "cover",
-    "kind": "near-square-cover"
+    "width": 1200,
+    "height": 675,
+    "ratio": 1.7778,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/helong-hope-primary-school-extension/closing.webp": {
     "width": 1920,
-    "height": 1080,
-    "ratio": 1.7778,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "height": 1078,
+    "ratio": 1.7811,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/helong-hope-primary-school-extension/hero.webp": {
-    "width": 2343,
-    "height": 2400,
-    "ratio": 0.9762,
-    "mode": "cover",
-    "kind": "near-square-cover"
+    "width": 1920,
+    "height": 1080,
+    "ratio": 1.7778,
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/nanjing-huaihe-wharf/01.webp": {
     "width": 1900,
     "height": 1277,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/nanjing-huaihe-wharf/02.webp": {
     "width": 1900,
     "height": 1277,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/nanjing-huaihe-wharf/03.webp": {
     "width": 1900,
     "height": 1277,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/nanjing-huaihe-wharf/04.webp": {
     "width": 1900,
     "height": 1277,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/nanjing-huaihe-wharf/card.webp": {
     "width": 1200,
     "height": 807,
     "ratio": 1.487,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/nanjing-huaihe-wharf/closing.webp": {
     "width": 2400,
     "height": 1613,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
   },
   "assets/projects/nanjing-huaihe-wharf/hero.webp": {
     "width": 2400,
     "height": 1613,
     "ratio": 1.4879,
-    "mode": "cover",
-    "kind": "landscape-cover"
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/01.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/02.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/03.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/04.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/05.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/06.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/07.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/08.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/09.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/10.webp": {
+    "width": 1900,
+    "height": 1069,
+    "ratio": 1.7774,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/card.webp": {
+    "width": 1200,
+    "height": 675,
+    "ratio": 1.7778,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/closing.webp": {
+    "width": 2400,
+    "height": 1350,
+    "ratio": 1.7778,
+    "kind": "landscape",
+    "mode": "cover"
+  },
+  "assets/projects/zhaoqing-huaiji-hotel/hero.webp": {
+    "width": 2400,
+    "height": 1350,
+    "ratio": 1.7778,
+    "kind": "landscape",
+    "mode": "cover"
   }
 };
 

@@ -185,47 +185,55 @@
       "gallery": [
         {
           "src": "assets/projects/dongguan-new-world-interior/01.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 1"
+          "alt": "Dongguan New World Residence view 1"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/02.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 2"
+          "alt": "Dongguan New World Residence view 2"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/03.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 3"
+          "alt": "Dongguan New World Residence view 3"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/04.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 4"
+          "alt": "Dongguan New World Residence view 4"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/05.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 5"
+          "alt": "Dongguan New World Residence view 5"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/06.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 6"
+          "alt": "Dongguan New World Residence view 6"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/07.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 7"
+          "alt": "Dongguan New World Residence view 7"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/08.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 8"
+          "alt": "Dongguan New World Residence view 8"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/09.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 9"
+          "alt": "Dongguan New World Residence view 9"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/10.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 10"
+          "alt": "Dongguan New World Residence view 10"
         },
         {
           "src": "assets/projects/dongguan-new-world-interior/11.webp",
-          "alt": "{'en': 'Dongguan New World Residence', 'cn': '东莞新世界'} view 11"
+          "alt": "Dongguan New World Residence view 11"
+        },
+        {
+          "src": "assets/projects/dongguan-new-world-interior/12.webp",
+          "alt": "Dongguan New World Residence view 12"
+        },
+        {
+          "src": "assets/projects/dongguan-new-world-interior/13.webp",
+          "alt": "Dongguan New World Residence view 13"
         }
       ],
       "technicalNotes": [
@@ -307,19 +315,19 @@
       "gallery": [
         {
           "src": "assets/projects/nanjing-huaihe-wharf/01.webp",
-          "alt": "{'en': 'Huaihe Wharf, Nanjing Qinshuang Line', 'cn': '南京秦双线淮河码头'} view 1"
+          "alt": "Huaihe Wharf, Nanjing Qinshuang Line view 1"
         },
         {
           "src": "assets/projects/nanjing-huaihe-wharf/02.webp",
-          "alt": "{'en': 'Huaihe Wharf, Nanjing Qinshuang Line', 'cn': '南京秦双线淮河码头'} view 2"
+          "alt": "Huaihe Wharf, Nanjing Qinshuang Line view 2"
         },
         {
           "src": "assets/projects/nanjing-huaihe-wharf/03.webp",
-          "alt": "{'en': 'Huaihe Wharf, Nanjing Qinshuang Line', 'cn': '南京秦双线淮河码头'} view 3"
+          "alt": "Huaihe Wharf, Nanjing Qinshuang Line view 3"
         },
         {
           "src": "assets/projects/nanjing-huaihe-wharf/04.webp",
-          "alt": "{'en': 'Huaihe Wharf, Nanjing Qinshuang Line', 'cn': '南京秦双线淮河码头'} view 4"
+          "alt": "Huaihe Wharf, Nanjing Qinshuang Line view 4"
         }
       ],
       "technicalNotes": [
@@ -401,23 +409,27 @@
       "gallery": [
         {
           "src": "assets/projects/bar-interior/01.webp",
-          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 1"
+          "alt": "Bar Interior view 1"
         },
         {
           "src": "assets/projects/bar-interior/02.webp",
-          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 2"
+          "alt": "Bar Interior view 2"
         },
         {
           "src": "assets/projects/bar-interior/03.webp",
-          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 3"
+          "alt": "Bar Interior view 3"
         },
         {
           "src": "assets/projects/bar-interior/04.webp",
-          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 4"
+          "alt": "Bar Interior view 4"
         },
         {
           "src": "assets/projects/bar-interior/05.webp",
-          "alt": "{'en': 'Bar Interior', 'cn': '酒吧室内'} view 5"
+          "alt": "Bar Interior view 5"
+        },
+        {
+          "src": "assets/projects/bar-interior/06.webp",
+          "alt": "Bar Interior view 6"
         }
       ],
       "technicalNotes": [
@@ -499,11 +511,11 @@
       "gallery": [
         {
           "src": "assets/projects/fujian-lishui-hot-spring-visitor-center/01.webp",
-          "alt": "{'en': 'Lishui Hot Spring Visitor Center', 'cn': '福建利水温泉游客中心'} view 1"
+          "alt": "Lishui Hot Spring Visitor Center view 1"
         },
         {
           "src": "assets/projects/fujian-lishui-hot-spring-visitor-center/02.webp",
-          "alt": "{'en': 'Lishui Hot Spring Visitor Center', 'cn': '福建利水温泉游客中心'} view 2"
+          "alt": "Lishui Hot Spring Visitor Center view 2"
         }
       ],
       "technicalNotes": [
@@ -585,11 +597,11 @@
       "gallery": [
         {
           "src": "assets/projects/helong-hope-primary-school-extension/01.webp",
-          "alt": "{'en': 'He Long Hope Primary School Extension', 'cn': '贺龙希望小学扩建'} view 1"
+          "alt": "He Long Hope Primary School Extension view 1"
         },
         {
           "src": "assets/projects/helong-hope-primary-school-extension/02.webp",
-          "alt": "{'en': 'He Long Hope Primary School Extension', 'cn': '贺龙希望小学扩建'} view 2"
+          "alt": "He Long Hope Primary School Extension view 2"
         }
       ],
       "technicalNotes": [
@@ -671,19 +683,19 @@
       "gallery": [
         {
           "src": "assets/projects/dongguan-vanke-mountain-realm/01.webp",
-          "alt": "{'en': 'Dongguan Vanke Mountain Realm', 'cn': '东莞 · 万科山境'} view 1"
+          "alt": "Dongguan Vanke Mountain Realm view 1"
         },
         {
           "src": "assets/projects/dongguan-vanke-mountain-realm/02.webp",
-          "alt": "{'en': 'Dongguan Vanke Mountain Realm', 'cn': '东莞 · 万科山境'} view 2"
+          "alt": "Dongguan Vanke Mountain Realm view 2"
         },
         {
           "src": "assets/projects/dongguan-vanke-mountain-realm/03.webp",
-          "alt": "{'en': 'Dongguan Vanke Mountain Realm', 'cn': '东莞 · 万科山境'} view 3"
+          "alt": "Dongguan Vanke Mountain Realm view 3"
         },
         {
           "src": "assets/projects/dongguan-vanke-mountain-realm/04.webp",
-          "alt": "{'en': 'Dongguan Vanke Mountain Realm', 'cn': '东莞 · 万科山境'} view 4"
+          "alt": "Dongguan Vanke Mountain Realm view 4"
         }
       ],
       "technicalNotes": [
@@ -736,6 +748,124 @@
     },
     {
       "title": {
+        "en": "Zhaoqing Huaiji Hotel",
+        "cn": "肇庆怀集酒店"
+      },
+      "desc": {
+        "en": "A hotel sequence shaped by landscape, arrival, courtyard movement, and quiet interior atmosphere.",
+        "cn": "A hotel sequence shaped by landscape, arrival, courtyard movement, and quiet interior atmosphere."
+      },
+      "detail": {
+        "en": "The project is edited as a spatial sequence, moving from a broad reading of context toward atmosphere, material, and detail.",
+        "cn": "项目被编辑为空间序列，从场地和整体阅读逐步进入氛围、材料与细部。"
+      },
+      "concept": {
+        "en": "The sequence frames architecture as a slow progression of views, thresholds, and spatial decisions.",
+        "cn": "这一序列将建筑理解为视角、界面与空间判断的缓慢推进。"
+      },
+      "year": "2025",
+      "location": "Zhaoqing, China",
+      "locationCn": "中国 · 肇庆",
+      "scale": "Hotel architecture",
+      "scaleCn": "酒店建筑",
+      "category": {
+        "en": "Architecture",
+        "cn": "建筑设计"
+      },
+      "image": "assets/projects/zhaoqing-huaiji-hotel/card.webp",
+      "imageFull": "assets/projects/zhaoqing-huaiji-hotel/hero.webp",
+      "gallery": [
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/01.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 1"
+        },
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/02.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 2"
+        },
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/03.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 3"
+        },
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/04.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 4"
+        },
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/05.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 5"
+        },
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/06.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 6"
+        },
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/07.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 7"
+        },
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/08.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 8"
+        },
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/09.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 9"
+        },
+        {
+          "src": "assets/projects/zhaoqing-huaiji-hotel/10.webp",
+          "alt": "Zhaoqing Huaiji Hotel view 10"
+        }
+      ],
+      "closingImage": "assets/projects/zhaoqing-huaiji-hotel/closing.webp",
+      "technicalNotes": [
+        {
+          "label": {
+            "en": "Site",
+            "cn": "场地"
+          },
+          "value": {
+            "en": "The layout responds to orientation, approach, and the rhythm of the surrounding context.",
+            "cn": "布局回应朝向、进入路径与周边环境的节奏。"
+          }
+        },
+        {
+          "label": {
+            "en": "Order",
+            "cn": "秩序"
+          },
+          "value": {
+            "en": "Openings, edges, and circulation are calibrated as one continuous architectural system.",
+            "cn": "开口、边界与动线被校准为一个连续的建筑系统。"
+          }
+        },
+        {
+          "label": {
+            "en": "Material",
+            "cn": "材料"
+          },
+          "value": {
+            "en": "The material expression remains quiet, allowing light and proportion to define the spatial atmosphere.",
+            "cn": "材料表达保持克制，让光线与比例成为空间气质的主要来源。"
+          }
+        }
+      ],
+      "specs": [
+        {
+          "label": "Scope",
+          "value": "Hotel architecture"
+        },
+        {
+          "label": "Type",
+          "value": "Architecture"
+        },
+        {
+          "label": "Location",
+          "value": "Zhaoqing, China"
+        }
+      ]
+    },
+    {
+      "title": {
         "en": "Guangzhou Nansha Yitao Peninsula",
         "cn": "广州 · 南沙逸涛半岛"
       },
@@ -765,39 +895,39 @@
       "gallery": [
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/01.webp",
-          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 1"
+          "alt": "Guangzhou Nansha Yitao Peninsula view 1"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/02.webp",
-          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 2"
+          "alt": "Guangzhou Nansha Yitao Peninsula view 2"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/03.webp",
-          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 3"
+          "alt": "Guangzhou Nansha Yitao Peninsula view 3"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/04.webp",
-          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 4"
+          "alt": "Guangzhou Nansha Yitao Peninsula view 4"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/05.webp",
-          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 5"
+          "alt": "Guangzhou Nansha Yitao Peninsula view 5"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/06.webp",
-          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 6"
+          "alt": "Guangzhou Nansha Yitao Peninsula view 6"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/07.webp",
-          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 7"
+          "alt": "Guangzhou Nansha Yitao Peninsula view 7"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/08.webp",
-          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 8"
+          "alt": "Guangzhou Nansha Yitao Peninsula view 8"
         },
         {
           "src": "assets/projects/guangzhou-nansha-yitao-peninsula/09.webp",
-          "alt": "{'en': 'Guangzhou Nansha Yitao Peninsula', 'cn': '广州 · 南沙逸涛半岛'} view 9"
+          "alt": "Guangzhou Nansha Yitao Peninsula view 9"
         }
       ],
       "technicalNotes": [
@@ -879,27 +1009,27 @@
       "gallery": [
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/01.webp",
-          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 1"
+          "alt": "Dongshankou South Plaza view 1"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/02.webp",
-          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 2"
+          "alt": "Dongshankou South Plaza view 2"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/03.webp",
-          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 3"
+          "alt": "Dongshankou South Plaza view 3"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/04.webp",
-          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 4"
+          "alt": "Dongshankou South Plaza view 4"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/05.webp",
-          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 5"
+          "alt": "Dongshankou South Plaza view 5"
         },
         {
           "src": "assets/projects/guangzhou-dongshankou-south-plaza/06.webp",
-          "alt": "{'en': 'Dongshankou South Plaza', 'cn': '广州东山口南广场'} view 6"
+          "alt": "Dongshankou South Plaza view 6"
         }
       ],
       "closingImage": "assets/projects/guangzhou-dongshankou-south-plaza/closing.webp",

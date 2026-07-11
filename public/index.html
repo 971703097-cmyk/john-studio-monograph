@@ -6400,6 +6400,13 @@ html body #homePage .section .title{
   font-family:Arial, Helvetica, "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
+#spacePage,
+#spacePage *,
+#spacePage *::before,
+#spacePage *::after{
+  box-sizing:border-box;
+}
+
 #spacePage .space-editorial{
   position:relative;
   min-height:100%;
@@ -6413,6 +6420,9 @@ html body #homePage .section .title{
 }
 
 #spacePage .space-editorial-header{
+  position:sticky;
+  top:0;
+  z-index:100;
   height:106px;
   padding:0 clamp(30px, 4vw, 80px);
   display:flex;
@@ -6435,12 +6445,19 @@ html body #homePage .section .title{
 }
 
 #spacePage .space-category-nav{
-  position:static !important;
+  position:relative !important;
   display:flex !important;
   align-items:center;
   gap:clamp(22px, 3vw, 54px);
   transform:none !important;
-  z-index:auto !important;
+  z-index:102 !important;
+}
+
+#spacePage .space-nav-group{
+  position:relative;
+  height:106px;
+  display:flex;
+  align-items:center;
 }
 
 #spacePage .space-category-tab{
@@ -6460,6 +6477,90 @@ html body #homePage .section .title{
 #spacePage .space-category-tab.is-active{
   color:#111;
   border-bottom-color:#111;
+}
+
+#spacePage .space-project-dropdown{
+  position:fixed;
+  top:106px;
+  left:0;
+  right:0;
+  z-index:99;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:14px;
+  max-height:min(62vh, 620px);
+  padding:18px clamp(30px, 4vw, 80px) 24px;
+  overflow-y:auto;
+  background:rgba(255,255,255,.98);
+  border-top:1px solid #e2e2e2;
+  border-bottom:1px solid #d8d8d8;
+  box-shadow:0 14px 30px rgba(0,0,0,.08);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .25s ease-out, transform .25s ease-out, visibility .25s;
+}
+
+#spacePage .space-nav-group:hover .space-project-dropdown,
+#spacePage .space-nav-group:focus-within .space-project-dropdown,
+#spacePage .space-nav-group.is-open .space-project-dropdown{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+
+#spacePage .space-project-preview{
+  appearance:none;
+  border:0;
+  padding:0;
+  background:#fff;
+  color:#111;
+  text-align:left;
+  cursor:pointer;
+}
+
+#spacePage .space-project-preview img{
+  display:block;
+  width:100%;
+  aspect-ratio:16 / 10;
+  object-fit:cover;
+  transition:opacity .25s ease-out;
+}
+
+#spacePage .space-project-preview:hover img{
+  opacity:.78;
+}
+
+#spacePage .space-project-preview-copy{
+  display:block;
+  padding:10px 0 5px;
+}
+
+#spacePage .space-project-preview-copy strong,
+#spacePage .space-project-preview-copy small{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-weight:400;
+}
+
+#spacePage .space-project-preview-copy strong{
+  font-size:13px;
+  line-height:1.35;
+}
+
+#spacePage .space-project-preview-copy small{
+  margin-top:4px;
+  color:#8a8a8a;
+  font-size:11px;
+  line-height:1.3;
+}
+
+#spacePage .space-project-preview.is-current{
+  box-shadow:inset 0 0 0 1px #111;
 }
 
 #spacePage .space-breadcrumb{
@@ -6536,7 +6637,8 @@ html body #homePage .section .title{
   background:transparent;
   color:#fff;
   text-align:left;
-  cursor:pointer;
+  pointer-events:none;
+  cursor:default;
 }
 
 #spacePage .space-cover-title{
@@ -6600,29 +6702,22 @@ html body #homePage .section .title{
 }
 
 #spacePage .space-image-stream{
-  width:100%;
+  width:min(56%, 1200px);
+  margin:0 auto;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:clamp(80px, 10vw, 170px);
-  padding:0 0 clamp(100px, 12vw, 190px);
+  gap:42px;
+  padding:0 0 clamp(100px, 10vw, 160px);
 }
 
 #spacePage .space-stream-figure{
-  width:min(100%, 1920px);
+  width:100%;
   margin:0;
   padding:0;
   display:flex;
   justify-content:center;
   cursor:zoom-in;
-}
-
-#spacePage .space-stream-figure.is-portrait{
-  width:min(66vw, 980px);
-}
-
-#spacePage .space-stream-figure.is-square{
-  width:min(78vw, 1280px);
 }
 
 #spacePage .space-stream-image{
@@ -6642,7 +6737,7 @@ html body #homePage .section .title{
 }
 
 #spacePage .space-editorial-footer{
-  min-height:180px;
+  min-height:210px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -6651,14 +6746,115 @@ html body #homePage .section .title{
 
 #spacePage .space-editorial-footer button{
   appearance:none;
-  border:0;
-  border-bottom:1px solid #222;
-  padding:0 0 7px;
-  background:none;
+  width:58px;
+  height:58px;
+  border:1px solid #222;
+  border-radius:50%;
+  padding:0;
+  background:#fff;
   color:#222;
-  font-size:14px;
-  line-height:1.2;
+  font-size:25px;
+  line-height:1;
   cursor:pointer;
+  transition:background .25s ease-out, color .25s ease-out;
+}
+
+#spacePage .space-editorial-footer button:hover{
+  background:#111;
+  color:#fff;
+}
+
+#spacePage .space-archive{
+  width:100%;
+  padding:clamp(62px, 7vw, 110px) clamp(14px, 2vw, 34px) clamp(18px, 2vw, 34px);
+  background:#f3f2ed;
+  border-top:1px solid #e0dfda;
+}
+
+#spacePage .space-archive-heading{
+  width:min(1500px, 100%);
+  margin:0 auto clamp(34px, 4vw, 58px);
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+}
+
+#spacePage .space-archive-heading h2{
+  margin:0;
+  color:#151515;
+  font-size:clamp(22px, 2vw, 34px);
+  font-weight:400;
+  line-height:1.1;
+}
+
+#spacePage .space-archive-heading h2 span{
+  color:#8b8b87;
+  font-size:.55em;
+}
+
+#spacePage .space-archive-filters{
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+
+#spacePage .space-archive-filter{
+  appearance:none;
+  border:0;
+  border-bottom:1px solid transparent;
+  padding:5px 0;
+  background:none;
+  color:#858582;
+  font-size:12px;
+  line-height:1;
+  letter-spacing:.12em;
+  cursor:pointer;
+}
+
+#spacePage .space-archive-filter.is-active{
+  color:#111;
+  border-bottom-color:#111;
+}
+
+#spacePage .space-archive-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:2px;
+}
+
+#spacePage .space-archive-card{
+  position:relative;
+  appearance:none;
+  border:0;
+  padding:0;
+  overflow:hidden;
+  background:#deddd8;
+  cursor:pointer;
+}
+
+#spacePage .space-archive-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:1px solid transparent;
+  pointer-events:none;
+}
+
+#spacePage .space-archive-card.is-current::after{
+  border-color:#111;
+}
+
+#spacePage .space-archive-card img{
+  display:block;
+  width:100%;
+  aspect-ratio:4 / 3;
+  object-fit:cover;
+  transition:opacity .25s ease-out;
+}
+
+#spacePage .space-archive-card:hover img{
+  opacity:.76;
 }
 
 #spacePage .space-lightbox{
@@ -6721,9 +6917,21 @@ html body #homePage .section .title{
     gap:15px;
   }
 
+  #spacePage .space-nav-group{
+    height:72px;
+  }
+
   #spacePage .space-category-tab{
     font-size:10px;
     letter-spacing:.10em;
+  }
+
+  #spacePage .space-project-dropdown{
+    top:72px;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:10px;
+    max-height:calc(100vh - 72px);
+    padding:12px 14px 18px;
   }
 
   #spacePage .space-breadcrumb{
@@ -6760,16 +6968,29 @@ html body #homePage .section .title{
   }
 
   #spacePage .space-image-stream{
-    gap:62px;
+    width:92%;
+    gap:18px;
     padding-bottom:90px;
   }
 
-  #spacePage .space-stream-figure.is-portrait{
-    width:82vw;
+  #spacePage .space-archive{
+    padding:52px 8px 8px;
   }
 
-  #spacePage .space-stream-figure.is-square{
-    width:90vw;
+  #spacePage .space-archive-heading{
+    margin-bottom:24px;
+    padding:0 8px;
+    align-items:flex-start;
+    flex-direction:column;
+    gap:18px;
+  }
+
+  #spacePage .space-archive-filters{
+    gap:18px;
+  }
+
+  #spacePage .space-archive-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
   }
 
   #spacePage .space-lightbox{
@@ -6778,6 +6999,21 @@ html body #homePage .section .title{
 
   #spacePage .space-lightbox-help{
     display:none;
+  }
+}
+
+@media(min-width:761px) and (max-width:1100px){
+  #spacePage .space-image-stream{
+    width:76%;
+    gap:30px;
+  }
+
+  #spacePage .space-project-dropdown{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+  }
+
+  #spacePage .space-archive-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -6887,10 +7123,10 @@ html body #homePage .section .title{
     <section class="space-cover" id="spaceHero" aria-label="Featured projects">
       <img class="space-cover-image is-active" id="spaceHeroImageA" alt="">
       <img class="space-cover-image" id="spaceHeroImageB" alt="">
-      <button class="space-cover-action" id="spaceHeroAction" type="button" aria-label="Open featured project">
+      <div class="space-cover-action" id="spaceHeroAction" aria-hidden="true">
         <span class="space-cover-title" id="spaceHeroTitle"></span>
         <span class="space-cover-title-cn" id="spaceHeroTitleCn"></span>
-      </button>
+      </div>
     </section>
 
     <section class="space-project-intro">
@@ -6904,8 +7140,16 @@ html body #homePage .section .title{
 
     <main class="space-image-stream" id="projectSlides"></main>
 
+    <section class="space-archive" id="spaceArchive">
+      <div class="space-archive-heading">
+        <h2>Project Archive <span>/ 项目档案</span></h2>
+        <div class="space-archive-filters" id="spaceArchiveFilters"></div>
+      </div>
+      <div class="space-archive-grid" id="spaceArchiveGrid"></div>
+    </section>
+
     <footer class="space-editorial-footer">
-      <button type="button" id="spaceBackFooter">Back to Projects / 返回项目</button>
+      <button type="button" id="spaceBackFooter" aria-label="Back to top / 返回顶部" title="Back to top / 返回顶部">↑</button>
     </footer>
 
   </div>
@@ -9705,8 +9949,8 @@ function closeSpace(){
   const lightboxStatus = document.getElementById("spaceLightboxStatus");
 
   let activeHeroLayer = 0;
-  let heroProjectKey = currentProject;
-  let heroProjectIndex = 0;
+  let heroImageIndex = 0;
+  let archiveFilter = "all";
   let lightboxIndex = 0;
   let lightboxWheelLocked = false;
   let streamObserver = null;
@@ -9742,8 +9986,23 @@ function closeSpace(){
     const currentType = projects[currentProject]?.type || "interior";
 
     switcher.innerHTML = Object.keys(categoryCopy).map(type=>{
-      const available = Object.values(projects).some(project=>project.type === type);
-      return `<button class="space-category-tab ${type === currentType ? "is-active" : ""}" data-type="${type}" type="button" ${available ? "" : "aria-disabled=\"true\""}>${projectTypes[type]}</button>`;
+      const list = Object.entries(projects).filter(([,project])=>project.type === type);
+      const previews = list.map(([key,project])=>`
+        <button class="space-project-preview ${key === currentProject ? "is-current" : ""}" data-project="${key}" type="button" aria-label="${project.title}">
+          <img src="${project.card || cleanImagesForKey(key)[0]}" alt="" loading="lazy">
+          <span class="space-project-preview-copy">
+            <strong>${project.title}</strong>
+            <small>${project.cn}</small>
+          </span>
+        </button>
+      `).join("");
+
+      return `
+        <div class="space-nav-group ${type === currentType ? "is-active" : ""}" data-type="${type}">
+          <button class="space-category-tab ${type === currentType ? "is-active" : ""}" data-type="${type}" type="button" ${list.length ? "" : "aria-disabled=\"true\""}>${projectTypes[type]}</button>
+          ${list.length ? `<div class="space-project-dropdown">${previews}</div>` : ""}
+        </div>
+      `;
     }).join("");
 
     updateCategoryCopy(currentType);
@@ -9751,10 +10010,19 @@ function closeSpace(){
     switcher.querySelectorAll(".space-category-tab").forEach(button=>{
       button.addEventListener("click", event=>{
         event.stopPropagation();
-        const type = button.dataset.type;
-        const list = Object.entries(projects).filter(([,project])=>project.type === type);
-        if(!list.length) return;
-        switchProject(list[0][0]);
+        const group = button.closest(".space-nav-group");
+        if(button.getAttribute("aria-disabled") === "true") return;
+        switcher.querySelectorAll(".space-nav-group").forEach(item=>{
+          if(item !== group) item.classList.remove("is-open");
+        });
+        group?.classList.toggle("is-open");
+      });
+    });
+
+    switcher.querySelectorAll(".space-project-preview").forEach(option=>{
+      option.addEventListener("click", event=>{
+        event.stopPropagation();
+        switchProject(option.dataset.project);
         spacePage.scrollTo({ top:0, behavior:"smooth" });
       });
     });
@@ -9810,15 +10078,57 @@ function closeSpace(){
     document.getElementById("spaceDesc").textContent = project.desc;
     document.getElementById("projectIndex").textContent = `${meta.location || ""}${meta.year ? ` · ${meta.year}` : ""}`;
     renderProjectSlides();
+    renderProjectArchive();
   };
 
-  function showHeroProject(key, immediate){
-    const project = projects[key];
+  function renderProjectArchive(){
+    const filters = document.getElementById("spaceArchiveFilters");
+    const grid = document.getElementById("spaceArchiveGrid");
+    const filterTypes = ["all", "arch", "interior", "product"];
+
+    filters.innerHTML = filterTypes.map(type=>{
+      const label = type === "all" ? "ALL" : projectTypes[type];
+      return `<button class="space-archive-filter ${archiveFilter === type ? "is-active" : ""}" data-type="${type}" type="button">${label}</button>`;
+    }).join("");
+
+    const entries = Object.entries(projects).filter(([,project])=>{
+      return archiveFilter === "all" || project.type === archiveFilter;
+    });
+
+    grid.innerHTML = entries.map(([key,project])=>`
+      <button class="space-archive-card ${key === currentProject ? "is-current" : ""}" data-project="${key}" type="button" aria-label="${project.title}">
+        <img src="${project.card || cleanImagesForKey(key)[0]}" alt="" loading="lazy">
+      </button>
+    `).join("");
+
+    filters.querySelectorAll(".space-archive-filter").forEach(button=>{
+      button.addEventListener("click", event=>{
+        event.stopPropagation();
+        archiveFilter = button.dataset.type || "all";
+        renderProjectArchive();
+      });
+    });
+
+    grid.querySelectorAll(".space-archive-card").forEach(card=>{
+      card.addEventListener("click", event=>{
+        event.stopPropagation();
+        switchProject(card.dataset.project);
+        spacePage.scrollTo({ top:0, behavior:"smooth" });
+      });
+    });
+  }
+
+  function currentHeroImages(){
+    const allImages = cleanImagesForKey(currentProject);
+    const landscapeImages = allImages.filter(src=>imageKind(src) === "landscape");
+    return landscapeImages.length ? landscapeImages : allImages.slice(0, 1);
+  }
+
+  function showHeroImage(src, immediate){
+    const project = projects[currentProject];
     if(!project) return;
-    const src = cleanImagesForKey(key)[0] || project.card;
     if(!src) return;
 
-    heroProjectKey = key;
     document.getElementById("spaceHeroTitle").textContent = project.title;
     document.getElementById("spaceHeroTitleCn").textContent = project.cn;
 
@@ -9842,18 +10152,16 @@ function closeSpace(){
   }
 
   function resetHeroCarousel(){
-    const type = projects[currentProject]?.type || "interior";
-    const list = Object.entries(projects).filter(([,project])=>project.type === type);
-    heroProjectIndex = Math.max(0, list.findIndex(([key])=>key === currentProject));
-    showHeroProject(list[heroProjectIndex]?.[0] || currentProject, true);
+    const images = currentHeroImages();
+    heroImageIndex = 0;
+    showHeroImage(images[0], true);
   }
 
   nextSlide = function(){
-    const type = projects[currentProject]?.type || "interior";
-    const list = Object.entries(projects).filter(([,project])=>project.type === type);
-    if(!list.length) return;
-    heroProjectIndex = (heroProjectIndex + 1) % list.length;
-    showHeroProject(list[heroProjectIndex][0], false);
+    const images = currentHeroImages();
+    if(images.length < 2) return;
+    heroImageIndex = (heroImageIndex + 1) % images.length;
+    showHeroImage(images[heroImageIndex], false);
   };
 
   startSpace = function(){
@@ -9883,6 +10191,7 @@ function closeSpace(){
     spacePage.style.display = "block";
     document.body.style.overflow = "hidden";
     spacePage.scrollTop = 0;
+    archiveFilter = "all";
     renderProjectSwitcher();
     loadProject();
     resetHeroCarousel();
@@ -9945,21 +10254,39 @@ function closeSpace(){
     }
   });
 
-  document.getElementById("spaceHeroAction").addEventListener("click", event=>{
-    event.stopPropagation();
-    if(heroProjectKey !== currentProject) switchProject(heroProjectKey);
-    document.querySelector("#spacePage .space-project-intro")?.scrollIntoView({ behavior:"smooth", block:"start" });
+  document.addEventListener("click", ()=>{
+    document.querySelectorAll("#projectSwitcher .space-nav-group.is-open").forEach(group=>{
+      group.classList.remove("is-open");
+    });
   });
 
-  spaceHero.addEventListener("mouseenter", stopSpace);
-  spaceHero.addEventListener("mouseleave", startSpace);
   document.getElementById("spaceBackButton").addEventListener("click", event=>{
     event.stopPropagation();
-    closeSpace();
+    stopSpace();
+    spacePage.style.display = "none";
+    document.body.style.overflow = "auto";
+    document.body.classList.remove("project-landing", "space-returning");
+    applyHomeFilter("all");
+    document.getElementById("homeTopBrand")?.focus({ preventScroll:true });
+    document.getElementById("homeTopBrand")?.blur();
+    const resetHomeScroll = ()=>{
+      if(document.scrollingElement) document.scrollingElement.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo(0, 0);
+    };
+    resetHomeScroll();
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        resetHomeScroll();
+      });
+    });
+    setTimeout(resetHomeScroll, 80);
+    setTimeout(resetHomeScroll, 260);
   });
   document.getElementById("spaceBackFooter").addEventListener("click", event=>{
     event.stopPropagation();
-    closeSpace();
+    spacePage.scrollTo({ top:0, behavior:"smooth" });
   });
 })();
 </script>

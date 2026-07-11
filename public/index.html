@@ -6382,6 +6382,405 @@ html body #homePage .section .title{
   }
 }
 
+/* =========================================================
+   SPACE PAGE — EDITORIAL IMAGE READER
+   Foster-inspired cover hierarchy + vertical project stream.
+   Scoped to #spacePage so the homepage remains unchanged.
+========================================================= */
+#spacePage{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  background:#fff !important;
+  color:#111;
+  font-family:Arial, Helvetica, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+#spacePage .space-editorial{
+  position:relative;
+  min-height:100%;
+  width:100%;
+  background:#fff;
+}
+
+#spacePage .space-editorial::before,
+#spacePage .space-editorial::after{
+  display:none !important;
+}
+
+#spacePage .space-editorial-header{
+  height:106px;
+  padding:0 clamp(30px, 4vw, 80px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:36px;
+  border-bottom:1px solid #dedede;
+  background:#fff;
+}
+
+#spacePage .space-brand{
+  appearance:none;
+  border:0;
+  padding:0;
+  background:none;
+  color:#0d0d0d;
+  font:600 clamp(20px, 1.55vw, 30px)/1 Arial, Helvetica, sans-serif;
+  letter-spacing:0;
+  cursor:pointer;
+}
+
+#spacePage .space-category-nav{
+  position:static !important;
+  display:flex !important;
+  align-items:center;
+  gap:clamp(22px, 3vw, 54px);
+  transform:none !important;
+  z-index:auto !important;
+}
+
+#spacePage .space-category-tab{
+  appearance:none;
+  border:0;
+  border-bottom:1px solid transparent;
+  padding:7px 0 6px;
+  background:none;
+  color:#777;
+  font:500 13px/1 Arial, Helvetica, sans-serif;
+  letter-spacing:.16em;
+  cursor:pointer;
+  transition:color .3s ease-out, border-color .3s ease-out;
+}
+
+#spacePage .space-category-tab:hover,
+#spacePage .space-category-tab.is-active{
+  color:#111;
+  border-bottom-color:#111;
+}
+
+#spacePage .space-breadcrumb{
+  min-height:106px;
+  padding:0 clamp(30px, 4vw, 80px);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#fff;
+  color:#777;
+  font-size:clamp(20px, 1.7vw, 31px);
+  font-weight:400;
+  line-height:1.2;
+}
+
+#spacePage .space-breadcrumb strong{
+  color:#171717;
+  font-weight:400;
+}
+
+#spacePage .space-breadcrumb small{
+  margin-left:2px;
+  color:#999;
+  font-size:.58em;
+  font-weight:400;
+}
+
+#spacePage .space-cover{
+  position:relative;
+  width:100%;
+  height:clamp(460px, 72vh, 860px);
+  overflow:hidden;
+  background:#e8e8e8;
+}
+
+#spacePage .space-cover-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  opacity:0;
+  transform:scale(1.012);
+  transition:opacity 1.2s ease-out, transform 6s ease-out;
+}
+
+#spacePage .space-cover-image.is-active{
+  opacity:1;
+  transform:scale(1.035);
+}
+
+#spacePage .space-cover::after{
+  content:"";
+  position:absolute;
+  inset:48% 0 0;
+  pointer-events:none;
+  background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.34));
+}
+
+#spacePage .space-cover-action{
+  position:absolute;
+  z-index:2;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-end;
+  gap:7px;
+  border:0;
+  padding:0 clamp(30px, 4vw, 80px) clamp(34px, 4vw, 64px);
+  background:transparent;
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+}
+
+#spacePage .space-cover-title{
+  max-width:min(900px, 82vw);
+  font-size:clamp(30px, 3vw, 55px);
+  font-weight:400;
+  line-height:1.05;
+  letter-spacing:0;
+}
+
+#spacePage .space-cover-title-cn{
+  color:rgba(255,255,255,.72);
+  font-size:clamp(13px, 1vw, 18px);
+  font-weight:400;
+  line-height:1.4;
+}
+
+#spacePage .space-project-intro{
+  width:min(1520px, calc(100% - clamp(60px, 8vw, 160px)));
+  margin:0 auto;
+  padding:clamp(70px, 9vw, 140px) 0 clamp(64px, 8vw, 120px);
+  display:grid;
+  grid-template-columns:minmax(0, 1.25fr) minmax(280px, .75fr);
+  gap:clamp(50px, 8vw, 150px);
+  align-items:start;
+}
+
+#spacePage .space-project-kicker{
+  margin:0 0 20px;
+  color:#858585;
+  font-size:12px;
+  line-height:1.3;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+#spacePage .space-title{
+  margin:0 !important;
+  color:#111 !important;
+  font-size:clamp(34px, 4.1vw, 72px) !important;
+  font-weight:400 !important;
+  line-height:1.04 !important;
+  letter-spacing:0 !important;
+  text-shadow:none !important;
+}
+
+#spacePage .space-title-cn{
+  margin:16px 0 0;
+  color:#8a8a8a;
+  font-size:clamp(15px, 1.15vw, 20px);
+  line-height:1.5;
+}
+
+#spacePage .space-desc{
+  margin:4px 0 0 !important;
+  max-width:560px;
+  color:#555 !important;
+  font-size:clamp(15px, 1.05vw, 18px) !important;
+  line-height:1.75 !important;
+  text-shadow:none !important;
+}
+
+#spacePage .space-image-stream{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:clamp(80px, 10vw, 170px);
+  padding:0 0 clamp(100px, 12vw, 190px);
+}
+
+#spacePage .space-stream-figure{
+  width:min(100%, 1920px);
+  margin:0;
+  padding:0;
+  display:flex;
+  justify-content:center;
+  cursor:zoom-in;
+}
+
+#spacePage .space-stream-figure.is-portrait{
+  width:min(66vw, 980px);
+}
+
+#spacePage .space-stream-figure.is-square{
+  width:min(78vw, 1280px);
+}
+
+#spacePage .space-stream-image{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .7s ease-out, transform .8s ease-out;
+}
+
+#spacePage .space-stream-image.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+#spacePage .space-editorial-footer{
+  min-height:180px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-top:1px solid #dedede;
+}
+
+#spacePage .space-editorial-footer button{
+  appearance:none;
+  border:0;
+  border-bottom:1px solid #222;
+  padding:0 0 7px;
+  background:none;
+  color:#222;
+  font-size:14px;
+  line-height:1.2;
+  cursor:pointer;
+}
+
+#spacePage .space-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:5100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+  background:rgba(8,8,8,.96);
+  cursor:zoom-out;
+}
+
+#spacePage .space-lightbox.is-open{
+  display:flex;
+}
+
+#spacePage .space-lightbox img{
+  display:block;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  user-select:none;
+  opacity:1;
+  transition:opacity .25s ease-out;
+}
+
+#spacePage .space-lightbox img.is-changing{
+  opacity:0;
+}
+
+#spacePage .space-lightbox-status,
+#spacePage .space-lightbox-help{
+  position:absolute;
+  bottom:20px;
+  color:rgba(255,255,255,.68);
+  font-size:11px;
+  line-height:1.2;
+  letter-spacing:.08em;
+}
+
+#spacePage .space-lightbox-status{ left:24px; }
+#spacePage .space-lightbox-help{ right:24px; }
+
+@media(max-width:760px){
+  #spacePage .space-editorial-header{
+    height:72px;
+    padding:0 18px;
+    gap:18px;
+  }
+
+  #spacePage .space-brand{
+    font-size:15px;
+  }
+
+  #spacePage .space-category-nav{
+    gap:15px;
+  }
+
+  #spacePage .space-category-tab{
+    font-size:10px;
+    letter-spacing:.10em;
+  }
+
+  #spacePage .space-breadcrumb{
+    min-height:76px;
+    padding:0 18px;
+    gap:8px;
+    font-size:18px;
+  }
+
+  #spacePage .space-cover{
+    height:62vh;
+    min-height:420px;
+    max-height:660px;
+  }
+
+  #spacePage .space-cover-action{
+    padding:0 20px 28px;
+  }
+
+  #spacePage .space-cover-title{
+    max-width:90vw;
+    font-size:28px;
+  }
+
+  #spacePage .space-project-intro{
+    width:calc(100% - 36px);
+    padding:64px 0 58px;
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  #spacePage .space-title{
+    font-size:34px !important;
+  }
+
+  #spacePage .space-image-stream{
+    gap:62px;
+    padding-bottom:90px;
+  }
+
+  #spacePage .space-stream-figure.is-portrait{
+    width:82vw;
+  }
+
+  #spacePage .space-stream-figure.is-square{
+    width:90vw;
+  }
+
+  #spacePage .space-lightbox{
+    padding:12px;
+  }
+
+  #spacePage .space-lightbox-help{
+    display:none;
+  }
+}
+
 </style>
 </head>
 
@@ -6471,26 +6870,50 @@ html body #homePage .section .title{
 ========================= -->
 <div id="spacePage">
 
-  <div class="stage" id="spaceStage">
+  <div class="space-editorial" id="spaceStage">
 
-    <div class="sideBlur left"></div>
-    <div class="sideBlur right"></div>
+    <header class="space-editorial-header">
+      <button class="space-brand" id="spaceBackButton" type="button" aria-label="Back to projects">JOHN STUDIO</button>
+      <nav class="space-category-nav" id="projectSwitcher" aria-label="Project categories"></nav>
+    </header>
 
-    <!-- TOP NAV / 分类项目入口 -->
-    <div class="topnav" id="projectSwitcher"></div>
-
-    <!-- SLIDES -->
-    <div class="projectSlides" id="projectSlides"></div>
-
-    <!-- META -->
-    <div class="meta">
-      <div class="space-title" id="spaceTitle"></div>
-      <div class="desc" id="spaceDesc"></div>
-      <div class="project-index" id="projectIndex"></div>
+    <div class="space-breadcrumb">
+      <span>Projects</span>
+      <span class="space-breadcrumb-separator">/</span>
+      <strong id="spaceCategoryTitle">Interior</strong>
+      <small id="spaceCategoryTitleCn">室内空间</small>
     </div>
 
-    <div class="hint">Scroll within project · Hover ARCH / INT / PROD for image previews · Left click blank area to return</div>
+    <section class="space-cover" id="spaceHero" aria-label="Featured projects">
+      <img class="space-cover-image is-active" id="spaceHeroImageA" alt="">
+      <img class="space-cover-image" id="spaceHeroImageB" alt="">
+      <button class="space-cover-action" id="spaceHeroAction" type="button" aria-label="Open featured project">
+        <span class="space-cover-title" id="spaceHeroTitle"></span>
+        <span class="space-cover-title-cn" id="spaceHeroTitleCn"></span>
+      </button>
+    </section>
 
+    <section class="space-project-intro">
+      <div>
+        <p class="space-project-kicker" id="projectIndex"></p>
+        <h1 class="space-title" id="spaceTitle"></h1>
+        <p class="space-title-cn" id="spaceTitleCn"></p>
+      </div>
+      <p class="space-desc" id="spaceDesc"></p>
+    </section>
+
+    <main class="space-image-stream" id="projectSlides"></main>
+
+    <footer class="space-editorial-footer">
+      <button type="button" id="spaceBackFooter">Back to Projects / 返回项目</button>
+    </footer>
+
+  </div>
+
+  <div class="space-lightbox" id="spaceLightbox" aria-hidden="true">
+    <img id="spaceLightboxImage" alt="">
+    <div class="space-lightbox-status" id="spaceLightboxStatus"></div>
+    <div class="space-lightbox-help">Scroll for next image · Click to close</div>
   </div>
 
 </div>
@@ -7861,38 +8284,13 @@ function openSpace(){
   startSpace();
 }
 
-/* SPACE WHEEL CONTROL
-   滚轮只浏览当前项目内部图片，不跳到其它项目 */
-document.getElementById("spaceStage").addEventListener("wheel",(e)=>{
-  e.preventDefault();
+/* The editorial space page uses native document scrolling.
+   Fullscreen image navigation is handled by the lightbox below. */
 
-  stopSpace();
-
-  if(e.deltaY > 0){
-    nextSlide();
-  }else{
-    const count = getProjectImageCount(currentProject);
-    if(!count) return;
-    slideIndex = (slideIndex - 1 + count) % count;
-    setSlide(slideIndex);
-  }
-
-  setTimeout(startSpace,120);
-},{passive:false});
-
-window.addEventListener("resize", ()=>{
-  if(document.getElementById("spacePage").style.display === "block"){
-    reapplySpaceImageDisplayModes();
-  }
-});
+/* Native responsive layout handles space-page resizing. */
 
 
-/* SPACE LEFT CLICK -> HOME, RETURN TO CURRENT PROJECT CARD */
-document.getElementById("spacePage").addEventListener("click",(e)=>{
-  if(e.target.closest(".topnav")) return;
-
-  closeSpace();
-});
+/* Returning is explicit through JOHN STUDIO or the footer button. */
 
 function getProjectCardReturnY(projectKey){
   const card = projectKey
@@ -9280,6 +9678,289 @@ function closeSpace(){
       return oldSwitchProject.apply(this, arguments);
     };
   }
+})();
+</script>
+
+<script>
+/* =========================================================
+   SPACE PAGE — EDITORIAL READER INTERACTION
+   This replaces the legacy fullscreen slideshow only inside
+   #spacePage. Homepage rendering and project data stay intact.
+========================================================= */
+(function(){
+  const categoryCopy = {
+    arch:{ en:"Architecture", cn:"建筑空间" },
+    interior:{ en:"Interior", cn:"室内空间" },
+    product:{ en:"Product", cn:"产品设计" }
+  };
+
+  const spacePage = document.getElementById("spacePage");
+  const spaceHero = document.getElementById("spaceHero");
+  const heroLayers = [
+    document.getElementById("spaceHeroImageA"),
+    document.getElementById("spaceHeroImageB")
+  ];
+  const lightbox = document.getElementById("spaceLightbox");
+  const lightboxImage = document.getElementById("spaceLightboxImage");
+  const lightboxStatus = document.getElementById("spaceLightboxStatus");
+
+  let activeHeroLayer = 0;
+  let heroProjectKey = currentProject;
+  let heroProjectIndex = 0;
+  let lightboxIndex = 0;
+  let lightboxWheelLocked = false;
+  let streamObserver = null;
+
+  function cleanImagesForKey(key){
+    const project = projects[key];
+    if(!project) return [];
+    const seen = new Set();
+    return (Array.isArray(project.imgs) ? project.imgs : []).filter(src=>{
+      if(!src || seen.has(src)) return false;
+      seen.add(src);
+      return true;
+    });
+  }
+
+  function imageKind(src){
+    const meta = projectImageMeta[src];
+    if(!meta) return "landscape";
+    const ratio = Number(meta.ratio) || (meta.width / meta.height);
+    if(ratio < .85) return "portrait";
+    if(ratio < 1.25) return "square";
+    return "landscape";
+  }
+
+  function updateCategoryCopy(type){
+    const copy = categoryCopy[type] || categoryCopy.interior;
+    document.getElementById("spaceCategoryTitle").textContent = copy.en;
+    document.getElementById("spaceCategoryTitleCn").textContent = copy.cn;
+  }
+
+  renderProjectSwitcher = function(){
+    const switcher = document.getElementById("projectSwitcher");
+    const currentType = projects[currentProject]?.type || "interior";
+
+    switcher.innerHTML = Object.keys(categoryCopy).map(type=>{
+      const available = Object.values(projects).some(project=>project.type === type);
+      return `<button class="space-category-tab ${type === currentType ? "is-active" : ""}" data-type="${type}" type="button" ${available ? "" : "aria-disabled=\"true\""}>${projectTypes[type]}</button>`;
+    }).join("");
+
+    updateCategoryCopy(currentType);
+
+    switcher.querySelectorAll(".space-category-tab").forEach(button=>{
+      button.addEventListener("click", event=>{
+        event.stopPropagation();
+        const type = button.dataset.type;
+        const list = Object.entries(projects).filter(([,project])=>project.type === type);
+        if(!list.length) return;
+        switchProject(list[0][0]);
+        spacePage.scrollTo({ top:0, behavior:"smooth" });
+      });
+    });
+  };
+
+  function revealStreamImages(){
+    if(streamObserver) streamObserver.disconnect();
+    streamObserver = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          streamObserver.unobserve(entry.target);
+        }
+      });
+    }, { root:spacePage, rootMargin:"0px 0px -8%", threshold:.08 });
+
+    document.querySelectorAll("#projectSlides .space-stream-image").forEach(image=>{
+      streamObserver.observe(image);
+    });
+  }
+
+  renderProjectSlides = function(){
+    const container = document.getElementById("projectSlides");
+    const project = projects[currentProject];
+    const images = cleanImagesForKey(currentProject);
+
+    container.innerHTML = images.map((src,index)=>{
+      const kind = imageKind(src);
+      return `
+        <figure class="space-stream-figure is-${kind}" data-image-index="${index}">
+          <img class="space-stream-image" src="${src}" alt="${project.title} image ${index + 1}" loading="${index < 2 ? "eager" : "lazy"}" decoding="async">
+        </figure>
+      `;
+    }).join("");
+
+    slides = Array.from(container.querySelectorAll(".space-stream-figure"));
+    slides.forEach(figure=>{
+      figure.addEventListener("click", event=>{
+        event.stopPropagation();
+        openLightbox(Number(figure.dataset.imageIndex) || 0);
+      });
+    });
+    revealStreamImages();
+  };
+
+  loadProject = function(){
+    const project = projects[currentProject];
+    const meta = projectCardMeta[currentProject] || {};
+    if(!project) return;
+
+    document.getElementById("spaceTitle").textContent = project.title;
+    document.getElementById("spaceTitleCn").textContent = project.cn;
+    document.getElementById("spaceDesc").textContent = project.desc;
+    document.getElementById("projectIndex").textContent = `${meta.location || ""}${meta.year ? ` · ${meta.year}` : ""}`;
+    renderProjectSlides();
+  };
+
+  function showHeroProject(key, immediate){
+    const project = projects[key];
+    if(!project) return;
+    const src = cleanImagesForKey(key)[0] || project.card;
+    if(!src) return;
+
+    heroProjectKey = key;
+    document.getElementById("spaceHeroTitle").textContent = project.title;
+    document.getElementById("spaceHeroTitleCn").textContent = project.cn;
+
+    if(immediate){
+      heroLayers.forEach((layer,index)=>{
+        layer.src = src;
+        layer.alt = project.title;
+        layer.classList.toggle("is-active", index === activeHeroLayer);
+      });
+      return;
+    }
+
+    const nextLayer = 1 - activeHeroLayer;
+    heroLayers[nextLayer].src = src;
+    heroLayers[nextLayer].alt = project.title;
+    requestAnimationFrame(()=>{
+      heroLayers[nextLayer].classList.add("is-active");
+      heroLayers[activeHeroLayer].classList.remove("is-active");
+      activeHeroLayer = nextLayer;
+    });
+  }
+
+  function resetHeroCarousel(){
+    const type = projects[currentProject]?.type || "interior";
+    const list = Object.entries(projects).filter(([,project])=>project.type === type);
+    heroProjectIndex = Math.max(0, list.findIndex(([key])=>key === currentProject));
+    showHeroProject(list[heroProjectIndex]?.[0] || currentProject, true);
+  }
+
+  nextSlide = function(){
+    const type = projects[currentProject]?.type || "interior";
+    const list = Object.entries(projects).filter(([,project])=>project.type === type);
+    if(!list.length) return;
+    heroProjectIndex = (heroProjectIndex + 1) % list.length;
+    showHeroProject(list[heroProjectIndex][0], false);
+  };
+
+  startSpace = function(){
+    clearInterval(spaceTimer);
+    spaceTimer = setInterval(nextSlide, 5000);
+  };
+
+  stopSpace = function(){
+    clearInterval(spaceTimer);
+    spaceTimer = null;
+  };
+
+  switchProject = function(key){
+    if(!projects[key]) return;
+    stopSpace();
+    currentProject = key;
+    slideIndex = 0;
+    const matchingCard = document.querySelector(`.card[data-project="${key}"]`);
+    if(matchingCard) lastCard = matchingCard;
+    renderProjectSwitcher();
+    loadProject();
+    resetHeroCarousel();
+    startSpace();
+  };
+
+  openSpace = function(){
+    spacePage.style.display = "block";
+    document.body.style.overflow = "hidden";
+    spacePage.scrollTop = 0;
+    renderProjectSwitcher();
+    loadProject();
+    resetHeroCarousel();
+    startSpace();
+  };
+
+  function updateLightboxImage(){
+    const project = projects[currentProject];
+    const images = cleanImagesForKey(currentProject);
+    if(!images.length) return;
+    lightboxIndex = ((lightboxIndex % images.length) + images.length) % images.length;
+    lightboxImage.classList.add("is-changing");
+    setTimeout(()=>{
+      lightboxImage.src = images[lightboxIndex];
+      lightboxImage.alt = `${project.title} image ${lightboxIndex + 1}`;
+      lightboxStatus.textContent = `${String(lightboxIndex + 1).padStart(2,"0")} / ${String(images.length).padStart(2,"0")}`;
+      requestAnimationFrame(()=>lightboxImage.classList.remove("is-changing"));
+    }, 160);
+  }
+
+  function openLightbox(index){
+    stopSpace();
+    lightboxIndex = index;
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    updateLightboxImage();
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    startSpace();
+  }
+
+  lightbox.addEventListener("click", event=>{
+    event.stopPropagation();
+    closeLightbox();
+  });
+
+  lightbox.addEventListener("wheel", event=>{
+    event.preventDefault();
+    event.stopPropagation();
+    if(lightboxWheelLocked) return;
+    lightboxWheelLocked = true;
+    lightboxIndex += event.deltaY >= 0 ? 1 : -1;
+    updateLightboxImage();
+    setTimeout(()=>{ lightboxWheelLocked = false; }, 480);
+  }, { passive:false });
+
+  document.addEventListener("keydown", event=>{
+    if(!lightbox.classList.contains("is-open")) return;
+    if(event.key === "Escape") closeLightbox();
+    if(event.key === "ArrowDown" || event.key === "ArrowRight"){
+      lightboxIndex += 1;
+      updateLightboxImage();
+    }
+    if(event.key === "ArrowUp" || event.key === "ArrowLeft"){
+      lightboxIndex -= 1;
+      updateLightboxImage();
+    }
+  });
+
+  document.getElementById("spaceHeroAction").addEventListener("click", event=>{
+    event.stopPropagation();
+    if(heroProjectKey !== currentProject) switchProject(heroProjectKey);
+    document.querySelector("#spacePage .space-project-intro")?.scrollIntoView({ behavior:"smooth", block:"start" });
+  });
+
+  spaceHero.addEventListener("mouseenter", stopSpace);
+  spaceHero.addEventListener("mouseleave", startSpace);
+  document.getElementById("spaceBackButton").addEventListener("click", event=>{
+    event.stopPropagation();
+    closeSpace();
+  });
+  document.getElementById("spaceBackFooter").addEventListener("click", event=>{
+    event.stopPropagation();
+    closeSpace();
+  });
 })();
 </script>
 

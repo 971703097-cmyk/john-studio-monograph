@@ -6281,6 +6281,107 @@ html body #homePage .section .title{
   -webkit-backdrop-filter:blur(18px) saturate(1.04) brightness(.86) contrast(.96) !important;
 }
 
+/* =========================
+   LOCAL PATCH: PROJECT INDEX 3-COLUMN MONOGRAPH GRID
+   Desktop and medium screens use 3 columns; mobile uses 2 columns.
+========================= */
+#projects .cards{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  column-gap:clamp(24px, 3vw, 46px) !important;
+  row-gap:clamp(52px, 6vw, 88px) !important;
+  align-items:start !important;
+  justify-content:center !important;
+}
+
+#projects .cards .card,
+#projects .cards .card:nth-child(even){
+  width:100% !important;
+  margin:0 !important;
+}
+
+#projects .cards .card img{
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:4 / 3 !important;
+  object-fit:cover !important;
+  display:block !important;
+}
+
+#projects .cards .card .project-card-copy{
+  padding:18px 0 0 !important;
+  min-height:0 !important;
+  text-align:left !important;
+  color:#1d1d1d !important;
+}
+
+#projects .project-card-meta{
+  display:flex !important;
+  justify-content:space-between !important;
+  align-items:flex-end !important;
+  gap:14px !important;
+  padding-bottom:11px !important;
+  border-bottom:1px solid rgba(0,0,0,.46) !important;
+  color:#8a8a8a !important;
+  font-size:clamp(11px, .78vw, 13px) !important;
+  line-height:1.2 !important;
+  font-weight:400 !important;
+  letter-spacing:.03em !important;
+}
+
+#projects .project-card-title-cn{
+  margin:20px 0 0 !important;
+  color:#1f1f1f !important;
+  font-size:clamp(18px, 1.45vw, 27px) !important;
+  line-height:1.12 !important;
+  font-weight:400 !important;
+  letter-spacing:.02em !important;
+}
+
+#projects .project-card-title-en{
+  display:block !important;
+  margin-top:8px !important;
+  color:#8a8a8a !important;
+  font-size:clamp(10px, .76vw, 13px) !important;
+  line-height:1.25 !important;
+  font-weight:400 !important;
+  letter-spacing:.06em !important;
+  text-transform:uppercase !important;
+  opacity:1 !important;
+}
+
+@media(max-width:760px){
+  #projects .cards{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    column-gap:14px !important;
+    row-gap:38px !important;
+  }
+
+  #projects .cards .card .project-card-copy{
+    padding-top:12px !important;
+  }
+
+  #projects .project-card-meta{
+    gap:8px !important;
+    padding-bottom:8px !important;
+    font-size:10px !important;
+  }
+
+  #projects .project-card-title-cn{
+    margin-top:12px !important;
+    font-size:15px !important;
+    line-height:1.2 !important;
+  }
+
+  #projects .project-card-title-en{
+    margin-top:5px !important;
+    font-size:9px !important;
+    line-height:1.25 !important;
+    letter-spacing:.04em !important;
+  }
+}
+
 </style>
 </head>
 
@@ -6683,6 +6784,18 @@ const projects = {
       "assets/projects/guangzhou-dongshankou-south-plaza/closing.webp"
     ]
   }
+};
+
+const projectCardMeta = {
+  dongguanNewWorld:{ year:"2025", locationCn:"东莞", location:"Dongguan, China" },
+  nanjingHuaihe:{ year:"2025", locationCn:"南京", location:"Nanjing, China" },
+  barInterior:{ year:"2024", locationCn:"中国", location:"China" },
+  fujianLishui:{ year:"2024", locationCn:"福建", location:"Fujian, China" },
+  helongSchool:{ year:"2024", locationCn:"桑植", location:"Sangzhi, China" },
+  dongguanVanke:{ year:"2024", locationCn:"东莞", location:"Dongguan, China" },
+  zhaoqingHuaijiHotel:{ year:"2025", locationCn:"肇庆", location:"Zhaoqing, China" },
+  guangzhouNansha:{ year:"2024", locationCn:"广州", location:"Guangzhou, China" },
+  guangzhouDongshankou:{ year:"2020", locationCn:"广州", location:"Guangzhou, China" }
 };
 
 window.heroImages = Object.values(projects)
@@ -7296,10 +7409,18 @@ function renderHomeProjectCards(){
   cardsContainer.innerHTML = Object.entries(projects)
     .filter(([key, p]) => p.card)
     .map(([key, p]) => {
+      const meta = projectCardMeta[key] || {};
       return `
         <div class="card ${p.type}" data-project="${key}">
           <img src="${p.card}" alt="${p.title}">
-          <div class="text">${p.title}<span>${p.cn}</span></div>
+          <div class="text project-card-copy">
+            <div class="project-card-meta">
+              <span>${meta.locationCn || meta.location || ""}</span>
+              <span>${meta.year || ""}</span>
+            </div>
+            <h3 class="project-card-title-cn">${p.cn}</h3>
+            <p class="project-card-title-en">${p.title}</p>
+          </div>
         </div>
       `;
     })

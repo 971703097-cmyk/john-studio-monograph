@@ -10026,6 +10026,26 @@ function closeSpace(){
     guangzhouDongshankou:"一个由场地记忆、社区节奏与建筑对话共同塑造的城市公共空间介入。"
   };
 
+  // These files were replaced after the original metadata scan. Keep their
+  // verified intrinsic ratios here so hero selection never uses stale data.
+  const verifiedHeroRatios = {
+    "assets/projects/dongguan-new-world-interior/hero.webp":1.791,
+    "assets/projects/dongguan-new-world-interior/01.webp":1.4996,
+    "assets/projects/dongguan-new-world-interior/02.webp":1.7891,
+    "assets/projects/dongguan-new-world-interior/03.webp":1.7925,
+    "assets/projects/dongguan-new-world-interior/04.webp":.8573,
+    "assets/projects/dongguan-new-world-interior/05.webp":.6668,
+    "assets/projects/dongguan-new-world-interior/06.webp":.6668,
+    "assets/projects/dongguan-new-world-interior/07.webp":.75,
+    "assets/projects/dongguan-new-world-interior/08.webp":.7495,
+    "assets/projects/dongguan-new-world-interior/09.webp":.6679,
+    "assets/projects/dongguan-new-world-interior/10.webp":.74,
+    "assets/projects/dongguan-new-world-interior/11.webp":.6668,
+    "assets/projects/dongguan-new-world-interior/12.webp":.6798,
+    "assets/projects/dongguan-new-world-interior/13.webp":.59,
+    "assets/projects/dongguan-new-world-interior/closing.webp":.75
+  };
+
   const spacePage = document.getElementById("spacePage");
   const spaceHero = document.getElementById("spaceHero");
   const heroLayers = [
@@ -10192,12 +10212,23 @@ function closeSpace(){
 
   function currentHeroImages(){
     const allImages = cleanImagesForKey(currentProject);
-    const landscapeImages = allImages.filter(src=>imageKind(src) === "landscape");
+    const ratioOf = src=>{
+      if(verifiedHeroRatios[src]) return verifiedHeroRatios[src];
+      const meta = projectImageMeta[src];
+      return meta ? (Number(meta.ratio) || (meta.width / meta.height)) : 0;
+    };
     if(window.matchMedia("(max-width: 760px)").matches){
-      const mobileImages = allImages.filter(src=>imageKind(src) !== "landscape");
-      return mobileImages.length ? mobileImages : allImages.slice(0, 1);
+      const mobileImages = allImages.filter(src=>ratioOf(src) > 0 && ratioOf(src) < 1.25);
+      if(mobileImages.length) return mobileImages;
+      const narrowest = allImages.slice().sort((a,b)=>ratioOf(a) - ratioOf(b))[0];
+      return narrowest ? [narrowest] : [];
     }
-    return landscapeImages.length ? landscapeImages : allImages.slice(0, 1);
+    const landscapeImages = allImages.filter(src=>ratioOf(src) >= 1.4);
+    if(landscapeImages.length) return landscapeImages;
+    const card = projects[currentProject]?.card;
+    if(card && ratioOf(card) > 1) return [card];
+    const widest = allImages.slice().sort((a,b)=>ratioOf(b) - ratioOf(a))[0];
+    return widest && ratioOf(widest) > 1 ? [widest] : [];
   }
 
   function showHeroImage(src, immediate){

@@ -6435,13 +6435,26 @@ html body #homePage .section .title{
 
 #spacePage .space-brand{
   appearance:none;
-  border:0;
-  padding:0;
-  background:none;
+  border:1px solid transparent;
+  border-radius:20px;
+  padding:9px 14px 8px;
+  margin-left:-15px;
+  background:transparent;
   color:#0d0d0d;
   font:600 clamp(20px, 1.55vw, 30px)/1 Arial, Helvetica, sans-serif;
   letter-spacing:0;
   cursor:pointer;
+  transition:border-color .2s ease-out, background .2s ease-out, color .2s ease-out, transform .15s ease-out;
+}
+
+#spacePage .space-brand:hover,
+#spacePage .space-brand:focus-visible{
+  border-color:#aaa;
+  outline:none;
+}
+
+#spacePage .space-brand:active{
+  transform:scale(.97);
 }
 
 #spacePage .space-category-nav{
@@ -6483,6 +6496,8 @@ html body #homePage .section .title{
   border-color:#111;
   background:#111;
 }
+
+#spacePage .space-category-tab:active{ transform:scale(.97); }
 
 #spacePage .space-project-dropdown{
   position:fixed;
@@ -6705,7 +6720,7 @@ html body #homePage .section .title{
 }
 
 #spacePage .space-desc + .space-desc{
-  margin-top:24px !important;
+  margin-top:12px !important;
 }
 
 #spacePage .space-image-stream{
@@ -6750,6 +6765,11 @@ html body #homePage .section .title{
   z-index:180;
   display:flex;
   flex-direction:column;
+  width:50px;
+  overflow:hidden;
+  border:1px solid #1b1b1b;
+  border-radius:25px;
+  background:#fff;
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -6767,21 +6787,31 @@ html body #homePage .section .title{
 #spacePage .space-floating-tools button{
   appearance:none;
   width:48px;
-  height:48px;
-  border:1px solid #1b1b1b;
-  border-radius:14px;
+  height:49px;
+  border:0;
+  border-radius:0;
   padding:0;
   display:grid;
   place-items:center;
   background:#fff;
   color:#111;
-  font:400 21px/1 Arial, sans-serif;
+  font:300 27px/1 Arial, sans-serif;
   cursor:pointer;
-  transition:background .2s ease-out, color .2s ease-out;
+  transition:background .2s ease-out, color .2s ease-out, transform .15s ease-out;
 }
 
-#spacePage .space-floating-tools button + button{ margin-top:6px; }
+#spacePage .space-floating-tools button + button{
+  border-top:1px solid #1b1b1b;
+}
 #spacePage .space-floating-tools button:hover{ background:#111; color:#fff; }
+#spacePage .space-floating-tools button:active{ transform:scale(.9); }
+
+#spacePage .space-tool-icon{
+  display:block;
+  width:100%;
+  text-align:center;
+  transform:translateY(-1px);
+}
 
 #spacePage .space-archive{
   width:100%;
@@ -6801,8 +6831,8 @@ html body #homePage .section .title{
 #spacePage .space-archive-heading h2{
   margin:0;
   color:#151515;
-  font-size:19px;
-  font-weight:600;
+  font-size:16px;
+  font-weight:400;
   line-height:1.1;
 }
 
@@ -6848,7 +6878,7 @@ html body #homePage .section .title{
   border:0;
   padding:0;
   overflow:hidden;
-  background:#deddd8;
+  background:#f3f2ed;
   cursor:pointer;
 }
 
@@ -6856,12 +6886,12 @@ html body #homePage .section .title{
   content:"";
   position:absolute;
   inset:0;
-  border:4px solid transparent;
+  border:0;
   pointer-events:none;
 }
 
 #spacePage .space-archive-card.is-current::after{
-  border-color:#fff;
+  border-color:transparent;
 }
 
 #spacePage .space-archive-card img{
@@ -6869,7 +6899,11 @@ html body #homePage .section .title{
   width:100%;
   aspect-ratio:4 / 3;
   object-fit:cover;
-  transition:opacity .25s ease-out;
+  transition:opacity .25s ease-out, transform .3s ease-out;
+}
+
+#spacePage .space-archive-card.is-current img{
+  transform:scale(.9);
 }
 
 #spacePage .space-archive-card:hover img{
@@ -6996,7 +7030,7 @@ html body #homePage .section .title{
     line-height:1.72 !important;
   }
 
-  #spacePage .space-desc + .space-desc{ margin-top:22px !important; }
+  #spacePage .space-desc + .space-desc{ margin-top:10px !important; }
 
   #spacePage .space-image-stream{
     width:92%;
@@ -7013,18 +7047,20 @@ html body #homePage .section .title{
     padding:0 8px;
   }
 
-  #spacePage .space-archive-heading h2{ font-size:15px; }
+  #spacePage .space-archive-heading h2{ font-size:13px; }
 
   #spacePage .space-floating-tools{
     right:14px;
     bottom:14px;
+    width:44px;
+    border-radius:22px;
   }
 
   #spacePage .space-floating-tools button{
     width:42px;
-    height:42px;
-    border-radius:13px;
-    font-size:18px;
+    height:43px;
+    border-radius:0;
+    font-size:24px;
   }
 
   #spacePage .space-archive-grid{
@@ -7188,8 +7224,8 @@ html body #homePage .section .title{
     </section>
 
     <div class="space-floating-tools" id="spaceFloatingTools" aria-label="Space page navigation">
-      <button type="button" id="spaceReturnProject" aria-label="Back to project entry / 返回项目入口" title="Back to project entry / 返回项目入口">←</button>
-      <button type="button" id="spaceBackTop" aria-label="Back to top / 返回顶部" title="Back to top / 返回顶部">⌃</button>
+      <button type="button" id="spaceReturnProject" aria-label="Back to project entry / 返回项目入口" title="Back to project entry / 返回项目入口"><span class="space-tool-icon" aria-hidden="true">←</span></button>
+      <button type="button" id="spaceBackTop" aria-label="Back to top / 返回顶部" title="Back to top / 返回顶部"><span class="space-tool-icon" aria-hidden="true">↑</span></button>
     </div>
 
   </div>

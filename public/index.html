@@ -6477,7 +6477,11 @@ html body #homePage .section .title{
   appearance:none;
   border:1px solid transparent;
   border-radius:20px;
-  padding:9px 15px 8px;
+  height:36px;
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   background:transparent;
   color:#777;
   font:500 13px/1 Arial, Helvetica, sans-serif;
@@ -6505,12 +6509,15 @@ html body #homePage .section .title{
   left:0;
   right:0;
   z-index:99;
-  display:grid;
-  grid-template-columns:repeat(4, minmax(0, 1fr));
+  display:flex;
   gap:14px;
-  max-height:min(62vh, 620px);
+  max-height:calc(100vh - 78px);
   padding:18px clamp(30px, 4vw, 80px) 24px;
-  overflow-y:auto;
+  overflow-x:auto;
+  overflow-y:hidden;
+  overscroll-behavior:contain;
+  scroll-behavior:smooth;
+  scrollbar-width:thin;
   background:rgba(255,255,255,.98);
   border-top:1px solid #e2e2e2;
   border-bottom:1px solid #d8d8d8;
@@ -6541,6 +6548,8 @@ html body #homePage .section .title{
   color:#111;
   text-align:left;
   cursor:pointer;
+  flex:0 0 calc((100% - 42px) / 4);
+  min-width:0;
 }
 
 #spacePage .space-project-preview img{
@@ -6812,11 +6821,11 @@ html body #homePage .section .title{
   z-index:180;
   display:flex;
   flex-direction:column;
-  width:50px;
+  width:36px;
   overflow:hidden;
-  border:1px solid rgba(112,124,127,.48);
-  border-radius:25px;
-  background:rgba(155,174,178,.82);
+  border:0;
+  border-radius:18px;
+  background:#8f8f8f;
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -6833,8 +6842,8 @@ html body #homePage .section .title{
 
 #spacePage .space-floating-tools button{
   appearance:none;
-  width:48px;
-  height:49px;
+  width:36px;
+  height:36px;
   border:0;
   border-radius:0;
   padding:0;
@@ -6842,22 +6851,33 @@ html body #homePage .section .title{
   place-items:center;
   background:transparent;
   color:#fff;
-  font:300 22px/1 Arial, sans-serif;
+  font:inherit;
   cursor:pointer;
   transition:background .2s ease-out, color .2s ease-out, transform .15s ease-out;
 }
 
 #spacePage .space-floating-tools button + button{
-  border-top:1px solid rgba(255,255,255,.58);
+  border-top:1px solid #fff;
 }
-#spacePage .space-floating-tools button:hover{ background:#111; color:#fff; }
+#spacePage .space-floating-tools button:hover{ background:#555; color:#fff; }
 #spacePage .space-floating-tools button:active{ transform:scale(.9); }
 
 #spacePage .space-tool-icon{
   display:block;
-  width:100%;
-  text-align:center;
-  transform:translateY(-1px);
+  width:0;
+  height:0;
+}
+
+#spacePage .space-tool-icon.is-left{
+  border-top:4px solid transparent;
+  border-bottom:4px solid transparent;
+  border-right:7px solid #fff;
+}
+
+#spacePage .space-tool-icon.is-up{
+  border-left:4px solid transparent;
+  border-right:4px solid transparent;
+  border-bottom:7px solid #fff;
 }
 
 #spacePage .space-archive{
@@ -7024,16 +7044,20 @@ html body #homePage .section .title{
   #spacePage .space-category-tab{
     font-size:10px;
     letter-spacing:.10em;
-    padding:7px 10px 6px;
+    height:36px;
+    padding:0 12px;
     border-radius:16px;
   }
 
   #spacePage .space-project-dropdown{
     top:62px;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
     gap:10px;
     max-height:calc(100vh - 72px);
     padding:12px 14px 18px;
+  }
+
+  #spacePage .space-project-preview{
+    flex-basis:calc((100% - 10px) / 2);
   }
 
   #spacePage .space-project-preview-copy{
@@ -7118,15 +7142,14 @@ html body #homePage .section .title{
   #spacePage .space-floating-tools{
     right:14px;
     bottom:14px;
-    width:44px;
-    border-radius:22px;
+    width:36px;
+    border-radius:18px;
   }
 
   #spacePage .space-floating-tools button{
-    width:42px;
-    height:43px;
+    width:36px;
+    height:36px;
     border-radius:0;
-    font-size:20px;
   }
 
   #spacePage .space-archive-grid{
@@ -7156,9 +7179,7 @@ html body #homePage .section .title{
     gap:30px;
   }
 
-  #spacePage .space-project-dropdown{
-    grid-template-columns:repeat(4, minmax(0, 1fr));
-  }
+  #spacePage .space-project-dropdown{ max-height:calc(100vh - 72px); }
 
   #spacePage .space-archive-grid{
     grid-template-columns:repeat(3, minmax(0, 1fr));
@@ -7290,8 +7311,8 @@ html body #homePage .section .title{
     </section>
 
     <div class="space-floating-tools" id="spaceFloatingTools" aria-label="Space page navigation">
-      <button type="button" id="spaceReturnProject" aria-label="Back to project entry / 返回项目入口" title="Back to project entry / 返回项目入口"><span class="space-tool-icon" aria-hidden="true">←</span></button>
-      <button type="button" id="spaceBackTop" aria-label="Back to top / 返回顶部" title="Back to top / 返回顶部"><span class="space-tool-icon" aria-hidden="true">↑</span></button>
+      <button type="button" id="spaceReturnProject" aria-label="Back to project entry / 返回项目入口" title="Back to project entry / 返回项目入口"><span class="space-tool-icon is-left" aria-hidden="true"></span></button>
+      <button type="button" id="spaceBackTop" aria-label="Back to top / 返回顶部" title="Back to top / 返回顶部"><span class="space-tool-icon is-up" aria-hidden="true"></span></button>
     </div>
 
   </div>
@@ -10183,6 +10204,14 @@ function closeSpace(){
 
     updateCategoryCopy(currentType);
 
+    const revealCurrentPreview = group=>{
+      const dropdown = group?.querySelector(".space-project-dropdown");
+      const current = dropdown?.querySelector(".space-project-preview.is-current");
+      if(!dropdown || !current) return;
+      const left = current.offsetLeft - ((dropdown.clientWidth - current.offsetWidth) / 2);
+      dropdown.scrollTo({ left:Math.max(0,left), behavior:"smooth" });
+    };
+
     switcher.querySelectorAll(".space-category-tab").forEach(button=>{
       button.addEventListener("click", event=>{
         event.stopPropagation();
@@ -10192,7 +10221,25 @@ function closeSpace(){
           if(item !== group) item.classList.remove("is-open");
         });
         group?.classList.toggle("is-open");
+        if(group?.classList.contains("is-open")){
+          requestAnimationFrame(()=>revealCurrentPreview(group));
+        }
       });
+    });
+
+    switcher.querySelectorAll(".space-nav-group").forEach(group=>{
+      group.addEventListener("mouseenter", ()=>{
+        requestAnimationFrame(()=>revealCurrentPreview(group));
+      });
+    });
+
+    switcher.querySelectorAll(".space-project-dropdown").forEach(dropdown=>{
+      dropdown.addEventListener("wheel", event=>{
+        if(dropdown.scrollWidth <= dropdown.clientWidth) return;
+        if(Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+        event.preventDefault();
+        dropdown.scrollLeft += event.deltaY;
+      }, { passive:false });
     });
 
     switcher.querySelectorAll(".space-project-preview").forEach(option=>{

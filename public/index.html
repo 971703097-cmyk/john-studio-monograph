@@ -6423,7 +6423,7 @@ html body #homePage .section .title{
   position:sticky;
   top:0;
   z-index:100;
-  height:106px;
+  height:78px;
   padding:0 clamp(30px, 4vw, 80px);
   display:flex;
   align-items:center;
@@ -6455,33 +6455,38 @@ html body #homePage .section .title{
 
 #spacePage .space-nav-group{
   position:relative;
-  height:106px;
+  height:78px;
   display:flex;
   align-items:center;
 }
 
 #spacePage .space-category-tab{
   appearance:none;
-  border:0;
-  border-bottom:1px solid transparent;
-  padding:7px 0 6px;
-  background:none;
+  border:1px solid transparent;
+  border-radius:20px;
+  padding:9px 15px 8px;
+  background:transparent;
   color:#777;
   font:500 13px/1 Arial, Helvetica, sans-serif;
   letter-spacing:.16em;
   cursor:pointer;
-  transition:color .3s ease-out, border-color .3s ease-out;
+  transition:color .2s ease-out, border-color .2s ease-out, background .2s ease-out;
 }
 
-#spacePage .space-category-tab:hover,
-#spacePage .space-category-tab.is-active{
+#spacePage .space-category-tab:hover{
   color:#111;
-  border-bottom-color:#111;
+  border-color:#aaa;
+}
+
+#spacePage .space-category-tab.is-active{
+  color:#fff;
+  border-color:#111;
+  background:#111;
 }
 
 #spacePage .space-project-dropdown{
   position:fixed;
-  top:106px;
+  top:78px;
   left:0;
   right:0;
   z-index:99;
@@ -6693,10 +6698,14 @@ html body #homePage .section .title{
   margin:30px 0 0 !important;
   max-width:none;
   color:#777 !important;
-  font-size:17px !important;
+  font-size:16px !important;
   line-height:1.75 !important;
   letter-spacing:.015em !important;
   text-shadow:none !important;
+}
+
+#spacePage .space-desc + .space-desc{
+  margin-top:24px !important;
 }
 
 #spacePage .space-image-stream{
@@ -6734,33 +6743,45 @@ html body #homePage .section .title{
   transform:translateY(0);
 }
 
-#spacePage .space-editorial-footer{
-  min-height:210px;
+#spacePage .space-floating-tools{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:180;
   display:flex;
-  align-items:center;
-  justify-content:center;
-  border-top:1px solid #dedede;
+  flex-direction:column;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(10px);
+  transition:opacity .25s ease-out, transform .25s ease-out, visibility .25s;
 }
 
-#spacePage .space-editorial-footer button{
+#spacePage .space-floating-tools.is-visible{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+
+#spacePage .space-floating-tools button{
   appearance:none;
-  width:58px;
-  height:58px;
-  border:1px solid #222;
-  border-radius:50%;
+  width:48px;
+  height:48px;
+  border:1px solid #1b1b1b;
+  border-radius:14px;
   padding:0;
+  display:grid;
+  place-items:center;
   background:#fff;
-  color:#222;
-  font-size:25px;
-  line-height:1;
+  color:#111;
+  font:400 21px/1 Arial, sans-serif;
   cursor:pointer;
-  transition:background .25s ease-out, color .25s ease-out;
+  transition:background .2s ease-out, color .2s ease-out;
 }
 
-#spacePage .space-editorial-footer button:hover{
-  background:#111;
-  color:#fff;
-}
+#spacePage .space-floating-tools button + button{ margin-top:6px; }
+#spacePage .space-floating-tools button:hover{ background:#111; color:#fff; }
 
 #spacePage .space-archive{
   width:100%;
@@ -6772,20 +6793,23 @@ html body #homePage .section .title{
 #spacePage .space-archive-heading{
   width:min(1500px, 100%);
   margin:0 auto clamp(34px, 4vw, 58px);
-  display:block;
+  display:flex;
+  justify-content:center;
+  text-align:center;
 }
 
 #spacePage .space-archive-heading h2{
   margin:0;
   color:#151515;
-  font-size:clamp(22px, 2vw, 34px);
-  font-weight:400;
+  font-size:19px;
+  font-weight:600;
   line-height:1.1;
 }
 
 #spacePage .space-archive-heading h2 span{
-  color:#8b8b87;
-  font-size:.55em;
+  color:#777773;
+  font-size:1em;
+  font-weight:400;
 }
 
 #spacePage .space-archive-filters{
@@ -6815,7 +6839,7 @@ html body #homePage .section .title{
 #spacePage .space-archive-grid{
   display:grid;
   grid-template-columns:repeat(4, minmax(0, 1fr));
-  gap:2px;
+  gap:0;
 }
 
 #spacePage .space-archive-card{
@@ -6832,12 +6856,12 @@ html body #homePage .section .title{
   content:"";
   position:absolute;
   inset:0;
-  border:1px solid transparent;
+  border:4px solid transparent;
   pointer-events:none;
 }
 
 #spacePage .space-archive-card.is-current::after{
-  border-color:#111;
+  border-color:#fff;
 }
 
 #spacePage .space-archive-card img{
@@ -6899,7 +6923,7 @@ html body #homePage .section .title{
 
 @media(max-width:760px){
   #spacePage .space-editorial-header{
-    height:72px;
+    height:62px;
     padding:0 18px;
     gap:18px;
   }
@@ -6913,16 +6937,18 @@ html body #homePage .section .title{
   }
 
   #spacePage .space-nav-group{
-    height:72px;
+    height:62px;
   }
 
   #spacePage .space-category-tab{
     font-size:10px;
     letter-spacing:.10em;
+    padding:7px 10px 6px;
+    border-radius:16px;
   }
 
   #spacePage .space-project-dropdown{
-    top:72px;
+    top:62px;
     grid-template-columns:repeat(2, minmax(0, 1fr));
     gap:10px;
     max-height:calc(100vh - 72px);
@@ -6970,6 +6996,8 @@ html body #homePage .section .title{
     line-height:1.72 !important;
   }
 
+  #spacePage .space-desc + .space-desc{ margin-top:22px !important; }
+
   #spacePage .space-image-stream{
     width:92%;
     gap:18px;
@@ -6983,6 +7011,20 @@ html body #homePage .section .title{
   #spacePage .space-archive-heading{
     margin-bottom:24px;
     padding:0 8px;
+  }
+
+  #spacePage .space-archive-heading h2{ font-size:15px; }
+
+  #spacePage .space-floating-tools{
+    right:14px;
+    bottom:14px;
+  }
+
+  #spacePage .space-floating-tools button{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    font-size:18px;
   }
 
   #spacePage .space-archive-grid{
@@ -6999,6 +7041,10 @@ html body #homePage .section .title{
 }
 
 @media(min-width:761px) and (max-width:1100px){
+  #spacePage .space-editorial-header,
+  #spacePage .space-nav-group{ height:72px; }
+
+  #spacePage .space-project-dropdown{ top:72px; }
   #spacePage .space-project-intro{
     width:52%;
   }
@@ -7128,14 +7174,11 @@ html body #homePage .section .title{
         <h1 class="space-title" id="spaceTitle"></h1>
         <p class="space-title-cn" id="spaceTitleCn"></p>
       </div>
+      <p class="space-desc" id="spaceDescCn"></p>
       <p class="space-desc" id="spaceDesc"></p>
     </section>
 
     <main class="space-image-stream" id="projectSlides"></main>
-
-    <footer class="space-editorial-footer">
-      <button type="button" id="spaceBackFooter" aria-label="Back to top / 返回顶部" title="Back to top / 返回顶部">↑</button>
-    </footer>
 
     <section class="space-archive" id="spaceArchive">
       <div class="space-archive-heading">
@@ -7143,6 +7186,11 @@ html body #homePage .section .title{
       </div>
       <div class="space-archive-grid" id="spaceArchiveGrid"></div>
     </section>
+
+    <div class="space-floating-tools" id="spaceFloatingTools" aria-label="Space page navigation">
+      <button type="button" id="spaceReturnProject" aria-label="Back to project entry / 返回项目入口" title="Back to project entry / 返回项目入口">←</button>
+      <button type="button" id="spaceBackTop" aria-label="Back to top / 返回顶部" title="Back to top / 返回顶部">⌃</button>
+    </div>
 
   </div>
 
@@ -9930,6 +9978,18 @@ function closeSpace(){
     product:{ en:"Product", cn:"产品设计" }
   };
 
+  const projectDescCn = {
+    dongguanNewWorld:"一个由材料克制、光线与空间节奏共同塑造的安静室内序列。",
+    nanjingHuaihe:"一个由场地、动线与公共空间序列共同塑造的克制建筑项目。",
+    barInterior:"一个由材料克制、光线与空间节奏共同塑造的安静室内序列。",
+    fujianLishui:"一个由场地、动线与公共空间序列共同塑造的克制建筑项目。",
+    helongSchool:"一个由场地、动线与公共空间序列共同塑造的克制建筑项目。",
+    dongguanVanke:"一个由材料克制、光线与空间节奏共同塑造的安静室内序列。",
+    zhaoqingHuaijiHotel:"一个由景观、到达、庭院动线与安静室内氛围共同组织的酒店空间序列。",
+    guangzhouNansha:"一个由材料克制、光线与空间节奏共同塑造的安静室内序列。",
+    guangzhouDongshankou:"一个由场地记忆、社区节奏与建筑对话共同塑造的城市公共空间介入。"
+  };
+
   const spacePage = document.getElementById("spacePage");
   const spaceHero = document.getElementById("spaceHero");
   const heroLayers = [
@@ -10068,6 +10128,7 @@ function closeSpace(){
 
     document.getElementById("spaceTitle").textContent = project.title;
     document.getElementById("spaceTitleCn").textContent = project.cn;
+    document.getElementById("spaceDescCn").textContent = projectDescCn[currentProject] || "";
     document.getElementById("spaceDesc").textContent = project.desc;
     document.getElementById("projectIndex").textContent = `${meta.location || ""}${meta.year ? ` · ${meta.year}` : ""}`;
     renderProjectSlides();
@@ -10096,6 +10157,10 @@ function closeSpace(){
   function currentHeroImages(){
     const allImages = cleanImagesForKey(currentProject);
     const landscapeImages = allImages.filter(src=>imageKind(src) === "landscape");
+    if(window.matchMedia("(max-width: 760px)").matches){
+      const mobileImages = allImages.filter(src=>imageKind(src) !== "landscape");
+      return mobileImages.length ? mobileImages : allImages.slice(0, 1);
+    }
     return landscapeImages.length ? landscapeImages : allImages.slice(0, 1);
   }
 
@@ -10258,9 +10323,21 @@ function closeSpace(){
     setTimeout(resetHomeScroll, 80);
     setTimeout(resetHomeScroll, 260);
   });
-  document.getElementById("spaceBackFooter").addEventListener("click", event=>{
+  const floatingTools = document.getElementById("spaceFloatingTools");
+  function syncFloatingTools(){
+    const stream = document.getElementById("projectSlides");
+    const threshold = stream ? Math.max(260, stream.offsetTop - 120) : 480;
+    floatingTools.classList.toggle("is-visible", spacePage.scrollTop >= threshold);
+  }
+  spacePage.addEventListener("scroll", syncFloatingTools, { passive:true });
+
+  document.getElementById("spaceBackTop").addEventListener("click", event=>{
     event.stopPropagation();
     spacePage.scrollTo({ top:0, behavior:"smooth" });
+  });
+  document.getElementById("spaceReturnProject").addEventListener("click", event=>{
+    event.stopPropagation();
+    closeSpace();
   });
 })();
 </script>

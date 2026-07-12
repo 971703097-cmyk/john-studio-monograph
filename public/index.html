@@ -6535,7 +6535,9 @@ html body #homePage .section .title{
   appearance:none;
   border:0;
   padding:0;
-  background:#fff;
+  display:flex;
+  flex-direction:column;
+  background:#efefed;
   color:#111;
   text-align:left;
   cursor:pointer;
@@ -6554,8 +6556,13 @@ html body #homePage .section .title{
 }
 
 #spacePage .space-project-preview-copy{
+  position:relative;
   display:block;
-  padding:10px 0 5px;
+  width:100%;
+  min-height:104px;
+  padding:24px 68px 22px 28px;
+  background:#efefed;
+  transition:background .2s ease-out, color .2s ease-out;
 }
 
 #spacePage .space-project-preview-copy strong,
@@ -6573,14 +6580,54 @@ html body #homePage .section .title{
 }
 
 #spacePage .space-project-preview-copy small{
-  margin-top:4px;
+  margin-top:7px;
   color:#8a8a8a;
-  font-size:11px;
-  line-height:1.3;
+  font-size:13px;
+  line-height:1.35;
 }
 
 #spacePage .space-project-preview.is-current{
-  box-shadow:inset 0 0 0 1px #111;
+  box-shadow:none;
+}
+
+#spacePage .space-project-preview-arrow{
+  position:absolute;
+  top:50%;
+  right:20px;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.42);
+  color:#666;
+  font-size:21px;
+  line-height:1;
+  transform:translateY(-50%);
+  transition:background .2s ease-out, color .2s ease-out;
+}
+
+#spacePage .space-project-preview:hover .space-project-preview-arrow,
+#spacePage .space-project-preview:focus-visible .space-project-preview-arrow{
+  background:#fff;
+  color:#111;
+}
+
+#spacePage .space-project-preview.is-current .space-project-preview-copy{
+  background:#111;
+}
+
+#spacePage .space-project-preview.is-current .space-project-preview-copy strong{
+  color:#fff;
+}
+
+#spacePage .space-project-preview.is-current .space-project-preview-copy small{
+  color:#aaa;
+}
+
+#spacePage .space-project-preview.is-current .space-project-preview-arrow{
+  background:#fff;
+  color:#111;
 }
 
 #spacePage .space-breadcrumb{
@@ -6767,9 +6814,9 @@ html body #homePage .section .title{
   flex-direction:column;
   width:50px;
   overflow:hidden;
-  border:1px solid #1b1b1b;
+  border:1px solid rgba(112,124,127,.48);
   border-radius:25px;
-  background:#fff;
+  background:rgba(155,174,178,.82);
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -6793,15 +6840,15 @@ html body #homePage .section .title{
   padding:0;
   display:grid;
   place-items:center;
-  background:#fff;
-  color:#111;
-  font:300 27px/1 Arial, sans-serif;
+  background:transparent;
+  color:#fff;
+  font:300 22px/1 Arial, sans-serif;
   cursor:pointer;
   transition:background .2s ease-out, color .2s ease-out, transform .15s ease-out;
 }
 
 #spacePage .space-floating-tools button + button{
-  border-top:1px solid #1b1b1b;
+  border-top:1px solid rgba(255,255,255,.58);
 }
 #spacePage .space-floating-tools button:hover{ background:#111; color:#fff; }
 #spacePage .space-floating-tools button:active{ transform:scale(.9); }
@@ -6989,6 +7036,25 @@ html body #homePage .section .title{
     padding:12px 14px 18px;
   }
 
+  #spacePage .space-project-preview-copy{
+    min-height:82px;
+    padding:15px 45px 14px 14px;
+  }
+
+  #spacePage .space-project-preview-copy strong,
+  #spacePage .space-project-preview-copy small{
+    font-size:11px;
+  }
+
+  #spacePage .space-project-preview-copy small{ margin-top:5px; }
+
+  #spacePage .space-project-preview-arrow{
+    right:10px;
+    width:30px;
+    height:30px;
+    font-size:17px;
+  }
+
   #spacePage .space-breadcrumb{
     min-height:76px;
     padding:0 18px;
@@ -7060,7 +7126,7 @@ html body #homePage .section .title{
     width:42px;
     height:43px;
     border-radius:0;
-    font-size:24px;
+    font-size:20px;
   }
 
   #spacePage .space-archive-grid{
@@ -7091,7 +7157,7 @@ html body #homePage .section .title{
   }
 
   #spacePage .space-project-dropdown{
-    grid-template-columns:repeat(3, minmax(0, 1fr));
+    grid-template-columns:repeat(4, minmax(0, 1fr));
   }
 
   #spacePage .space-archive-grid{
@@ -10102,6 +10168,7 @@ function closeSpace(){
           <span class="space-project-preview-copy">
             <strong>${project.title}</strong>
             <small>${project.cn}</small>
+            <span class="space-project-preview-arrow" aria-hidden="true">→</span>
           </span>
         </button>
       `).join("");

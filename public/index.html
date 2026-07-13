@@ -6509,19 +6509,17 @@ html body #homePage .section .title{
   left:0;
   right:0;
   z-index:99;
-  display:flex;
-  gap:14px;
-  max-height:calc(100vh - 78px);
-  padding:18px clamp(30px, 4vw, 80px) 24px;
-  overflow-x:auto;
-  overflow-y:hidden;
+  display:block;
+  height:min(610px, calc(100vh - 78px));
+  padding:0;
+  overflow:hidden;
   overscroll-behavior:contain;
-  scroll-behavior:smooth;
-  scrollbar-width:thin;
-  background:rgba(255,255,255,.98);
+  background:#f7f7f5;
   border-top:1px solid #e2e2e2;
   border-bottom:1px solid #d8d8d8;
   box-shadow:0 14px 30px rgba(0,0,0,.08);
+  perspective:1500px;
+  perspective-origin:50% 46%;
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -6538,30 +6536,75 @@ html body #homePage .section .title{
   transform:translateY(0);
 }
 
+#spacePage .space-project-rail{
+  --space-rail-card-width:clamp(300px, 28vw, 430px);
+  --space-rail-gap:clamp(24px, 3.2vw, 56px);
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  gap:var(--space-rail-gap);
+  padding:42px calc(50vw - (var(--space-rail-card-width) / 2));
+  overflow-x:auto;
+  overflow-y:hidden;
+  overscroll-behavior:contain;
+  scrollbar-width:none;
+  touch-action:pan-y;
+  cursor:grab;
+  transform-style:preserve-3d;
+}
+
+#spacePage .space-project-rail::-webkit-scrollbar{ display:none; }
+#spacePage .space-project-rail.is-dragging{ cursor:grabbing; }
+
 #spacePage .space-project-preview{
+  --space-depth-scale:.84;
+  --space-depth-y:28px;
+  --space-depth-z:-120px;
+  --space-depth-rotate:0deg;
   appearance:none;
   border:0;
   padding:0;
-  display:flex;
-  flex-direction:column;
+  display:grid;
+  grid-template-rows:minmax(0, 1fr) 104px;
   background:#efefed;
   color:#111;
   text-align:left;
   cursor:pointer;
-  flex:0 0 calc((100% - 42px) / 4);
+  flex:0 0 var(--space-rail-card-width);
+  height:clamp(390px, 52vh, 510px);
   min-width:0;
+  overflow:hidden;
+  transform:translate3d(0, var(--space-depth-y), var(--space-depth-z)) rotateY(var(--space-depth-rotate)) scale(var(--space-depth-scale));
+  transform-origin:center;
+  transform-style:preserve-3d;
+  will-change:transform;
+  opacity:1;
+  filter:none;
+  box-shadow:0 12px 24px rgba(0,0,0,.08);
+  transition:box-shadow .24s ease-out;
 }
 
 #spacePage .space-project-preview img{
   display:block;
   width:100%;
-  aspect-ratio:16 / 10;
+  height:100%;
+  min-height:0;
   object-fit:cover;
-  transition:opacity .25s ease-out;
+  transform:scale(1);
+  transform-origin:center;
+  filter:none;
+  opacity:1;
+  transition:transform .45s ease-out;
 }
 
 #spacePage .space-project-preview:hover img{
-  opacity:.78;
+  transform:scale(1.02);
+}
+
+#spacePage .space-project-preview.is-centered{
+  z-index:3;
+  box-shadow:0 26px 42px rgba(0,0,0,.18);
 }
 
 #spacePage .space-project-preview-copy{
@@ -6859,7 +6902,7 @@ html body #homePage .section .title{
 #spacePage .space-floating-tools button + button{
   border-top:1px solid #fff;
 }
-#spacePage .space-floating-tools button:hover{ background:#555; color:#fff; }
+#spacePage .space-floating-tools button:hover{ background:#000; color:#fff; }
 #spacePage .space-floating-tools button:active{ transform:scale(.9); }
 
 #spacePage .space-tool-icon{
@@ -7051,13 +7094,19 @@ html body #homePage .section .title{
 
   #spacePage .space-project-dropdown{
     top:62px;
-    gap:10px;
-    max-height:calc(100vh - 72px);
-    padding:12px 14px 18px;
+    height:min(560px, calc(100dvh - 62px));
+    padding:0;
+  }
+
+  #spacePage .space-project-rail{
+    --space-rail-card-width:min(76vw, 350px);
+    --space-rail-gap:18px;
+    padding:30px calc(50vw - (var(--space-rail-card-width) / 2));
   }
 
   #spacePage .space-project-preview{
-    flex-basis:calc((100% - 10px) / 2);
+    height:min(450px, 54vh);
+    grid-template-rows:minmax(0, 1fr) 82px;
   }
 
   #spacePage .space-project-preview-copy{
@@ -10177,7 +10226,7 @@ function closeSpace(){
     if(titleCn) titleCn.textContent = copy.cn;
   }
 
-  renderProjectSwitcher = function(){
+  renderProjectSwitcherLegacy = function(){
     const switcher = document.getElementById("projectSwitcher");
     const currentType = projects[currentProject]?.type || "interior";
 
@@ -10234,12 +10283,39 @@ function closeSpace(){
     });
 
     switcher.querySelectorAll(".space-project-dropdown").forEach(dropdown=>{
+      let targetLeft = dropdown.scrollLeft;
+      let animationFrame = 0;
+
+      const animateRail = ()=>{
+        const distance = targetLeft - dropdown.scrollLeft;
+        dropdown.scrollLeft += distance * .14;
+        if(Math.abs(distance) > .5){
+          animationFrame = requestAnimationFrame(animateRail);
+        }else{
+          dropdown.scrollLeft = targetLeft;
+          animationFrame = 0;
+        }
+      };
+
       dropdown.addEventListener("wheel", event=>{
         if(dropdown.scrollWidth <= dropdown.clientWidth) return;
-        if(Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+        const delta = Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+        if(!delta) return;
         event.preventDefault();
-        dropdown.scrollLeft += event.deltaY;
+        const maxLeft = dropdown.scrollWidth - dropdown.clientWidth;
+        targetLeft = Math.max(0, Math.min(maxLeft, targetLeft + delta * 1.15));
+        if(!animationFrame) animationFrame = requestAnimationFrame(animateRail);
       }, { passive:false });
+
+      dropdown.addEventListener("pointerdown", ()=>{
+        if(animationFrame) cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+        targetLeft = dropdown.scrollLeft;
+      });
+
+      dropdown.addEventListener("scroll", ()=>{
+        if(!animationFrame) targetLeft = dropdown.scrollLeft;
+      }, { passive:true });
     });
 
     switcher.querySelectorAll(".space-project-preview").forEach(option=>{
@@ -10249,6 +10325,227 @@ function closeSpace(){
         spacePage.scrollTo({ top:0, behavior:"smooth" });
       });
     });
+  };
+
+  let spaceRailResizeHandler = null;
+
+  renderProjectSwitcher = function(){
+    const switcher = document.getElementById("projectSwitcher");
+    const currentType = projects[currentProject]?.type || "interior";
+
+    switcher.innerHTML = Object.keys(categoryCopy).map(type=>{
+      const list = Object.entries(projects).filter(([,project])=>project.type === type);
+      const previews = Array.from({ length:3 }, (_,loopSet)=>list.map(([key,project])=>`
+        <button class="space-project-preview ${key === currentProject ? "is-current" : ""}" data-project="${key}" data-loop-set="${loopSet}" type="button" aria-label="${project.title}">
+          <img src="${project.card || cleanImagesForKey(key)[0]}" alt="" loading="lazy">
+          <span class="space-project-preview-copy">
+            <strong>${project.title}</strong>
+            <small>${project.cn}</small>
+            <span class="space-project-preview-arrow" aria-hidden="true">&#8594;</span>
+          </span>
+        </button>
+      `).join("")).join("");
+
+      return `
+        <div class="space-nav-group ${type === currentType ? "is-active" : ""}" data-type="${type}">
+          <button class="space-category-tab ${type === currentType ? "is-active" : ""}" data-type="${type}" type="button" ${list.length ? "" : "aria-disabled=\"true\""}>${projectTypes[type]}</button>
+          ${list.length ? `<div class="space-project-dropdown"><div class="space-project-rail" data-loop-count="${list.length}">${previews}</div></div>` : ""}
+        </div>
+      `;
+    }).join("");
+
+    updateCategoryCopy(currentType);
+    const railApis = [];
+
+    const setupInfiniteRail = rail=>{
+      const cards = [...rail.querySelectorAll(".space-project-preview")];
+      const originalCount = Number(rail.dataset.loopCount) || 0;
+      if(!originalCount || cards.length < originalCount * 3) return null;
+
+      let segmentWidth = 0;
+      let targetLeft = 0;
+      let animationFrame = 0;
+      let pointerId = null;
+      let pointerStartX = 0;
+      let pointerStartLeft = 0;
+      let didDrag = false;
+
+      const measure = ()=>{
+        segmentWidth = cards[originalCount].offsetLeft - cards[0].offsetLeft;
+      };
+
+      const normalizeLoop = ()=>{
+        if(!segmentWidth) return;
+        if(rail.scrollLeft < segmentWidth * .5){
+          rail.scrollLeft += segmentWidth;
+          targetLeft += segmentWidth;
+        }else if(rail.scrollLeft > segmentWidth * 1.5){
+          rail.scrollLeft -= segmentWidth;
+          targetLeft -= segmentWidth;
+        }
+      };
+
+      const updateDepth = ()=>{
+        const center = rail.scrollLeft + (rail.clientWidth / 2);
+        const range = Math.max(rail.clientWidth * .58, 420);
+        let closest = null;
+        let closestDistance = Infinity;
+
+        cards.forEach(card=>{
+          const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+          const signedDistance = (cardCenter - center) / range;
+          const distance = Math.min(1, Math.abs(signedDistance));
+          const mobile = window.matchMedia("(max-width: 720px)").matches;
+          const scale = 1 - distance * (mobile ? .10 : .16);
+          const translateY = distance * (mobile ? 18 : 30);
+          const translateZ = distance * (mobile ? -70 : -130);
+          const rotateY = Math.max(-5, Math.min(5, signedDistance * -5));
+
+          card.style.setProperty("--space-depth-scale", scale.toFixed(4));
+          card.style.setProperty("--space-depth-y", `${translateY.toFixed(1)}px`);
+          card.style.setProperty("--space-depth-z", `${translateZ.toFixed(1)}px`);
+          card.style.setProperty("--space-depth-rotate", `${rotateY.toFixed(2)}deg`);
+
+          const absoluteDistance = Math.abs(cardCenter - center);
+          if(absoluteDistance < closestDistance){
+            closestDistance = absoluteDistance;
+            closest = card;
+          }
+        });
+
+        cards.forEach(card=>card.classList.toggle("is-centered", card === closest));
+      };
+
+      const animateRail = ()=>{
+        const distance = targetLeft - rail.scrollLeft;
+        rail.scrollLeft += distance * .13;
+        normalizeLoop();
+        updateDepth();
+        if(Math.abs(distance) > .35){
+          animationFrame = requestAnimationFrame(animateRail);
+        }else{
+          rail.scrollLeft = targetLeft;
+          normalizeLoop();
+          updateDepth();
+          animationFrame = 0;
+        }
+      };
+
+      const centerCurrent = behavior=>{
+        measure();
+        const current = cards.slice(originalCount, originalCount * 2).find(card=>card.classList.contains("is-current")) || cards[originalCount];
+        if(!current) return;
+        targetLeft = current.offsetLeft - ((rail.clientWidth - current.offsetWidth) / 2);
+        if(behavior === "smooth"){
+          if(!animationFrame) animationFrame = requestAnimationFrame(animateRail);
+        }else{
+          rail.scrollLeft = targetLeft;
+          normalizeLoop();
+          updateDepth();
+        }
+      };
+
+      rail.addEventListener("wheel", event=>{
+        const delta = Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+        if(!delta) return;
+        event.preventDefault();
+        targetLeft += delta * 1.28;
+        if(!animationFrame) animationFrame = requestAnimationFrame(animateRail);
+      }, { passive:false });
+
+      rail.addEventListener("pointerdown", event=>{
+        if(event.button !== undefined && event.button !== 0) return;
+        if(animationFrame) cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+        pointerId = event.pointerId;
+        pointerStartX = event.clientX;
+        pointerStartLeft = rail.scrollLeft;
+        targetLeft = rail.scrollLeft;
+        didDrag = false;
+        rail.classList.add("is-dragging");
+        rail.setPointerCapture?.(pointerId);
+      });
+
+      rail.addEventListener("pointermove", event=>{
+        if(pointerId !== event.pointerId) return;
+        const movement = event.clientX - pointerStartX;
+        if(Math.abs(movement) > 5) didDrag = true;
+        rail.scrollLeft = pointerStartLeft - movement;
+        targetLeft = rail.scrollLeft;
+        normalizeLoop();
+        updateDepth();
+      });
+
+      const releasePointer = event=>{
+        if(pointerId !== event.pointerId) return;
+        if(rail.hasPointerCapture?.(pointerId)) rail.releasePointerCapture(pointerId);
+        pointerId = null;
+        rail.classList.remove("is-dragging");
+        targetLeft = rail.scrollLeft;
+      };
+
+      rail.addEventListener("pointerup", releasePointer);
+      rail.addEventListener("pointercancel", releasePointer);
+      rail.addEventListener("click", event=>{
+        const option = event.target.closest(".space-project-preview");
+        if(!option) return;
+        event.stopPropagation();
+        if(didDrag){
+          event.preventDefault();
+          didDrag = false;
+          return;
+        }
+        switchProject(option.dataset.project);
+        spacePage.scrollTo({ top:0, behavior:"smooth" });
+      });
+
+      rail.addEventListener("scroll", ()=>{
+        if(!animationFrame) targetLeft = rail.scrollLeft;
+        normalizeLoop();
+        updateDepth();
+      }, { passive:true });
+
+      requestAnimationFrame(()=>centerCurrent("auto"));
+      return { centerCurrent, refresh:()=>{ measure(); normalizeLoop(); updateDepth(); } };
+    };
+
+    switcher.querySelectorAll(".space-project-rail").forEach(rail=>{
+      const api = setupInfiniteRail(rail);
+      if(api) railApis.push(api);
+    });
+
+    switcher.querySelectorAll(".space-category-tab").forEach(button=>{
+      button.addEventListener("click", event=>{
+        event.stopPropagation();
+        const group = button.closest(".space-nav-group");
+        if(button.getAttribute("aria-disabled") === "true") return;
+        switcher.querySelectorAll(".space-nav-group").forEach(item=>{
+          if(item !== group) item.classList.remove("is-open");
+        });
+        group?.classList.toggle("is-open");
+        if(group?.classList.contains("is-open")){
+          requestAnimationFrame(()=>{
+            const rail = group.querySelector(".space-project-rail");
+            rail?._spaceRailApi?.centerCurrent("smooth");
+          });
+        }
+      });
+    });
+
+    switcher.querySelectorAll(".space-nav-group").forEach(group=>{
+      const rail = group.querySelector(".space-project-rail");
+      const api = railApis.shift();
+      if(rail && api) rail._spaceRailApi = api;
+      group.addEventListener("mouseenter", ()=>{
+        requestAnimationFrame(()=>rail?._spaceRailApi?.centerCurrent("smooth"));
+      });
+    });
+
+    if(spaceRailResizeHandler) window.removeEventListener("resize", spaceRailResizeHandler);
+    spaceRailResizeHandler = ()=>{
+      switcher.querySelectorAll(".space-project-rail").forEach(rail=>rail._spaceRailApi?.refresh());
+    };
+    window.addEventListener("resize", spaceRailResizeHandler, { passive:true });
   };
 
   function revealStreamImages(){
